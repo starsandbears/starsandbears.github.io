@@ -18,9 +18,9 @@ form.addEventListener("submit", async (e) => {
   btn.textContent = "Joining...";
 
   try {
-    const res = await fetch("/api/subscribe", {
+    const res = await fetch("https://formspree.io/f/xeepgoqg", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
         name: form.name.value.trim(),
         email: form.email.value.trim(),
@@ -28,16 +28,15 @@ form.addEventListener("submit", async (e) => {
       }),
     });
 
-    const data = await res.json();
-
     if (res.ok) {
       msg.className = "form-message success";
-      msg.textContent = data.message;
+      msg.textContent = "Welcome to the Stars&Bears community!";
       msg.style.display = "block";
       form.reset();
     } else {
+      const data = await res.json();
       msg.className = "form-message error";
-      msg.textContent = data.error || "Something went wrong. Please try again.";
+      msg.textContent = (data.errors && data.errors.map(e => e.message).join(", ")) || "Something went wrong. Please try again.";
       msg.style.display = "block";
     }
   } catch {
