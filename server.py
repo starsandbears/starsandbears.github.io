@@ -7,7 +7,7 @@ from pathlib import Path
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__, static_folder=".")
 CORS(app)
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -27,12 +27,12 @@ def _save_subscribers(subscribers):
 
 @app.route("/")
 def index():
-    return send_from_directory("static", "index.html")
+    return send_from_directory(".", "index.html")
 
 
 @app.route("/<path:path>")
 def static_files(path):
-    return send_from_directory("static", path)
+    return send_from_directory(".", path)
 
 
 @app.route("/api/subscribe", methods=["POST"])
