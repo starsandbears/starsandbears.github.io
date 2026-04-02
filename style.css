@@ -357,6 +357,21 @@ a:hover {
   letter-spacing: -0.02em;
 }
 
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 750px;
+  margin-top: -32px;
+  margin-bottom: 48px;
+}
+
+.section-subtitle em {
+  color: var(--accent-light);
+  font-style: normal;
+  font-weight: 600;
+}
+
 /* ===== Mission ===== */
 .mission-grid {
   display: grid;
