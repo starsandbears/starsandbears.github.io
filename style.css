@@ -358,12 +358,12 @@ a:hover {
 }
 
 .section-subtitle {
-  color: var(--text-muted);
-  font-size: 1.05rem;
+  color: var(--text);
+  font-size: 1.25rem;
   line-height: 1.8;
-  max-width: 750px;
+  max-width: 800px;
   margin-top: -32px;
-  margin-bottom: 48px;
+  margin-bottom: 64px;
 }
 
 .section-subtitle em {
