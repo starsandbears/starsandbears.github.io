@@ -1,9 +1,10 @@
 {
   "generated_from": "vault/",
-  "node_count": 6,
-  "edge_count": 18,
+  "node_count": 15,
+  "edge_count": 55,
   "categories": [
     "apply",
+    "denoise",
     "elicit",
     "sense"
   ],
@@ -16,6 +17,46 @@
         "level": "intermediate",
         "status": "draft",
         "file": "apply/bci-speller.md"
+      }
+    },
+    {
+      "data": {
+        "id": "homogeneous-field-correction",
+        "label": "Homogeneous Field Correction",
+        "category": "denoise",
+        "level": "advanced",
+        "status": "draft",
+        "file": "denoise/homogeneous-field-correction.md"
+      }
+    },
+    {
+      "data": {
+        "id": "ica",
+        "label": "ICA",
+        "category": "denoise",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "denoise/ica.md"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering",
+        "label": "Maxwell Filtering",
+        "category": "denoise",
+        "level": "advanced",
+        "status": "draft",
+        "file": "denoise/maxwell-filtering.md"
+      }
+    },
+    {
+      "data": {
+        "id": "signal-space-projection",
+        "label": "Signal Space Projection",
+        "category": "denoise",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "denoise/signal-space-projection.md"
       }
     },
     {
@@ -67,6 +108,56 @@
         "status": "draft",
         "file": "sense/eeg.md"
       }
+    },
+    {
+      "data": {
+        "id": "magnetic-shielding",
+        "label": "Magnetic Shielding",
+        "category": "sense",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "sense/magnetic-shielding.md"
+      }
+    },
+    {
+      "data": {
+        "id": "meg",
+        "label": "MEG",
+        "category": "sense",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "sense/meg.md"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg",
+        "label": "OPM-MEG",
+        "category": "sense",
+        "level": "advanced",
+        "status": "draft",
+        "file": "sense/opm-meg.md"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-sensor",
+        "label": "OPM Sensor",
+        "category": "sense",
+        "level": "advanced",
+        "status": "draft",
+        "file": "sense/opm-sensor.md"
+      }
+    },
+    {
+      "data": {
+        "id": "squid-meg",
+        "label": "SQUID-MEG",
+        "category": "sense",
+        "level": "advanced",
+        "status": "draft",
+        "file": "sense/squid-meg.md"
+      }
     }
   ],
   "edges": [
@@ -91,6 +182,142 @@
         "id": "bci-speller__related__eeg",
         "source": "bci-speller",
         "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "homogeneous-field-correction__related__opm-meg",
+        "source": "homogeneous-field-correction",
+        "target": "opm-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "homogeneous-field-correction__related__maxwell-filtering",
+        "source": "homogeneous-field-correction",
+        "target": "maxwell-filtering",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "homogeneous-field-correction__related__magnetic-shielding",
+        "source": "homogeneous-field-correction",
+        "target": "magnetic-shielding",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "ica__related__meg",
+        "source": "ica",
+        "target": "meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "ica__related__eeg",
+        "source": "ica",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "ica__related__signal-space-projection",
+        "source": "ica",
+        "target": "signal-space-projection",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "ica__related__maxwell-filtering",
+        "source": "ica",
+        "target": "maxwell-filtering",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering__related__meg",
+        "source": "maxwell-filtering",
+        "target": "meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering__related__squid-meg",
+        "source": "maxwell-filtering",
+        "target": "squid-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering__related__signal-space-projection",
+        "source": "maxwell-filtering",
+        "target": "signal-space-projection",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering__related__homogeneous-field-correction",
+        "source": "maxwell-filtering",
+        "target": "homogeneous-field-correction",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering__related__ica",
+        "source": "maxwell-filtering",
+        "target": "ica",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "maxwell-filtering__related__opm-meg",
+        "source": "maxwell-filtering",
+        "target": "opm-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "signal-space-projection__related__meg",
+        "source": "signal-space-projection",
+        "target": "meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "signal-space-projection__related__eeg",
+        "source": "signal-space-projection",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "signal-space-projection__related__ica",
+        "source": "signal-space-projection",
+        "target": "ica",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "signal-space-projection__related__maxwell-filtering",
+        "source": "signal-space-projection",
+        "target": "maxwell-filtering",
         "type": "related"
       }
     },
@@ -211,6 +438,166 @@
         "id": "eeg__related__oddball-paradigm",
         "source": "eeg",
         "target": "oddball-paradigm",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "magnetic-shielding__related__meg",
+        "source": "magnetic-shielding",
+        "target": "meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "magnetic-shielding__related__opm-meg",
+        "source": "magnetic-shielding",
+        "target": "opm-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "magnetic-shielding__related__squid-meg",
+        "source": "magnetic-shielding",
+        "target": "squid-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "magnetic-shielding__related__homogeneous-field-correction",
+        "source": "magnetic-shielding",
+        "target": "homogeneous-field-correction",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "meg__related__eeg",
+        "source": "meg",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "meg__related__opm-meg",
+        "source": "meg",
+        "target": "opm-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "meg__related__squid-meg",
+        "source": "meg",
+        "target": "squid-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "meg__related__magnetic-shielding",
+        "source": "meg",
+        "target": "magnetic-shielding",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg__parent__meg",
+        "source": "opm-meg",
+        "target": "meg",
+        "type": "parent"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg__related__squid-meg",
+        "source": "opm-meg",
+        "target": "squid-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg__related__opm-sensor",
+        "source": "opm-meg",
+        "target": "opm-sensor",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg__related__magnetic-shielding",
+        "source": "opm-meg",
+        "target": "magnetic-shielding",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg__related__homogeneous-field-correction",
+        "source": "opm-meg",
+        "target": "homogeneous-field-correction",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-meg__related__maxwell-filtering",
+        "source": "opm-meg",
+        "target": "maxwell-filtering",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-sensor__related__opm-meg",
+        "source": "opm-sensor",
+        "target": "opm-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "opm-sensor__related__magnetic-shielding",
+        "source": "opm-sensor",
+        "target": "magnetic-shielding",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "squid-meg__parent__meg",
+        "source": "squid-meg",
+        "target": "meg",
+        "type": "parent"
+      }
+    },
+    {
+      "data": {
+        "id": "squid-meg__related__opm-meg",
+        "source": "squid-meg",
+        "target": "opm-meg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "squid-meg__related__magnetic-shielding",
+        "source": "squid-meg",
+        "target": "magnetic-shielding",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "squid-meg__related__maxwell-filtering",
+        "source": "squid-meg",
+        "target": "maxwell-filtering",
         "type": "related"
       }
     }
