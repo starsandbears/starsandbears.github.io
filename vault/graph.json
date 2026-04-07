@@ -1,0 +1,218 @@
+{
+  "generated_from": "vault/",
+  "node_count": 6,
+  "edge_count": 18,
+  "categories": [
+    "apply",
+    "elicit",
+    "sense"
+  ],
+  "nodes": [
+    {
+      "data": {
+        "id": "bci-speller",
+        "label": "BCI Speller",
+        "category": "apply",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "apply/bci-speller.md"
+      }
+    },
+    {
+      "data": {
+        "id": "erp",
+        "label": "Event-Related Potential",
+        "category": "elicit",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "elicit/erp.md"
+      }
+    },
+    {
+      "data": {
+        "id": "motor-imagery",
+        "label": "Motor Imagery",
+        "category": "elicit",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "elicit/motor-imagery.md"
+      }
+    },
+    {
+      "data": {
+        "id": "oddball-paradigm",
+        "label": "Oddball Paradigm",
+        "category": "elicit",
+        "level": "beginner",
+        "status": "draft",
+        "file": "elicit/oddball-paradigm.md"
+      }
+    },
+    {
+      "data": {
+        "id": "p300",
+        "label": "P300",
+        "category": "elicit",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "elicit/p300.md"
+      }
+    },
+    {
+      "data": {
+        "id": "eeg",
+        "label": "EEG",
+        "category": "sense",
+        "level": "beginner",
+        "status": "draft",
+        "file": "sense/eeg.md"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "data": {
+        "id": "bci-speller__related__p300",
+        "source": "bci-speller",
+        "target": "p300",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "bci-speller__related__motor-imagery",
+        "source": "bci-speller",
+        "target": "motor-imagery",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "bci-speller__related__eeg",
+        "source": "bci-speller",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__eeg",
+        "source": "erp",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__oddball-paradigm",
+        "source": "erp",
+        "target": "oddball-paradigm",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__p300",
+        "source": "erp",
+        "target": "p300",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "motor-imagery__related__eeg",
+        "source": "motor-imagery",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "motor-imagery__related__bci-speller",
+        "source": "motor-imagery",
+        "target": "bci-speller",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "oddball-paradigm__related__p300",
+        "source": "oddball-paradigm",
+        "target": "p300",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "oddball-paradigm__related__erp",
+        "source": "oddball-paradigm",
+        "target": "erp",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "oddball-paradigm__related__eeg",
+        "source": "oddball-paradigm",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "p300__parent__erp",
+        "source": "p300",
+        "target": "erp",
+        "type": "parent"
+      }
+    },
+    {
+      "data": {
+        "id": "p300__related__eeg",
+        "source": "p300",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "p300__related__oddball-paradigm",
+        "source": "p300",
+        "target": "oddball-paradigm",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "p300__related__bci-speller",
+        "source": "p300",
+        "target": "bci-speller",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "eeg__related__p300",
+        "source": "eeg",
+        "target": "p300",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "eeg__related__motor-imagery",
+        "source": "eeg",
+        "target": "motor-imagery",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "eeg__related__oddball-paradigm",
+        "source": "eeg",
+        "target": "oddball-paradigm",
+        "type": "related"
+      }
+    }
+  ]
+}
