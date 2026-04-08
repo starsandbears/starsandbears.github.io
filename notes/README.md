@@ -1,4 +1,4 @@
-# BCI Knowledge Vault
+# BCI Notes
 
 A markdown-based knowledge base for Brain-Computer Interface concepts,
 rendered as an interactive 3D galaxy. Each concept is a star; edges between
@@ -16,7 +16,7 @@ python3 -m http.server 8000
 
 ## How the taxonomy is organized
 
-The vault uses an **action-based taxonomy**: top-level categories are the
+It uses an **action-based taxonomy**: top-level categories are the
 operations a BCI system performs, not the kinds of things involved. This
 makes the structure mirror the actual BCI pipeline (sense → clean →
 decode → act) instead of fragmenting concepts by their physical type.
