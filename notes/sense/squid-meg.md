@@ -11,10 +11,24 @@ status: draft
 
 # SQUID-MEG
 
-SQUID-MEG is the traditional form of [[meg]] in which neuromagnetic fields
-are detected by **Superconducting QUantum Interference Devices** — the most
-sensitive magnetometers ever built. SQUID arrays have been the clinical and
-research standard for MEG since the late 1980s.
+SQUID-MEG is the traditional form of [[meg]] in which neuromagnetic
+fields are detected by **Superconducting QUantum Interference
+Devices** — the most sensitive magnetometers ever built. SQUID arrays
+are the clinical and research reference standard for MEG.
+
+## Why we need it
+
+Detecting neuromagnetic signals on the order of tens of femtotesla
+requires sensors with noise floors in the low fT/√Hz range, and for
+decades SQUIDs were the only technology with that sensitivity. That
+sensitivity is why SQUID-MEG became the clinical workhorse for
+**presurgical localization of epileptiform activity** and
+**functional mapping of eloquent cortex** before neurosurgery —
+applications that need both good source localization and millisecond
+timing. Any BCI or neuroimaging project with access to a SQUID-MEG
+system inherits decades of validated pipelines, normative data, and
+clinical credibility that newer modalities like [[opm-meg]] are still
+accumulating.
 
 ## How it works
 

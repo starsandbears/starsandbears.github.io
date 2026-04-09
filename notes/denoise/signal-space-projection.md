@@ -12,9 +12,19 @@ status: draft
 # Signal Space Projection (SSP)
 
 SSP is a linear denoising method for [[meg]] and [[eeg]] that removes
-**known artifact subspaces** by orthogonal projection. It was introduced
-by Uusitalo and Ilmoniemi (1997) and is implemented in most major MEG/EEG
-analysis toolkits.
+**known artifact subspaces** by orthogonal projection.
+
+## Why we need it
+
+Many artifacts in MEG/EEG — heartbeat, eye blinks, line noise — are
+stereotyped: they reproduce the same spatial topography across sensors
+every time they occur. Once you have characterized that topography
+from a reference channel (ECG, EOG) or a few example epochs, there is
+no reason to refit it trial by trial. SSP encodes it as a **static
+linear projector** that is applied cheaply to every sample, making it
+the method of choice when you need **fast, deterministic, online**
+denoising — for example, in real-time BCI pipelines or streaming
+dashboards — and do not want the labeling overhead of [[ica]].
 
 ## How it works
 

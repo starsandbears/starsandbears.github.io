@@ -11,10 +11,22 @@ status: draft
 
 # Independent Component Analysis (ICA)
 
-ICA is a **blind source separation** technique that decomposes a multi-
-channel signal into a set of statistically independent components. In
-MEG and [[eeg]] preprocessing it is one of the most widely used tools for
-separating brain activity from physiological and environmental artifacts.
+ICA is a **blind source separation** technique that decomposes a
+multi-channel signal into statistically independent components. In
+MEG and [[eeg]] preprocessing it is the workhorse tool for separating
+brain activity from physiological artifacts.
+
+## Why we need it
+
+Eye blinks, eye movements, heartbeat, and muscle activity produce
+signals that can be **an order of magnitude or more larger** than the
+cortical activity a BCI actually wants to decode, and they overlap the
+brain signal in both time and frequency — so they cannot be filtered
+out by bandpass or notch filtering alone. ICA exploits the fact that these artifacts are
+statistically independent of brain sources: it finds a set of
+components that can be individually inspected and subtracted, leaving
+cleaned data that is usable for source localization and
+single-trial classification.
 
 ## How it works
 

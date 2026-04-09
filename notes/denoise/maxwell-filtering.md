@@ -11,19 +11,34 @@ status: draft
 
 # Maxwell Filtering (SSS / tSSS)
 
-Maxwell filtering is a denoising method for [[meg]] data that decomposes
-the measured magnetic field into components originating **inside** versus
-**outside** the sensor array using a multipole (spherical harmonic)
-expansion of the field. Internal components — assumed to be brain signals
-— are kept, and external components — assumed to be environmental
-interference — are subtracted. It was introduced by Taulu, Kajola and Simola
-(2005) and is most associated with **Elekta / MEGIN** SQUID-MEG systems.
+Maxwell filtering is a denoising method for [[meg]] data that
+decomposes the measured magnetic field into components originating
+**inside** versus **outside** the sensor array using a multipole
+(spherical harmonic) expansion. Internal components — assumed to be
+brain signals — are kept; external components — environmental
+interference — are subtracted.
 
 The basic version is **Signal Space Separation (SSS)**. **Spatiotemporal
-SSS (tSSS)**, introduced by Taulu and Simola (2006), adds a temporal
-extension that further suppresses interference sources very close to the
-array (e.g. dental work, pacemakers, vagus nerve stimulators) that the
-spatial decomposition alone cannot fully separate.
+SSS (tSSS)** adds a temporal extension that further suppresses
+interference sources very close to the array (dental work, pacemakers,
+vagus nerve stimulators) that the spatial decomposition alone cannot
+fully separate. Both are most associated with **Elekta / MEGIN**
+[[squid-meg]] systems.
+
+## Why we need it
+
+Cortical magnetic fields at the scalp are on the order of tens to
+hundreds of femtotesla, while the ambient magnetic environment of an
+urban building (Earth's field, mains hum, traffic, elevators, HVAC)
+is many orders of magnitude larger. Even inside a shielded room,
+residual external fields swamp the cortical signal. Maxwell filtering
+exploits a physical fact no statistical method can: in a source-free
+region around the sensor array, the magnetic field can be uniquely
+decomposed into a component from sources **inside** an enclosing
+sphere (the brain) and a component from sources **outside** (the
+environment). This gives a principled way to suppress environmental
+noise **without** reference channels or manual labeling, and makes
+SSS the standard first-stage denoiser in SQUID-MEG pipelines.
 
 ## How it works
 
