@@ -1,7 +1,7 @@
 {
   "generated_from": "notes/",
-  "node_count": 15,
-  "edge_count": 55,
+  "node_count": 16,
+  "edge_count": 59,
   "categories": [
     "apply",
     "denoise",
@@ -157,6 +157,16 @@
         "level": "advanced",
         "status": "draft",
         "file": "sense/squid-meg.md"
+      }
+    },
+    {
+      "data": {
+        "id": "synaptic",
+        "label": "Synaptic Activity",
+        "category": "sense",
+        "level": "beginner",
+        "status": "draft",
+        "file": "sense/synaptic.md"
       }
     }
   ],
@@ -443,6 +453,14 @@
     },
     {
       "data": {
+        "id": "eeg__related__synaptic",
+        "source": "eeg",
+        "target": "synaptic",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
         "id": "magnetic-shielding__related__meg",
         "source": "magnetic-shielding",
         "target": "meg",
@@ -502,6 +520,14 @@
         "id": "meg__related__magnetic-shielding",
         "source": "meg",
         "target": "magnetic-shielding",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "meg__related__synaptic",
+        "source": "meg",
+        "target": "synaptic",
         "type": "related"
       }
     },
@@ -598,6 +624,22 @@
         "id": "squid-meg__related__maxwell-filtering",
         "source": "squid-meg",
         "target": "maxwell-filtering",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "synaptic__related__eeg",
+        "source": "synaptic",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "synaptic__related__meg",
+        "source": "synaptic",
+        "target": "meg",
         "type": "related"
       }
     }

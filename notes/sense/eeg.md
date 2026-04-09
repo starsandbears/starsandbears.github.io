@@ -18,8 +18,8 @@ resolution.
 
 ## Overview
 
-EEG signals reflect the summed post-synaptic activity of large populations of
-cortical neurons. Typical BCI systems sample at 250–1000 Hz and use anywhere
+EEG signals reflect the summed post-synaptic activity ([[synaptic]] currents)
+of large populations of cortical neurons. Typical BCI systems sample at 250–1000 Hz and use anywhere
 from 8 to 256 channels. Common rhythms of interest include alpha (8–13 Hz),
 beta (13–30 Hz), and mu (8–12 Hz over sensorimotor cortex).
 

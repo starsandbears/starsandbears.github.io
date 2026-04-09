@@ -20,7 +20,7 @@ neuroscience.
 
 ## How it works
 
-Synchronized post-synaptic currents in cortical pyramidal cells generate
+Synchronized post-synaptic ([[synaptic]]) currents in cortical pyramidal cells generate
 small dipolar magnetic fields that pass through the skull and scalp with
 almost no distortion (unlike electric potentials in [[eeg]]). An array of
 sensitive magnetometers placed near the head records these fields. Source
