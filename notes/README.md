@@ -109,15 +109,29 @@ after a rare, task-relevant stimulus. ...
 
 ### Body conventions
 
-The body is plain markdown. Two conventions worth following:
+The body is plain markdown. Conventions worth following:
 
-1. Use `[[wikilinks]]` freely for cross-references in prose. The build
+1. **Lead with *why we need it*.** Open with one short paragraph
+   explaining what problem the concept solves and why a BCI designer
+   should care about it at all. If you can't articulate why it exists,
+   the page isn't ready. This framing should come before any mechanism
+   or usage details.
+2. **Focus on the usage of the concept.** This is an engineering vault,
+   not a textbook. Lead with *how the concept is used in a BCI system* —
+   how to elicit or measure it, how to apply it, what design trade-offs
+   it forces, what its practical limitations are. Skip history, priority
+   disputes, and exhaustive background unless it directly changes how
+   someone would use the concept. One or two sentences of framing is
+   plenty; the rest of the page should help a reader *do something* with
+   the concept.
+3. Use `[[wikilinks]]` freely for cross-references in prose. The build
    script extracts them and adds them as related edges automatically, so
    you usually don't need to repeat them in `related:`.
-2. Use the standard section structure when describing a technique:
-   *(intro paragraph)*, `## How it works`, `## Strengths`, `## Limitations`,
-   `## Comparison with X`, `## See also`, `## Sources`. Consistency makes
-   the notes vault easier to skim.
+4. Use a standard section structure when describing a technique:
+   *(intro paragraph)*, `## How it works` or `## How to use it`,
+   `## Strengths`, `## Limitations`, `## Comparison with X`,
+   `## See also`, `## Sources`. Consistency makes the notes vault easier
+   to skim.
 
 ### Sources section
 
