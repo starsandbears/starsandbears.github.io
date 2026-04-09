@@ -4,12 +4,12 @@ A markdown-based knowledge base for Brain-Computer Interface concepts,
 rendered as an interactive 3D galaxy. Each concept is a star; edges between
 stars are taxonomy or association relationships.
 
-Live viewer: open `vault/index.html` (served via any static HTTP server,
+Live viewer: open `notes/index.html` (served via any static HTTP server,
 not `file://`, because it fetches `graph.json` and the markdown files).
 
 ```
 python3 -m http.server 8000
-# then visit http://localhost:8000/vault/
+# then visit http://localhost:8000/notes/
 ```
 
 ---
@@ -117,7 +117,7 @@ The body is plain markdown. Two conventions worth following:
 2. Use the standard section structure when describing a technique:
    *(intro paragraph)*, `## How it works`, `## Strengths`, `## Limitations`,
    `## Comparison with X`, `## See also`, `## Sources`. Consistency makes
-   the vault easier to skim.
+   the notes vault easier to skim.
 
 ### Sources section
 
@@ -149,7 +149,7 @@ The minimal workflow:
 3. **Copy the template:**
 
    ```bash
-   cp vault/_template.md vault/decode/csp.md
+   cp notes/_template.md notes/decode/csp.md
    ```
 
 4. **Fill in the frontmatter** — title, slug, category, parents, related.
@@ -168,14 +168,14 @@ The minimal workflow:
 7. **Rebuild the graph:**
 
    ```bash
-   python3 vault/build_graph.py
+   python3 notes/build_graph.py
    ```
 
-   You should see something like `Wrote vault/graph.json: N nodes, M edges`.
+   You should see something like `Wrote notes/graph.json: N nodes, M edges`.
    The script also warns about wikilinks pointing to non-existent slugs —
    fix typos before committing.
 
-8. **Reload the viewer** — refresh `http://localhost:8000/vault/` and
+8. **Reload the viewer** — refresh `http://localhost:8000/notes/` and
    the new star should appear in its category color.
 
 That's it. Commit and push; CI runs `build_graph.py` automatically on
@@ -188,8 +188,8 @@ without requiring a build step.
 The six action categories are intended to be stable. If you really need a
 new one:
 
-1. Create the folder under `vault/`.
-2. Add it to `CATEGORY_ORDER` and `CATEGORY_COLORS` in `vault/index.html`
+1. Create the folder under `notes/`.
+2. Add it to `CATEGORY_ORDER` and `CATEGORY_COLORS` in `notes/index.html`
    (search for those constants near the top of the inline `<script>`).
 3. Update this README's category table.
 4. Move/create files into the new folder and set their `category:` field.
@@ -198,7 +198,7 @@ new one:
 
 ## Editing in Obsidian (recommended)
 
-The vault is fully Obsidian-compatible. Point Obsidian at the `vault/`
+The notes vault is fully Obsidian-compatible. Point Obsidian at the `notes/`
 folder and you get autocomplete for `[[wikilinks]]`, the standard graph
 view, backlinks, and the local-graph sidebar. Use Obsidian for *editing*
 content, then use the custom 3D viewer for *exploring* and *publishing*.
@@ -219,7 +219,7 @@ extracts `[[wikilinks]]` from the body, and emits `graph.json` containing:
 - An `edges` array — `parent` edges from `parents:`, plus `related` edges
   from `related:` and from body wikilinks (deduplicated).
 
-The viewer (`vault/index.html`) loads `graph.json` into
+The viewer (`notes/index.html`) loads `graph.json` into
 [3d-force-graph](https://github.com/vasturiano/3d-force-graph), renders
 each node as a glowing sprite colored by category, and renders the
 markdown wiki page in the side panel when you click a star.
@@ -234,12 +234,12 @@ markdown wiki page in the side panel when you click a star.
 
 ---
 
-## Conventions to keep the vault healthy
+## Conventions to keep the notes vault healthy
 
 - **One concept per file.** If a page is growing past ~1000 words and
   developing distinct sub-topics, split it.
 - **Slugs are forever.** Renaming a slug breaks every wikilink that
-  points to it. Pick carefully; if you must rename, grep the vault for
+  points to it. Pick carefully; if you must rename, grep the notes for
   the old slug and update all references.
 - **Cite everything.** Every claim that includes a number, a date, or
   an attribution should map to a source in the `## Sources` section.

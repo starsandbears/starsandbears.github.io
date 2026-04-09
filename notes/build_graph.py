@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """
-Walk the vault, parse frontmatter + [[wikilinks]] from each concept .md file,
+Walk the notes vault, parse frontmatter + [[wikilinks]] from each concept .md file,
 and emit graph.json for the Cytoscape viewer.
 
 Edge types:
   - "parent"  : taxonomy edge from child -> parent (frontmatter `parents:`)
   - "related" : association edge (frontmatter `related:` + body wikilinks)
 
-Run from repo root or from inside vault/:
-    python3 vault/build_graph.py
+Run from repo root or from inside notes/:
+    python3 notes/build_graph.py
 """
 
 from __future__ import annotations
@@ -20,10 +20,10 @@ from pathlib import Path
 
 import yaml
 
-VAULT_DIR = Path(__file__).resolve().parent
-OUTPUT = VAULT_DIR / "graph.json"
+NOTES_DIR = Path(__file__).resolve().parent
+OUTPUT = NOTES_DIR / "graph.json"
 
-# Files to skip when walking the vault
+# Files to skip when walking the notes vault
 SKIP_NAMES = {"_template.md", "README.md", "index.md"}
 
 FRONTMATTER_RE = re.compile(r"^---\n(.*?)\n---\n?(.*)$", re.DOTALL)
@@ -55,18 +55,18 @@ def parse_file(path: Path):
         "related": meta.get("related") or [],
         "level": meta.get("level", "intermediate"),
         "status": meta.get("status", "stub"),
-        "file": str(path.relative_to(VAULT_DIR)).replace("\\", "/"),
+        "file": str(path.relative_to(NOTES_DIR)).replace("\\", "/"),
         "wikilinks": sorted(wikilinks),
     }
 
 
 def build_graph():
     concepts = []
-    for md in sorted(VAULT_DIR.rglob("*.md")):
+    for md in sorted(NOTES_DIR.rglob("*.md")):
         if md.name in SKIP_NAMES:
             continue
-        # Skip top-level vault files (only walk category subfolders)
-        if md.parent == VAULT_DIR:
+        # Skip top-level notes files (only walk category subfolders)
+        if md.parent == NOTES_DIR:
             continue
         parsed = parse_file(md)
         if parsed:
@@ -125,7 +125,7 @@ def build_graph():
             add_edge(c["slug"], w, "related")
 
     graph = {
-        "generated_from": "vault/",
+        "generated_from": "notes/",
         "node_count": len(nodes),
         "edge_count": len(edges),
         "categories": sorted({n["data"]["category"] for n in nodes}),
@@ -134,7 +134,7 @@ def build_graph():
     }
 
     OUTPUT.write_text(json.dumps(graph, indent=2) + "\n", encoding="utf-8")
-    print(f"Wrote {OUTPUT.relative_to(VAULT_DIR.parent)}: "
+    print(f"Wrote {OUTPUT.relative_to(NOTES_DIR.parent)}: "
           f"{len(nodes)} nodes, {len(edges)} edges")
 
 
