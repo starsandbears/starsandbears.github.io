@@ -1,7 +1,7 @@
 ---
 title: Synaptic Activity
 slug: synaptic
-category: sense
+category: measure
 aliases: [synapse, post-synaptic potential, PSP, synaptic current]
 parents: []
 related: [eeg, meg]
@@ -57,7 +57,7 @@ thousands of EPSPs and IPSPs across the local population.
 | Scale        | Approx value                                   |
 |--------------|------------------------------------------------|
 | Duration     | 10–100 ms (vs. ~1 ms for an action potential)  |
-| Amplitude    | A few mV at the membrane                       |
+| Amplitude    | Sub-mV to a few mV at the membrane              |
 | Cells needed | 10,000+ synchronously active pyramidal neurons |
 | Area needed  | ~1–10 cm² of cortex for a detectable M/EEG signal |
 

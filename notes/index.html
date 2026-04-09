@@ -149,14 +149,15 @@
 <script>
 // Categories are verbs along the BCI pipeline, ordered along the visible
 // light spectrum (red → violet) from input (sense) to output (apply).
-const CATEGORY_ORDER = ["sense", "elicit", "denoise", "decode", "stimulate", "apply"];
+const CATEGORY_ORDER = ["sense", "measure", "elicit", "denoise", "decode", "stimulate", "apply"];
 const CATEGORY_COLORS = {
-  sense:     "#ff4d8d", // pink   — acquire signals
-  elicit:    "#ff9a3c", // orange — evoke target responses
-  denoise:   "#ffd93d", // yellow — clean signals
-  decode:    "#4ade80", // green  — extract intent / sources
-  stimulate: "#38bdf8", // blue   — modulate the brain
-  apply:     "#a855f7", // violet — end-user systems
+  sense:     "#ff4d8d", // pink    — acquire signals
+  measure:   "#4ade80", // green   — observable brain phenomena
+  elicit:    "#ff9a3c", // orange  — evoke target responses
+  denoise:   "#ffd93d", // yellow  — clean signals
+  decode:    "#14b8a6", // teal    — extract intent / sources
+  stimulate: "#38bdf8", // blue    — modulate the brain
+  apply:     "#a855f7", // violet  — end-user systems
 };
 const FALLBACK_COLOR = "#8ab4ff";
 

@@ -16,25 +16,36 @@ python3 -m http.server 8000
 
 ## How the taxonomy is organized
 
-It uses an **action-based taxonomy**: top-level categories are the
-operations a BCI system performs, not the kinds of things involved. This
-makes the structure mirror the actual BCI pipeline (sense → clean →
-decode → act) instead of fragmenting concepts by their physical type.
+The taxonomy roughly follows the **BCI pipeline**: top-level categories
+correspond to layers of what a BCI system does and what it deals with,
+arranged along the visible-light spectrum from input (pink) to output
+(violet):
 
-The six categories are arranged along the visible-light spectrum from
-input (pink) to output (violet):
+| Category    | Color  | What lives here                                       |
+|-------------|--------|-------------------------------------------------------|
+| `sense`     | pink   | Acquire signals from the brain (hardware, modalities) |
+| `measure`   | green  | Observable brain phenomena and responses              |
+| `elicit`    | orange | Paradigms that evoke target brain responses           |
+| `denoise`   | yellow | Remove artifacts and interference                     |
+| `decode`    | teal   | Extract intent or sources from cleaned signals        |
+| `stimulate` | blue   | Modulate or write to the brain                        |
+| `apply`     | violet | End-user systems and outputs                          |
 
-| Category    | Color  | What lives here                                  |
-|-------------|--------|--------------------------------------------------|
-| `sense`     | pink   | Acquire signals from the brain                   |
-| `elicit`    | orange | Paradigms that evoke target brain responses      |
-| `denoise`   | yellow | Remove artifacts and interference                |
-| `decode`    | green  | Extract intent or sources from cleaned signals   |
-| `stimulate` | blue   | Modulate or write to the brain                   |
-| `apply`     | violet | End-user systems and outputs                     |
+Rough distinction between `sense`, `measure`, and `elicit`:
 
-Each category is a folder. A file's category is determined by — and must
-match — the folder it lives in.
+- **`sense`** — the *how*: sensors, modalities, and acquisition
+  infrastructure (EEG, MEG, OPM sensors, shielding).
+- **`measure`** — the *what*: observable brain phenomena those sensors
+  capture (P300, ERP, mu rhythm, synaptic activity).
+- **`elicit`** — the *protocol*: paradigms the experimenter uses to
+  make those phenomena appear on command (oddball paradigm, motor
+  imagery).
+
+Each category is a folder. A file's category is determined by — and
+must match — the folder it lives in. **If a new concept doesn't fit any
+existing category, add a new one** (see "Adding a new category" below).
+Do not jam a concept into a category it doesn't belong to just to avoid
+the overhead — the taxonomy is allowed to grow.
 
 ### Two kinds of edges in the graph
 
@@ -199,14 +210,28 @@ without requiring a build step.
 
 ### Adding a new category
 
-The six action categories are intended to be stable. If you really need a
-new one:
+**If a concept doesn't fit any existing category, add a new one** — at
+any level, not just top-level. The taxonomy is meant to grow with the
+vault rather than force concepts into the wrong slot. Prefer adding a
+new category over stretching an existing one past its natural meaning.
+
+To add a new top-level category:
 
 1. Create the folder under `notes/`.
 2. Add it to `CATEGORY_ORDER` and `CATEGORY_COLORS` in `notes/index.html`
    (search for those constants near the top of the inline `<script>`).
-3. Update this README's category table.
-4. Move/create files into the new folder and set their `category:` field.
+   Pick a color that fits the existing spectrum — insert the new
+   category at the appropriate position along pink → violet rather than
+   appending it at the end.
+3. Update this README's category table and the "rough distinction"
+   list above so future contributors know what the category is for.
+4. Move/create files into the new folder and set their `category:`
+   field to match.
+5. Rebuild the graph (`python3 notes/build_graph.py`) and verify the
+   new category appears in the legend and toggles.
+
+When in doubt: a new category is cheap. A misfiled concept is harder
+to find and confuses future readers.
 
 ---
 

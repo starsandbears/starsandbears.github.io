@@ -1,11 +1,12 @@
 {
   "generated_from": "notes/",
   "node_count": 16,
-  "edge_count": 59,
+  "edge_count": 64,
   "categories": [
     "apply",
     "denoise",
     "elicit",
+    "measure",
     "sense"
   ],
   "nodes": [
@@ -61,16 +62,6 @@
     },
     {
       "data": {
-        "id": "erp",
-        "label": "Event-Related Potential",
-        "category": "elicit",
-        "level": "intermediate",
-        "status": "draft",
-        "file": "elicit/erp.md"
-      }
-    },
-    {
-      "data": {
         "id": "motor-imagery",
         "label": "Motor Imagery",
         "category": "elicit",
@@ -91,12 +82,32 @@
     },
     {
       "data": {
-        "id": "p300",
-        "label": "P300",
-        "category": "elicit",
+        "id": "erp",
+        "label": "Event-Related Potential",
+        "category": "measure",
         "level": "intermediate",
         "status": "draft",
-        "file": "elicit/p300.md"
+        "file": "measure/erp.md"
+      }
+    },
+    {
+      "data": {
+        "id": "p300",
+        "label": "P300",
+        "category": "measure",
+        "level": "intermediate",
+        "status": "draft",
+        "file": "measure/p300.md"
+      }
+    },
+    {
+      "data": {
+        "id": "synaptic",
+        "label": "Synaptic Activity",
+        "category": "measure",
+        "level": "beginner",
+        "status": "draft",
+        "file": "measure/synaptic.md"
       }
     },
     {
@@ -158,16 +169,6 @@
         "status": "draft",
         "file": "sense/squid-meg.md"
       }
-    },
-    {
-      "data": {
-        "id": "synaptic",
-        "label": "Synaptic Activity",
-        "category": "sense",
-        "level": "beginner",
-        "status": "draft",
-        "file": "sense/synaptic.md"
-      }
     }
   ],
   "edges": [
@@ -189,9 +190,25 @@
     },
     {
       "data": {
+        "id": "bci-speller__related__oddball-paradigm",
+        "source": "bci-speller",
+        "target": "oddball-paradigm",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
         "id": "bci-speller__related__eeg",
         "source": "bci-speller",
         "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "bci-speller__related__erp",
+        "source": "bci-speller",
+        "target": "erp",
         "type": "related"
       }
     },
@@ -333,30 +350,6 @@
     },
     {
       "data": {
-        "id": "erp__related__eeg",
-        "source": "erp",
-        "target": "eeg",
-        "type": "related"
-      }
-    },
-    {
-      "data": {
-        "id": "erp__related__oddball-paradigm",
-        "source": "erp",
-        "target": "oddball-paradigm",
-        "type": "related"
-      }
-    },
-    {
-      "data": {
-        "id": "erp__related__p300",
-        "source": "erp",
-        "target": "p300",
-        "type": "related"
-      }
-    },
-    {
-      "data": {
         "id": "motor-imagery__related__eeg",
         "source": "motor-imagery",
         "target": "eeg",
@@ -368,6 +361,14 @@
         "id": "motor-imagery__related__bci-speller",
         "source": "motor-imagery",
         "target": "bci-speller",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "motor-imagery__related__erp",
+        "source": "motor-imagery",
+        "target": "erp",
         "type": "related"
       }
     },
@@ -392,6 +393,46 @@
         "id": "oddball-paradigm__related__eeg",
         "source": "oddball-paradigm",
         "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "oddball-paradigm__related__bci-speller",
+        "source": "oddball-paradigm",
+        "target": "bci-speller",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__eeg",
+        "source": "erp",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__p300",
+        "source": "erp",
+        "target": "p300",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__oddball-paradigm",
+        "source": "erp",
+        "target": "oddball-paradigm",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "erp__related__ica",
+        "source": "erp",
+        "target": "ica",
         "type": "related"
       }
     },
@@ -424,6 +465,22 @@
         "id": "p300__related__bci-speller",
         "source": "p300",
         "target": "bci-speller",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "synaptic__related__eeg",
+        "source": "synaptic",
+        "target": "eeg",
+        "type": "related"
+      }
+    },
+    {
+      "data": {
+        "id": "synaptic__related__meg",
+        "source": "synaptic",
+        "target": "meg",
         "type": "related"
       }
     },
@@ -624,22 +681,6 @@
         "id": "squid-meg__related__maxwell-filtering",
         "source": "squid-meg",
         "target": "maxwell-filtering",
-        "type": "related"
-      }
-    },
-    {
-      "data": {
-        "id": "synaptic__related__eeg",
-        "source": "synaptic",
-        "target": "eeg",
-        "type": "related"
-      }
-    },
-    {
-      "data": {
-        "id": "synaptic__related__meg",
-        "source": "synaptic",
-        "target": "meg",
         "type": "related"
       }
     }
