@@ -1,270 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stars&amp;Bears — AI-Augmented Human Brain</title>
-  <meta name="description" content="Stars&Bears is a non-profit building AI-augmented human brain interfaces to help people with neural diseases and unlock human potential.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pacific — learning notes for curious minds</title>
+<meta name="description" content="An open-sourced, ever-growing pile of learning notes for people of curious minds.">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#" class="logo">
-        <span class="logo-icon">&#10037;</span>
-        Stars<span class="amp">&amp;</span>Bears
-      </a>
-      <div class="nav-links">
-        <a href="#mission">Mission</a>
-        <a href="#vision">Roadmap</a>
-        <a href="#focus">Focus Areas</a>
-        <a href="notes/">Learning Notes</a>
-        <a href="#join" class="nav-cta">Join Us</a>
-      </div>
-    </div>
-  </nav>
 
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero-bg">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
-      <div class="orb orb-3"></div>
-      <div class="grid-overlay"></div>
+<header class="masthead">
+  <div class="wrap">
+    <h1 class="nameplate">The Pacific</h1>
+    <p class="motto">An <a href="https://github.com/starsandbears/starsandbears.github.io" target="_blank" rel="noopener">open-sourced pile</a> of learning notes for curious minds</p>
+    <div class="folio">
+      <span>Vol. I &middot; No. 1</span>
+      <span>Sunday Edition &middot; June 28, 2026</span>
     </div>
-    <div class="hero-content">
-      <p class="hero-tag">Non-Profit Research Initiative</p>
-      <h1>Healing the Human Brain<br>with <span class="gradient-text">Artificial Intelligence</span></h1>
-      <p class="hero-sub">
-        We're applying AI technologies to neuroscience to heal neural diseases,
-        restore lost capabilities, and ultimately unlock the full potential of the human mind.
-      </p>
-      <div class="hero-actions">
-        <a href="#join" class="btn btn-primary">Join the Community</a>
-        <a href="#mission" class="btn btn-secondary">Learn More</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat">
-          <span class="stat-number">3B+</span>
-          <span class="stat-label">Over 1/3 of people affected by neural diseases worldwide</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">Open</span>
-          <span class="stat-label">All our research is open-source</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">2026</span>
-          <span class="stat-label">Founded to make a difference</span>
-        </div>
-      </div>
-    </div>
-  </header>
+  </div>
+</header>
 
-  <!-- Mission -->
-  <section class="section" id="mission">
-    <div class="container">
-      <p class="section-tag">Our Mission</p>
-      <h2 class="section-title">Healing minds through the<br>convergence of AI &amp; neuroscience</h2>
-      <div class="mission-grid">
-        <div class="mission-text">
-          <p>
-            Stars&amp;Bears is a non-profit dedicated to developing AI-augmented brain
-            technologies that address neurological diseases and conditions. From stroke, Alzheimer's,
-            and Parkinson's to other dementias, traumatic brain injuries, migraine, and depression, we believe AI can
-            help restore, protect, and enhance the human brain.
-          </p>
-          <p>
-            We bring together neuroscientists, AI researchers, clinicians, and engineers in an open, collaborative environment. Our work is grounded in rigorous science and guided by deep empathy for the people and families affected by neural conditions.
-          </p>
-        </div>
-        <div class="mission-visual">
-          <div class="brain-graphic">
-            <div class="brain-ring ring-1"></div>
-            <div class="brain-ring ring-2"></div>
-            <div class="brain-ring ring-3"></div>
-            <div class="brain-core"></div>
-            <div class="pulse-dot dot-1"></div>
-            <div class="pulse-dot dot-2"></div>
-            <div class="pulse-dot dot-3"></div>
-            <div class="pulse-dot dot-4"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<main class="wrap">
+  <div class="sectionbar" id="filters"><!-- rendered by JS --></div>
+  <p class="frontline">Front Page</p>
+  <div class="post-list" id="postList"><!-- rendered by JS --></div>
+</main>
 
-  <!-- Vision -->
-  <section class="section section-dark" id="vision">
-    <div class="container">
-      <p class="section-tag">Roadmap</p>
-      <h2 class="section-title">From sensing to healing — a non‑invasive BCI approach</h2>
-      <div class="vision-cards">
-        <div class="vision-card">
-          <div class="vision-icon">&#9651;</div>
-          <h3>Near Term</h3>
-          <p>
-            Develop AI models that can decode and interpret neural and blood signals to detect early signs of disease, enable real-time brain monitoring, and personalize treatment plans.
-          </p>
-        </div>
-        <div class="vision-card featured">
-          <div class="vision-icon">&#9670;</div>
-          <h3>Mid Term</h3>
-          <p>
-            Collect non-invasive brain and blood signals at scale, building robust data curation pipelines and denoising models to create high-quality neural datasets that preserve spatial locality — knowing which brain regions generated which signals — to power the next generation of brain-AI research.
-          </p>
-        </div>
-        <div class="vision-card">
-          <div class="vision-icon">&#9711;</div>
-          <h3>Long Term</h3>
-          <p>
-            Create non-invasive bidirectional brain-computer interfaces that can restore motor function, speech, and memory by delivering targeted signals to specific brain regions in patients with neural damage or degenerative conditions.
-          </p>
-        </div>
-        <!-- Long Term (future)
-        <div class="vision-card">
-          <div class="vision-icon">&#9711;</div>
-          <h3>Long Term</h3>
-          <p>
-            Unlock the untapped potential of the healthy human brain — enhancing
-            cognition, creativity, learning, and emotional well-being for all people,
-            not just those with medical needs.
-          </p>
-        </div>
-        -->
-      </div>
+<footer class="site">
+  <div class="wrap">
+    <div class="license">
+      Written &amp; edited by Claude &middot; Printed open-source &middot; Text under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, code under MIT
     </div>
-  </section>
+  </div>
+</footer>
 
-  <!-- Focus Areas -->
-  <section class="section" id="focus">
-    <div class="container">
-      <p class="section-tag">Focus Areas</p>
-      <h2 class="section-title">From understanding to restoring</h2>
-      <p class="section-subtitle">Current models treat neural signals as a mixed whole. We're building locality-aware AI that maps signals to specific brain regions — so we know not just <em>what</em> the brain is doing, but <em>where</em>, enabling targeted restoration in the future.</p>
-      <div class="focus-grid">
-        <div class="focus-item">
-          <div class="focus-number">01</div>
-          <h3>Neural Disease Detection</h3>
-          <p>Lightweight wearables to detect neurodegenerative conditions — detection is the first step towards restoring.</p>
-        </div>
-        <div class="focus-item">
-          <div class="focus-number">02</div>
-          <h3>Mental Health AI</h3>
-          <p>Intelligent systems for real-time mental health monitoring and intervention, providing personalized support for depression, anxiety, PTSD, and beyond.</p>
-        </div>
-        <div class="focus-item">
-          <div class="focus-number">03</div>
-          <h3>Open Neurodata</h3>
-          <p>Building open datasets and tools that accelerate neuroscience research globally.</p>
-        </div>
-        <div class="focus-item">
-          <div class="focus-number">04</div>
-          <h3>Brain-Computer Interfaces</h3>
-          <p>Next-generation BCI systems that decode brain and blood signals into intended thoughts and actions, restoring independence for people with paralysis, locked-in syndrome, and motor disorders.</p>
-        </div>
-        <div class="focus-item">
-          <div class="focus-number">05</div>
-          <h3>Neural Rehabilitation</h3>
-          <p>AI-guided rehabilitation programs that adapt in real-time to a patient's neural recovery patterns after stroke, TBI, or surgical intervention.</p>
-        </div>
-        <!-- Long Term (future)
-        <div class="focus-item">
-          <div class="focus-number">05</div>
-          <h3>Cognitive Enhancement</h3>
-          <p>Research into safe, ethical approaches to augmenting memory, learning speed, focus, and creative thinking using AI-neural feedback loops.</p>
-        </div>
-        -->
-      </div>
-    </div>
-  </section>
+<script>
+const CATEGORIES = {
+  econ: {name:'Economics', tag:'tag--econ'},
+  sci:  {name:'Science',   tag:'tag--sci'},
+  tech: {name:'Technology',tag:'tag--tech'},
+  hist: {name:'History',   tag:'tag--hist'}
+};
 
-  <!-- Join / Subscribe -->
-  <section class="section section-dark" id="join">
-    <div class="container">
-      <div class="join-wrapper">
-        <div class="join-text">
-          <p class="section-tag">Join the Community</p>
-          <h2 class="section-title">Be part of the future<br>of human potential</h2>
-          <p>
-            Whether you're a researcher, engineer, clinician, patient advocate, or simply
-            someone who believes in this mission — we want to hear from you. Subscribe to
-            stay updated on our progress and join our growing community.
-          </p>
-          <ul class="join-perks">
-            <li>Monthly research updates and breakthroughs</li>
-            <li>Early access to open-source tools and datasets</li>
-            <li>Invitations to community events and talks</li>
-            <li>Opportunities to collaborate on active projects</li>
-          </ul>
-        </div>
-        <div class="join-form-wrapper">
-          <form class="join-form" id="subscribe-form">
-            <h3>Subscribe &amp; Join</h3>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email <span class="required">*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
-            </div>
-            <div class="form-group">
-              <label for="interest">Area of Interest</label>
-              <select id="interest" name="interest">
-                <option value="">Select an area (optional)</option>
-                <option value="neural-disease">Neural Disease Detection</option>
-                <option value="bci">Brain-Computer Interfaces</option>
-                <option value="mental-health">Mental Health AI</option>
-                <option value="rehabilitation">Neural Rehabilitation</option>
-                <option value="cognitive">Cognitive Enhancement</option>
-                <option value="open-data">Open Neurodata</option>
-                <option value="other">Other / General Interest</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">Join the Community</button>
-            <p class="form-note">We respect your privacy. Unsubscribe anytime.</p>
-            <div class="form-message" id="form-message"></div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
+const POSTS = [
+];
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <a href="#" class="logo">
-            <span class="logo-icon">&#10037;</span>
-            Stars<span class="amp">&amp;</span>Bears
-          </a>
-          <p>A non-profit building AI-augmented human brain interfaces to heal neural diseases and unlock human potential.</p>
-        </div>
-        <div class="footer-links">
-          <div class="footer-col">
-            <h4>Organization</h4>
-            <a href="#mission">Mission</a>
-            <a href="#vision">Roadmap</a>
-            <a href="#focus">Focus Areas</a>
-          </div>
-          <div class="footer-col">
-            <h4>Community</h4>
-            <a href="#join">Subscribe</a>
-            <a href="notes/">Learning Notes</a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Stars&amp;Bears. All rights reserved. Built with purpose.</p>
-      </div>
-    </div>
-  </footer>
+/* Section bar: All + the active sections */
+const filtersEl = document.getElementById('filters');
+const filterKeys = ['all', ...Object.keys(CATEGORIES)];
+filtersEl.innerHTML = filterKeys.map(k =>
+  `<button class="filter-btn${k==='all'?' active':''}" data-filter="${k}">${k==='all'?'All':CATEGORIES[k].name}</button>`
+).join('');
 
-  <script src="app.js"></script>
+/* Front-page article index */
+const listEl = document.getElementById('postList');
+function renderPosts(filter='all'){
+  const rows = POSTS.filter(p => filter==='all' || p.cat===filter);
+  listEl.innerHTML = rows.map(p => {
+    const c = CATEGORIES[p.cat];
+    return `<a class="article" href="${p.url}">
+        <span class="kicker">${c.name}</span>
+        <h3 class="headline">${p.title}</h3>
+        <p class="dateline">${p.date} &middot; ${p.read} read</p>
+        <p class="teaser">${p.excerpt}</p>
+        <span class="more">Continue reading &rarr;</span>
+      </a>`;
+  }).join('');
+}
+/* Deep-link: index.html#econ pre-selects a section */
+function applyHash(){
+  const key = (location.hash || '').replace('#','');
+  const target = CATEGORIES[key] ? key : 'all';
+  filtersEl.querySelectorAll('.filter-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.filter === target));
+  renderPosts(target);
+}
+applyHash();
+window.addEventListener('hashchange', applyHash);
+
+filtersEl.addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn'); if(!btn) return;
+  filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderPosts(btn.dataset.filter);
+});
+</script>
 </body>
 </html>
