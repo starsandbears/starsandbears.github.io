@@ -1,0 +1,154 @@
+/* ============================================================
+   The Pacific — traditional broadsheet newspaper styling.
+   Blackletter nameplate, folio rule, small-caps section bar,
+   justified serif columns. Black ink on newsprint cream.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&display=swap');
+
+:root{
+  --ink:#16140f;          /* near-black warm ink */
+  --paper:#f4f0e4;        /* newsprint cream */
+  --paper2:#ece7d8;
+  --muted:#57534a;
+  --rule:#16140f;
+  --display:'Playfair Display',Georgia,'Times New Roman',serif;
+  --black:'UnifrakturMaguntia','Playfair Display',Georgia,serif;
+  --body:'PT Serif',Georgia,'Times New Roman',serif;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:18px;line-height:1.5;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;
+  text-decoration-thickness:1px}
+a:hover{background:var(--paper2)}
+
+/* ---------- Masthead (landing) ---------- */
+.masthead{padding:30px 0 0;text-align:center;border-top:2px solid var(--ink)}
+.nameplate{font-family:var(--black);font-weight:400;
+  font-size:clamp(56px,13vw,128px);line-height:.9;letter-spacing:.01em;
+  margin:18px 0 10px}
+.motto{font-family:var(--display);font-style:italic;font-size:clamp(15px,2.2vw,19px);
+  margin:0 auto 22px;max-width:46ch;color:#2a271f}
+.motto a{text-decoration-thickness:1px}
+.folio{display:flex;justify-content:space-between;align-items:center;gap:14px;
+  border-top:3px double var(--ink);border-bottom:3px double var(--ink);
+  padding:7px 0;font-family:var(--body);text-transform:uppercase;
+  letter-spacing:.13em;font-size:11.5px;font-weight:700}
+.folio span:nth-child(2){letter-spacing:.18em}
+
+/* ---------- Section bar (category filters) ---------- */
+.sectionbar{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:0;border-bottom:1px solid var(--ink);margin:0 0 30px}
+.filter-btn{font-family:var(--body);font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--ink);
+  background:none;border:none;cursor:pointer;padding:12px 16px;position:relative}
+.filter-btn + .filter-btn::before{content:"";position:absolute;left:0;top:50%;
+  transform:translateY(-50%);height:13px;width:1px;background:var(--ink);opacity:.4}
+.filter-btn:hover{background:var(--paper2)}
+.filter-btn.active{text-decoration:underline;text-underline-offset:4px;
+  text-decoration-thickness:2px}
+
+/* ---------- Front-page article index ---------- */
+.frontline{text-align:center;font-family:var(--body);text-transform:uppercase;
+  letter-spacing:.22em;font-size:11px;font-weight:700;color:var(--muted);
+  margin:0 0 22px}
+.frontline::before,.frontline::after{content:"\2014\00a0\00a0"}
+.frontline::after{content:"\00a0\00a0\2014"}
+
+.post-list{column-count:2;column-gap:42px;column-rule:1px solid #cdc6b4}
+@media(max-width:680px){.post-list{column-count:1}}
+.article{display:block;break-inside:avoid;text-decoration:none;color:var(--ink);
+  padding:0 0 22px;margin-bottom:22px;border-bottom:1px solid #cdc6b4}
+.article:last-child{border-bottom:none}
+.article:hover{background:transparent}
+.article .kicker{display:block;font-family:var(--body);text-transform:uppercase;
+  letter-spacing:.16em;font-size:11px;font-weight:700;color:var(--muted);
+  text-align:center;border-bottom:1px solid var(--ink);padding-bottom:6px;margin-bottom:10px}
+.article .headline{font-family:var(--display);font-weight:900;line-height:1.04;
+  font-size:clamp(24px,3.4vw,32px);text-align:center;margin:0 0 8px;letter-spacing:-.01em}
+.article:hover .headline{text-decoration:underline;text-underline-offset:3px}
+.article .dateline{text-align:center;font-size:11.5px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);margin:0 0 12px}
+.article .teaser{font-size:15.5px;line-height:1.5;text-align:justify;hyphens:auto;margin:0 0 8px}
+.article .teaser::first-letter{font-family:var(--display);font-weight:700;
+  font-size:46px;line-height:.8;float:left;padding:6px 8px 0 0}
+.article .more{font-family:var(--body);font-style:italic;font-size:13px;color:var(--muted)}
+.empty{padding:30px 4px;color:var(--muted);font-style:italic;text-align:center}
+
+/* ---------- Running header (article pages) ---------- */
+nav.site{border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);
+  background:var(--paper)}
+nav.site .wrap{display:flex;align-items:center;justify-content:space-between;
+  padding:9px 26px}
+.brand{font-family:var(--black);font-weight:400;font-size:26px;color:var(--ink);
+  text-decoration:none}
+.brand:hover{background:none}
+nav.site .links{display:flex;gap:18px}
+nav.site .links a{font-family:var(--body);font-size:11.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.13em;text-decoration:none;color:var(--ink)}
+nav.site .links a:hover{text-decoration:underline;background:none}
+nav.site .links a.cta{text-decoration:none}
+
+/* ---------- Article page ---------- */
+article.post{padding:40px 0 10px}
+.post-head{max-width:760px;margin:0 auto;text-align:center}
+.post-head .tag{display:inline-block;font-family:var(--body);text-transform:uppercase;
+  letter-spacing:.2em;font-size:12px;font-weight:700;color:var(--muted);
+  background:none;padding:0;border:none;margin-bottom:14px;
+  border-bottom:1px solid var(--ink);padding-bottom:5px}
+.post-head h1{font-family:var(--display);font-weight:900;letter-spacing:-.015em;
+  line-height:1.03;font-size:clamp(32px,6vw,56px);margin:6px 0 0}
+.post-head .meta{display:block;font-family:var(--body);font-style:italic;
+  font-size:14px;color:var(--muted);margin-top:16px;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:8px 0;max-width:420px;margin-left:auto;margin-right:auto}
+
+.post-body{max-width:680px;margin:30px auto 0;font-size:18.5px;line-height:1.62;
+  text-align:justify;hyphens:auto}
+.post-body p{margin:0 0 18px}
+.post-body > p:first-of-type::first-letter{font-family:var(--display);float:left;
+  font-size:74px;line-height:.7;font-weight:900;padding:8px 12px 0 0}
+.post-body h2{font-family:var(--display);font-weight:700;font-size:24px;
+  text-align:left;margin:34px 0 10px;letter-spacing:-.01em}
+.post-body h2::before{content:"\00a7\00a0\00a0";color:var(--muted);font-weight:400}
+.post-body blockquote{margin:28px auto;padding:16px 0;max-width:80%;text-align:center;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  font-family:var(--display);font-style:italic;font-size:22px;line-height:1.3}
+.post-body ul,.post-body ol{padding-left:22px;text-align:left}
+.post-body li{margin:7px 0}
+.post-body code{font-family:'Courier New',monospace;font-size:.86em;
+  background:var(--paper2);padding:0 4px}
+.post-body strong{font-weight:700}
+.callout{border:1px solid var(--ink);padding:18px 20px;margin:28px 0;
+  background:var(--paper2);text-align:left}
+.callout p{margin:0;font-size:16px}
+.callout strong:first-child{display:block;text-transform:uppercase;
+  letter-spacing:.12em;font-size:12px;margin-bottom:6px}
+
+.post-foot{max-width:680px;margin:42px auto 0;padding-top:18px;
+  border-top:3px double var(--ink);text-align:center}
+.post-foot a.back{font-family:var(--body);text-transform:uppercase;
+  letter-spacing:.13em;font-size:12px;font-weight:700;text-decoration:none}
+.post-foot a.back:hover{text-decoration:underline}
+.relnote{font-style:italic;font-size:13px;color:var(--muted);margin-top:10px}
+
+/* ---------- Footer / colophon ---------- */
+footer.site{margin-top:46px;padding:18px 0 60px;border-top:3px double var(--ink)}
+footer.site .wrap{text-align:center}
+.license{font-family:var(--body);font-size:12px;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--muted);line-height:1.8}
+.license a{color:var(--ink)}
+.colophon-note{font-family:var(--body);font-style:italic;font-size:12.5px;
+  color:var(--muted);max-width:72ch;margin:12px auto 0;line-height:1.55;text-align:center}
+.colophon-note strong{font-style:normal;text-transform:uppercase;
+  letter-spacing:.1em;font-size:11px;color:var(--ink)}
+
+@media(max-width:680px){
+  .folio{flex-direction:column;gap:4px;text-align:center}
+  .post-body{font-size:17.5px}
+}
