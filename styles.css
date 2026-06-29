@@ -4,7 +4,7 @@
    justified serif columns. Black ink on newsprint cream.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&family=Caveat:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&family=Permanent+Marker&display=swap');
 
 :root{
   --ink:#16140f;          /* near-black warm ink */
@@ -22,6 +22,10 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);
   font-family:var(--body);font-size:18px;line-height:1.5;
   -webkit-font-smoothing:antialiased}
+/* Faint newsprint grain over the whole sheet */
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.04;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
 a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;
   text-decoration-thickness:1px}
@@ -35,11 +39,16 @@ a:hover{background:var(--paper2)}
 .motto{font-family:var(--display);font-style:italic;font-size:clamp(15px,2.2vw,19px);
   margin:0 auto 22px;max-width:46ch;color:#2a271f}
 .motto a{text-decoration-thickness:1px}
-.curious-minds{white-space:nowrap;font-family:'Caveat',cursive;font-weight:700;
-  font-style:normal;font-size:1.55em;line-height:1}
-.cm1{color:#f06a25}  /* bright orange */
-.cm2{color:#1fb56b}  /* vivid green */
-.cm3{color:#d6248f}  /* hot pink */
+/* Marker words on torn highlighter swatches (#crayon = rough-edge filter) */
+.curious-minds{white-space:nowrap;font-family:'Permanent Marker',cursive;font-weight:400;
+  font-style:normal;font-size:clamp(24px,7vw,40px);line-height:1.05;display:inline-block;margin-top:8px}
+.cm1,.cm2,.cm3{position:relative;display:inline-block;padding:2px 11px;z-index:0}
+/* hand-drawn highlighter swatch sits behind each word */
+.cm1::before,.cm2::before,.cm3::before{content:"";position:absolute;inset:-1px -3px;
+  z-index:-1;background:rgba(150,191,233,.62);filter:url(#crayon)}
+.cm1{color:#e0a3d3;transform:rotate(-2.5deg)}  /* pastel purple-pink / orchid */
+.cm2{color:#f2e14a;transform:rotate(1.5deg)}   /* lemon */
+.cm3{color:#93a6db;transform:rotate(-1.5deg)}  /* pastel periwinkle */
 .folio{display:flex;justify-content:space-between;align-items:center;gap:14px;
   border-top:3px double var(--ink);border-bottom:3px double var(--ink);
   padding:7px 0;font-family:var(--body);text-transform:uppercase;
@@ -83,7 +92,7 @@ a:hover{background:var(--paper2)}
 .article .teaser::first-letter{font-family:var(--display);font-weight:700;
   font-size:46px;line-height:.8;float:left;padding:6px 8px 0 0}
 .article .more{font-family:var(--body);font-style:italic;font-size:13px;color:var(--muted)}
-.empty{padding:30px 4px;color:var(--muted);font-style:italic;text-align:center}
+.empty{column-span:all;padding:30px 4px;color:var(--muted);font-style:italic;text-align:center}
 
 /* ---------- Running header (article pages) ---------- */
 nav.site{border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);
