@@ -4,7 +4,7 @@
    justified serif columns. Black ink on newsprint cream.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&family=Caveat:wght@700&display=swap');
 
 :root{
   --ink:#16140f;          /* near-black warm ink */
@@ -35,6 +35,11 @@ a:hover{background:var(--paper2)}
 .motto{font-family:var(--display);font-style:italic;font-size:clamp(15px,2.2vw,19px);
   margin:0 auto 22px;max-width:46ch;color:#2a271f}
 .motto a{text-decoration-thickness:1px}
+.curious-minds{white-space:nowrap;font-family:'Caveat',cursive;font-weight:700;
+  font-style:normal;font-size:1.55em;line-height:1}
+.cm1{color:#f06a25}  /* bright orange */
+.cm2{color:#1fb56b}  /* vivid green */
+.cm3{color:#d6248f}  /* hot pink */
 .folio{display:flex;justify-content:space-between;align-items:center;gap:14px;
   border-top:3px double var(--ink);border-bottom:3px double var(--ink);
   padding:7px 0;font-family:var(--body);text-transform:uppercase;
