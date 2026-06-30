@@ -1,10 +1,10 @@
 /* ============================================================
    The Pacific — traditional broadsheet newspaper styling.
-   Blackletter nameplate, folio rule, small-caps section bar,
-   justified serif columns. Black ink on newsprint cream.
+   Airy Italiana nameplate, hairline folio rule, small-caps section
+   bar, justified serif columns. Black ink on newsprint cream.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=UnifrakturMaguntia&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Italiana&family=Permanent+Marker&display=swap');
 
 :root{
   --ink:#16140f;          /* near-black warm ink */
@@ -13,7 +13,7 @@
   --muted:#57534a;
   --rule:#16140f;
   --display:'Playfair Display',Georgia,'Times New Roman',serif;
-  --black:'UnifrakturMaguntia','Playfair Display',Georgia,serif;
+  --black:'Italiana',Georgia,'Times New Roman',serif;  /* airy high-contrast title face */
   --body:'PT Serif',Georgia,'Times New Roman',serif;
 }
 
@@ -32,10 +32,11 @@ a{color:var(--ink);text-decoration:underline;text-underline-offset:2px;
 a:hover{background:var(--paper2)}
 
 /* ---------- Masthead (landing) ---------- */
-.masthead{padding:30px 0 0;text-align:center;border-top:2px solid var(--ink)}
+.masthead{padding:40px 0 0;text-align:center;border-top:1px solid var(--ink)}
+/* Italiana is thin and high-contrast: extra tracking + air lets it breathe */
 .nameplate{font-family:var(--black);font-weight:400;
-  font-size:clamp(56px,13vw,128px);line-height:.9;letter-spacing:.01em;
-  margin:18px 0 10px}
+  font-size:clamp(58px,13.5vw,132px);line-height:1;letter-spacing:.06em;
+  margin:22px 0 14px}
 .motto{font-family:var(--display);font-style:italic;font-size:clamp(15px,2.2vw,19px);
   margin:0 auto 22px;max-width:46ch;color:#2a271f}
 .motto a{text-decoration-thickness:1px}
@@ -50,9 +51,9 @@ a:hover{background:var(--paper2)}
 .cm2{color:#f2e14a;transform:rotate(1.5deg)}   /* lemon */
 .cm3{color:#93a6db;transform:rotate(-1.5deg)}  /* pastel periwinkle */
 .folio{display:flex;justify-content:space-between;align-items:center;gap:14px;
-  border-top:3px double var(--ink);border-bottom:3px double var(--ink);
-  padding:7px 0;font-family:var(--body);text-transform:uppercase;
-  letter-spacing:.13em;font-size:11.5px;font-weight:700}
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+  padding:9px 0;font-family:var(--body);text-transform:uppercase;
+  letter-spacing:.16em;font-size:11.5px;font-weight:400}
 .folio span:nth-child(2){letter-spacing:.18em}
 
 /* ---------- Section bar (category filters) ---------- */
