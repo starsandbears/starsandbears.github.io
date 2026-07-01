@@ -9,37 +9,57 @@
 </head>
 <body>
 
-<!-- Crayon texture filter: roughens glyph edges and breaks up the fill -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <filter id="crayon" x="-20%" y="-20%" width="140%" height="140%">
-    <!-- hand-drawn, wobbly highlighter edge -->
-    <feTurbulence type="fractalNoise" baseFrequency="0.04 0.09" numOctaves="3" seed="4" result="warp"/>
-    <feDisplacementMap in="SourceGraphic" in2="warp" scale="9"/>
-  </filter>
-</svg>
+<!-- board atmosphere: sheen + erased ghosts, and the aluminium frame -->
+<div class="board-sheen" aria-hidden="true"></div>
+<div class="board-frame" aria-hidden="true"></div>
 
 <header class="masthead">
   <div class="wrap">
-    <h1 class="nameplate">Stars & Bears</h1>
-    <p class="motto">A rough, <a href="https://github.com/starsandbears/starsandbears.github.io" target="_blank" rel="noopener">open-sourced pile</a> of learning notes for<br><span class="curious-minds"><span class="cm1">the</span> <span class="cm2">curious</span> <span class="cm3">minds</span></span></p>
-    <div class="folio">
-      <span>Vol. I &middot; No. 1</span>
-      <span id="folioDate">Sunday Edition &middot; June 28, 2026</span>
-    </div>
+    <span class="corner-note issue-tag">Vol. I<br>No. 1</span>
+    <span class="corner-note date-note">Today<br><b id="folioDate">Today</b></span>
+
+    <p class="eyebrow">scribbled on the board for you ↓</p>
+
+    <h1 class="nameplate">
+      Stars <span class="amp">&amp;</span> Bears
+      <!-- hand-drawn underline, draws itself on at load -->
+      <svg class="doodle underline draw" viewBox="0 0 520 42" fill="none" aria-hidden="true">
+        <path d="M10,28 C120,10 230,34 332,20 C404,10 470,26 510,16"
+              stroke="#2f6fb3" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+      <!-- little doodled star -->
+      <svg class="doodle star draw" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+        <path d="M30,5 L37.5,23 L57,24 L42,36.5 L47.5,56 L30,44 L12.5,56 L18,36.5 L3,24 L22.5,23 Z"
+              stroke="#e3892f" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+    </h1>
+
+    <p class="motto">A rough, <a href="https://github.com/starsandbears/starsandbears.github.io" target="_blank" rel="noopener">open-sourced pile</a> of learning notes for<br>
+      <span class="curious-minds"><span class="cm cm1">the</span> <span class="cm cm2">curious<!-- marker loop circling this word -->
+        <svg class="loop draw" viewBox="0 0 150 64" fill="none" aria-hidden="true">
+          <path d="M112,9 C82,-1 38,1 20,17 C5,30 9,50 38,58 C74,68 130,56 137,32 C141,18 129,9 104,5"
+                stroke="#d4504a" stroke-width="3.4" stroke-linecap="round"/>
+        </svg></span> <span class="cm cm3">minds</span></span>
+    </p>
   </div>
 </header>
 
 <main class="wrap">
   <div class="sectionbar" id="filters"><!-- rendered by JS --></div>
-  <p class="frontline">Front Page</p>
+  <p class="frontline">on the board lately</p>
   <div class="post-list" id="postList"><!-- rendered by JS --></div>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <div class="license">
-      Written &amp; edited by Claude &middot; Printed open-source &middot; Text under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, code under <a href="https://github.com/starsandbears/starsandbears.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT&nbsp;License</a>
-    </div>
+<footer class="tray">
+  <div class="markers" aria-hidden="true">
+    <span class="mk mk-black"></span>
+    <span class="mk mk-blue"></span>
+    <span class="mk mk-red"></span>
+    <span class="mk mk-green"></span>
+    <span class="eraser"></span>
+  </div>
+  <div class="license">
+    Written &amp; edited by Claude &middot; open-source &middot; Text under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, code under <a href="https://github.com/starsandbears/starsandbears.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT&nbsp;License</a>
   </div>
 </footer>
 
@@ -58,15 +78,15 @@ const POSTS = [
 const filtersEl = document.getElementById('filters');
 const filterKeys = ['all', ...Object.keys(CATEGORIES)];
 filtersEl.innerHTML = filterKeys.map(k =>
-  `<button class="filter-btn${k==='all'?' active':''}" data-filter="${k}">${k==='all'?'All':CATEGORIES[k].name}</button>`
+  `<button class="filter-btn${k==='all'?' active':''}" data-filter="${k}">${k==='all'?'everything':CATEGORIES[k].name}</button>`
 ).join('');
 
-/* Front-page article index */
+/* Front-page article index — rendered as sticky notes */
 const listEl = document.getElementById('postList');
 function renderPosts(filter='all'){
   const rows = POSTS.filter(p => filter==='all' || p.cat===filter);
   if(!rows.length){
-    listEl.innerHTML = `<p class="empty">No dispatches yet — the presses are warming up.</p>`;
+    listEl.innerHTML = `<p class="empty">the board's still blank — first notes are on their way</p>`;
     return;
   }
   listEl.innerHTML = rows.map(p => {
@@ -76,7 +96,7 @@ function renderPosts(filter='all'){
         <h3 class="headline">${p.title}</h3>
         <p class="dateline">${p.date} &middot; ${p.read} read</p>
         <p class="teaser">${p.excerpt}</p>
-        <span class="more">Continue reading &rarr;</span>
+        <span class="more">read it &rarr;</span>
       </a>`;
   }).join('');
 }
@@ -91,11 +111,11 @@ function applyHash(){
 applyHash();
 window.addEventListener('hashchange', applyHash);
 
-/* Live masthead date — keeps the "edition" honest */
+/* Live date written in the corner reminder */
 const now = new Date();
 const weekday = now.toLocaleDateString('en-US', {weekday:'long'});
-const longDate = now.toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
-document.getElementById('folioDate').innerHTML = `${weekday} Edition · ${longDate}`;
+const monthDay = now.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+document.getElementById('folioDate').textContent = `${weekday}, ${monthDay}`;
 
 filtersEl.addEventListener('click', e => {
   const btn = e.target.closest('.filter-btn'); if(!btn) return;
