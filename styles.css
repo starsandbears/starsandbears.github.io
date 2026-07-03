@@ -1,11 +1,9 @@
 /* ============================================================
    Stars & Bears — "Whiteboard" theme.
    A dry-erase board: cool-white surface, faint erased ghosts,
-   aluminium frame, marker handwriting, hand-drawn doodles that
+   aluminium frame, OpenDyslexic lettering, hand-drawn doodles that
    draw themselves on, sticky-note articles, a marker tray footer.
    ============================================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&display=swap');
 
 :root{
   /* board surface */
@@ -22,16 +20,17 @@
   /* aluminium frame */
   --frame:#ccd3d8;
   --frame-edge:#a9b2b9;
-  /* type */
-  --marker:'Permanent Marker',cursive;
-  --hand:'Caveat',cursive;
-  --note:'Kalam','Caveat',cursive;
+  /* type — OpenDyslexic throughout (three names kept for legibility of intent) */
+  --marker:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+  --hand:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+  --note:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
 }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;min-height:100vh;color:var(--ink);
-  font-family:var(--note);font-size:19px;line-height:1.55;
+  font-family:var(--note);font-size:19px;line-height:1.7;
+  letter-spacing:.01em;word-spacing:.04em;
   -webkit-font-smoothing:antialiased;
   /* bear paw-print cursor (charcoal marker w/ white outline for contrast) */
   cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%2334383c' stroke='%23ffffff' stroke-width='1'%3E%3Cellipse cx='16' cy='21' rx='7.5' ry='6'/%3E%3Cellipse cx='8.5' cy='13' rx='2.7' ry='3.4'/%3E%3Cellipse cx='14' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='20' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='24.5' cy='13.5' rx='2.7' ry='3.4'/%3E%3C/g%3E%3C/svg%3E") 16 16,auto;
@@ -80,7 +79,10 @@ a:hover{background-size:100% 3px}
 /* ============================================================
    Masthead
    ============================================================ */
-.masthead{position:relative;text-align:center;padding:64px 0 30px;z-index:1}
+.masthead{position:relative;text-align:center;padding:30px 0 30px;z-index:1}
+/* Pad the wrap (not the eyebrow) so flow content clears the pinned corner
+   notes — the notes anchor to the wrap's edge and stay put. */
+.masthead .wrap{padding-top:94px}
 
 /* corner notes */
 .corner-note{position:absolute;top:6px;font-family:var(--hand);font-weight:600;
@@ -102,8 +104,8 @@ a:hover{background-size:100% 3px}
   animation:riseIn .6s ease both}
 
 .nameplate{position:relative;display:inline-block;font-family:var(--marker);
-  font-weight:400;color:var(--ink);line-height:.95;letter-spacing:.005em;
-  font-size:clamp(54px,12vw,124px);margin:6px 0 30px;
+  font-weight:700;color:var(--ink);line-height:1;letter-spacing:0;
+  font-size:clamp(38px,8.5vw,84px);margin:6px 0 30px;
   text-shadow:0 1px 0 rgba(255,255,255,.6),1px 2px 1px rgba(40,50,60,.06);
   animation:riseIn .7s ease .05s both}
 .nameplate .amp{color:var(--red);font-size:.86em;padding:0 .04em}
@@ -112,9 +114,11 @@ a:hover{background-size:100% 3px}
 .doodle{position:absolute;overflow:visible}
 .underline{left:-2%;bottom:-26px;width:104%;height:42px}
 .underline path{--len:900;animation-delay:.5s}
-/* drawn star floating by the title */
-.star{top:-30px;right:-46px;width:64px;height:64px}
-.star path{--len:340;animation-delay:.9s}
+/* the star figure — a big star wrapping the word "you" in the eyebrow */
+.hey{position:relative;display:inline-block}
+.hey-star{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:132px;height:112px;overflow:visible;pointer-events:none;z-index:-1}
+.hey-star path{--len:360;animation-delay:.7s}
 
 .motto{font-family:var(--note);font-weight:400;
   font-size:clamp(17px,2.3vw,21px);color:#4a5256;
@@ -123,13 +127,13 @@ a:hover{background-size:100% 3px}
 
 /* the three colored marker words */
 .curious-minds{display:inline-block;font-family:var(--hand);font-weight:700;
-  font-size:clamp(26px,5.4vw,40px);line-height:1;white-space:nowrap;margin-top:6px}
+  font-size:clamp(24px,5vw,36px);line-height:1.2;white-space:normal;margin-top:24px}
 .cm{display:inline-block;padding:0 2px}
 .cm1{color:var(--purple);transform:rotate(-3deg)}
 .cm2{color:var(--red);transform:rotate(1deg);position:relative}
 .cm3{color:var(--green);transform:rotate(-1.5deg)}
-/* hand-drawn loop circling "curious" */
-.loop{position:absolute;left:-12%;top:-26%;width:124%;height:150%}
+/* hand-drawn loop circling "curious" — sized to wrap the wider OpenDyslexic word */
+.loop{position:absolute;left:-25%;top:-58%;width:150%;height:206%}
 .loop path{--len:430;animation-delay:1.15s}
 
 /* ============================================================
@@ -143,15 +147,13 @@ a:hover{background-size:100% 3px}
 .filter-btn:nth-child(even){transform:rotate(.8deg)}
 .filter-btn:hover{color:var(--blue)}
 .filter-btn.active{color:var(--red)}
-/* drawn marker loop around the active tab */
-.filter-btn.active::after{content:"";position:absolute;inset:-2px 2px;z-index:-1;
+/* drawn marker loop around the active tab — roomier for the wider font */
+.filter-btn.active::after{content:"";position:absolute;inset:-7px -6px;z-index:-1;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 130 56' fill='none'%3E%3Cpath d='M98,7 C72,-1 34,1 18,15 C5,26 8,44 32,51 C63,60 110,50 116,29 C119,17 109,9 88,5' stroke='%23d4504a' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
   background-size:100% 100%;background-repeat:no-repeat}
 
-.frontline{text-align:center;font-family:var(--hand);font-weight:600;
-  font-size:clamp(22px,3vw,30px);color:var(--ink);margin:6px 0 26px;
-  position:relative;transform:rotate(-.8deg)}
-.frontline::after{content:"";display:block;width:118px;height:11px;margin:2px auto 0;
+/* blue hand-drawn wave under the category row */
+.wave-rule{width:118px;height:11px;margin:2px auto 26px;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 11' fill='none'%3E%3Cpath d='M3,7 C30,2 60,9 88,4 C100,2 110,5 117,4' stroke='%232f6fb3' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
   background-size:100% 100%;background-repeat:no-repeat}
 
@@ -193,14 +195,60 @@ a:hover{background-size:100% 3px}
 .empty::after{content:"\270e";display:block;font-size:34px;margin-top:6px;color:var(--blue)}
 
 /* ============================================================
+   Subscribe — a sign-up sheet pinned to the board
+   ============================================================ */
+.subscribe{margin:26px 0 8px;display:flex;justify-content:center}
+.sub-card{position:relative;width:100%;max-width:540px;text-align:center;
+  background:#fff;border:2px dashed var(--ink);border-radius:16px;
+  padding:32px 26px 30px;transform:rotate(-.6deg);
+  box-shadow:0 14px 28px -16px rgba(40,50,60,.4)}
+.sub-tape{position:absolute;top:-12px;left:50%;width:96px;height:26px;
+  transform:translateX(-50%) rotate(-2.5deg);
+  background:rgba(214,224,229,.6);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.sub-eyebrow{font-family:var(--hand);font-weight:600;color:var(--blue);
+  font-size:18px;margin:0 0 2px;transform:rotate(-1deg)}
+.sub-head{font-family:var(--hand);font-weight:700;color:var(--ink);
+  font-size:clamp(26px,3.8vw,34px);line-height:1.1;margin:0 0 8px}
+.sub-sub{font-family:var(--note);font-size:16px;color:#4a5256;line-height:1.5;
+  max-width:42ch;margin:0 auto 20px}
+.sub-form{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:stretch}
+.sub-form input{flex:1 1 240px;min-width:0;font-family:var(--note);font-size:17px;
+  color:var(--ink);background:#fbfdfe;border:2px solid var(--ink);border-radius:12px;
+  padding:12px 14px;min-height:50px}
+.sub-form input::placeholder{color:#9aa2a7}
+.sub-form button{font-family:var(--hand);font-weight:700;font-size:19px;cursor:pointer;
+  background:var(--green);color:#fff;border:2px solid var(--green);border-radius:12px;
+  padding:12px 22px;min-height:50px;transition:background .15s,transform .15s}
+.sub-form button:hover{background:#256b47;transform:translateY(-1px)}
+.sub-form button:disabled{opacity:.6;cursor:progress}
+.sub-status{font-family:var(--hand);font-weight:600;font-size:17px;margin:14px 0 0;min-height:1.2em}
+.sub-status.ok{color:var(--green)}
+.sub-status.err{color:var(--red)}
+.sub-status.note{color:var(--muted)}
+/* community actions — co-create, not just subscribe */
+.join-actions{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:8px 12px;margin:20px 0 0;padding-top:16px;border-top:1px dashed #cfd6da}
+.join-lead{font-family:var(--note);font-size:14px;color:var(--muted)}
+.join-link{font-family:var(--hand);font-weight:700;font-size:17px;text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:11px;
+  border:2px solid currentColor;background:#fff;transition:transform .15s,background .15s}
+.join-link span{filter:grayscale(.1)}
+.join-link.topic{color:var(--orange)}
+.join-link.write{color:var(--purple)}
+.join-link:hover{transform:translateY(-1px) rotate(-1deg);background:var(--board-2)}
+/* visually-hidden but available to screen readers */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ============================================================
    Footer — the marker tray
    ============================================================ */
 footer.tray{position:relative;z-index:1;margin-top:54px;padding:26px 30px 40px;
   background:linear-gradient(180deg,#e2e7ea 0%,#cfd6da 48%,#bcc4c9 100%);
   border-top:1px solid #fff;
   box-shadow:inset 0 2px 0 rgba(255,255,255,.7),inset 0 -3px 6px rgba(40,50,60,.12)}
-.markers{display:flex;justify-content:center;align-items:flex-end;gap:14px;
-  height:34px;margin-bottom:16px}
+.markers{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:14px;
+  min-height:34px;margin-bottom:16px}
 .mk{position:relative;width:96px;height:18px;border-radius:9px;
   box-shadow:0 3px 5px rgba(30,40,50,.22)}
 .mk::after{content:"";position:absolute;right:-7px;top:3px;width:12px;height:12px;
@@ -264,11 +312,27 @@ article.post{position:relative;z-index:1;padding:46px 0 10px}
 @media(max-width:640px){
   .board-frame{border-width:8px}
   .masthead{padding:30px 0 24px}
-  .corner-note{position:static;display:inline-block;margin:4px 6px 0;transform:none}
-  .issue-tag,.date-note{transform:rotate(-2deg)}
-  .star{display:none}
+  /* stack the notes centered so the wide date sticker can't overflow */
+  .corner-note{position:static;display:block;width:fit-content;max-width:100%;
+    margin:5px auto 0;transform:rotate(-1.5deg)}
+  .masthead .wrap{padding-top:0}  /* notes are in-flow on mobile; no clearance needed */
 }
 @media(prefers-reduced-motion:reduce){
   .draw path{stroke-dashoffset:0;animation:none}
   .eyebrow,.nameplate,.motto{animation:none}
 }
+
+/* ============================================================
+   Type face — OpenDyslexic + keyboard focus rings
+   ============================================================ */
+/* OpenDyslexic (weighted letters ease reading), served from the Fontsource CDN */
+@font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:400;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-400-normal.woff2') format('woff2')}
+@font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:700;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-700-normal.woff2') format('woff2')}
+@font-face{font-family:'OpenDyslexic';font-style:italic;font-weight:400;font-display:swap;
+  src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-400-italic.woff2') format('woff2')}
+
+/* Clear keyboard focus ring */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{
+  outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}

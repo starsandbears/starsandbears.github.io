@@ -18,7 +18,11 @@
     <span class="corner-note issue-tag">Vol. I<br>No. 1</span>
     <span class="corner-note date-note">Today<br><b id="folioDate">Today</b></span>
 
-    <p class="eyebrow">scribbled on the board for you ↓</p>
+    <p class="eyebrow">scribbled on the board for <span class="hey">you<!-- the star figure wraps this word -->
+      <svg class="hey-star draw" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <path d="M20,3 L24.5,15 L37,15.5 L27,23.5 L30.5,36 L20,28.5 L9.5,36 L13,23.5 L3,15.5 L15.5,15 Z"
+              stroke="#e3892f" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg></span></p>
 
     <h1 class="nameplate">
       Stars <span class="amp">&amp;</span> Bears
@@ -27,14 +31,9 @@
         <path d="M10,28 C120,10 230,34 332,20 C404,10 470,26 510,16"
               stroke="#2f6fb3" stroke-width="6" stroke-linecap="round"/>
       </svg>
-      <!-- little doodled star -->
-      <svg class="doodle star draw" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-        <path d="M30,5 L37.5,23 L57,24 L42,36.5 L47.5,56 L30,44 L12.5,56 L18,36.5 L3,24 L22.5,23 Z"
-              stroke="#e3892f" stroke-width="3.4" stroke-linejoin="round" stroke-linecap="round"/>
-      </svg>
     </h1>
 
-    <p class="motto">A rough, <a href="https://github.com/starsandbears/starsandbears.github.io" target="_blank" rel="noopener">open-sourced pile</a> of learning notes for<br>
+    <p class="motto">A rough pile of learning notes for<br>
       <span class="curious-minds"><span class="cm cm1">the</span> <span class="cm cm2">curious<!-- marker loop circling this word -->
         <svg class="loop draw" viewBox="0 0 150 64" fill="none" aria-hidden="true">
           <path d="M112,9 C82,-1 38,1 20,17 C5,30 9,50 38,58 C74,68 130,56 137,32 C141,18 129,9 104,5"
@@ -46,8 +45,36 @@
 
 <main class="wrap">
   <div class="sectionbar" id="filters"><!-- rendered by JS --></div>
-  <p class="frontline">on the board lately</p>
+  <div class="wave-rule" aria-hidden="true"></div>
   <div class="post-list" id="postList"><!-- rendered by JS --></div>
+
+  <!-- Join the board: a community invite pinned to the board -->
+  <section class="subscribe" id="join" aria-labelledby="sub-head">
+    <div class="sub-card">
+      <span class="sub-tape" aria-hidden="true"></span>
+      <p class="sub-eyebrow">Pull up a marker</p>
+      <h2 class="sub-head" id="sub-head">Join the board</h2>
+      <p class="sub-sub">Stars &amp; Bears is a shared, open pile of notes by curious minds. Add your email to catch new notes as they go up — then jump in and help shape what lands on the board next.</p>
+      <!-- Wired to Formspree; submissions land in the form owner's Formspree dashboard.
+           Swap the action/field names to move to Buttondown, Mailchimp, etc. -->
+      <form class="sub-form" id="subForm" action="https://formspree.io/f/xeepgoqg" method="POST" novalidate>
+        <label class="sr-only" for="subEmail">Email address</label>
+        <input id="subEmail" name="email" type="email" required placeholder="you@example.com"
+               autocomplete="email" inputmode="email" aria-describedby="subStatus">
+        <button type="submit">Pin me to the board</button>
+      </form>
+      <p class="sub-status" id="subStatus" role="status" aria-live="polite"></p>
+
+      <!-- Community actions: the board is open-source, so readers can co-create -->
+      <div class="join-actions">
+        <span class="join-lead">Already curious?</span>
+        <a class="join-link topic" href="https://github.com/starsandbears/starsandbears.github.io/issues/new?labels=topic-idea&amp;title=Topic%20idea%3A%20" target="_blank" rel="noopener">
+          <span aria-hidden="true">💡</span> Suggest a topic</a>
+        <a class="join-link write" href="https://github.com/starsandbears/starsandbears.github.io" target="_blank" rel="noopener">
+          <span aria-hidden="true">✎</span> Write a note with us</a>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="tray">
@@ -59,11 +86,15 @@
     <span class="eraser"></span>
   </div>
   <div class="license">
-    Written &amp; edited by Claude &middot; open-source &middot; Text under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, code under <a href="https://github.com/starsandbears/starsandbears.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT&nbsp;License</a>
+    Written &amp; edited by Claude &middot; <a href="https://github.com/starsandbears/starsandbears.github.io" target="_blank" rel="noopener">open-source</a> &middot; Text under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, code under <a href="https://github.com/starsandbears/starsandbears.github.io/blob/main/LICENSE" target="_blank" rel="noopener">MIT&nbsp;License</a>
   </div>
 </footer>
 
 <script>
+/* Always open at the top of the board — don't let the browser restore a prior scroll */
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.addEventListener('load', function(){ if(!location.hash) window.scrollTo(0, 0); });
+
 const CATEGORIES = {
   econ: {name:'Economics', tag:'tag--econ'},
   sci:  {name:'Science',   tag:'tag--sci'},
@@ -123,6 +154,34 @@ filtersEl.addEventListener('click', e => {
   btn.classList.add('active');
   renderPosts(btn.dataset.filter);
 });
+
+/* Subscribe form — client-side validation + graceful submit to a form provider */
+(function(){
+  const form = document.getElementById('subForm');
+  if(!form) return;
+  const email = document.getElementById('subEmail');
+  const status = document.getElementById('subStatus');
+  const btn = form.querySelector('button');
+  const say = (msg, kind) => { status.textContent = msg; status.className = 'sub-status' + (kind ? ' ' + kind : ''); };
+  const looksValid = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const val = (email.value || '').trim();
+    if(!looksValid(val)){ say('Hmm, that email looks off — mind checking it?', 'err'); email.focus(); return; }
+
+    btn.disabled = true; say('Pinning you to the board…');
+    try{
+      const res = await fetch(form.action, {
+        method: 'POST', body: new FormData(form), headers: {'Accept': 'application/json'}
+      });
+      if(res.ok){ say("You're on the list!", 'ok'); form.reset(); }
+      else{ say('Something jammed — please try again in a moment.', 'err'); }
+    }catch(_){
+      say('Network hiccup — please try again.', 'err');
+    }finally{ btn.disabled = false; }
+  });
+})();
 </script>
 </body>
 </html>
