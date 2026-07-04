@@ -12,13 +12,16 @@
     --card:#ffffff;
     --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
     --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+    --fs:1; /* text-size scale: .88 small · 1 medium · 1.15 large */
   }
+  body.font-small{--fs:.88}
+  body.font-large{--fs:1.15}
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{margin:0;position:relative;background:
       radial-gradient(120% 80% at 50% -10%, rgba(61,122,90,.10), transparent 60%),
       linear-gradient(180deg, var(--paper), #f5f4ec 70%, #eef1e6);
-    color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+    color:var(--ink);font-family:var(--sans);font-size:calc(16px * var(--fs));line-height:1.6;-webkit-font-smoothing:antialiased;
     /* bear paw-print cursor, matching the site home page */
     cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%2334383c' stroke='%23ffffff' stroke-width='1'%3E%3Cellipse cx='16' cy='21' rx='7.5' ry='6'/%3E%3Cellipse cx='8.5' cy='13' rx='2.7' ry='3.4'/%3E%3Cellipse cx='14' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='20' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='24.5' cy='13.5' rx='2.7' ry='3.4'/%3E%3C/g%3E%3C/svg%3E") 16 16,auto}
   .wrap{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
@@ -42,7 +45,7 @@
   #intro{scroll-margin-top:64px}
   .roles{font-family:var(--serif);font-weight:700;font-size:clamp(22px,3.4vw,32px);line-height:1.38;color:var(--ink);letter-spacing:-.01em;margin:0 0 10px}
   .intro-lead{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.6vw,24px);color:var(--accent);margin:0 0 22px}
-  .intro-body{color:#2a2a2a;font-size:17.5px}
+  .intro-body{color:#2a2a2a;font-size:calc(17.5px * var(--fs))}
   /* a quiet breath between the invitation and the three stories */
   .intro-pause{border:0;width:54px;height:2px;background:var(--green);opacity:.45;margin:32px 0}
   .coda{font-family:var(--serif);font-size:clamp(19px,2.5vw,24px);line-height:1.55;color:#333;max-width:56ch;margin:8px auto;text-align:center;font-style:italic}
@@ -87,7 +90,7 @@
   h2.part-title::after{content:"";display:block;width:54px;height:2px;background:var(--green);opacity:.55;margin:18px auto 0}
   a.src{color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(45,106,142,.3)}
   a.src:hover{border-color:var(--accent2)}
-  p.note{font-size:13.5px;color:var(--muted);font-style:italic}
+  p.note{font-size:calc(13.5px * var(--fs));color:var(--muted);font-style:italic}
 
   /* Documentary embed */
   .film{margin:30px 0 8px}
@@ -102,9 +105,9 @@
 
   /* Quote cards */
   .quote{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:26px 30px;margin:22px 0;box-shadow:0 1px 0 rgba(0,0,0,.02),0 10px 30px -22px rgba(0,0,0,.25)}
-  .quote blockquote{margin:0;font-family:var(--serif);font-size:clamp(18px,2.4vw,23px);line-height:1.38;color:#222}
+  .quote blockquote{margin:0;font-family:var(--serif);font-size:calc(clamp(18px,2.4vw,23px) * var(--fs));line-height:1.38;color:#222}
   .quote blockquote::before{content:"\201C";color:var(--accent);font-size:1.1em;line-height:0;vertical-align:-.28em;margin-right:.04em}
-  .quote .cite{margin-top:16px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+  .quote .cite{margin-top:16px;font-size:calc(13px * var(--fs));color:var(--muted);border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
   .quote .cite .where{font-weight:600;color:var(--ink)}
   sup.fn{font-family:var(--sans);font-style:normal;font-size:.58em;line-height:0;vertical-align:super;margin-left:2px}
   sup.fn a{color:var(--accent2);text-decoration:none;font-weight:700;scroll-margin-top:70px}
@@ -116,7 +119,7 @@
   sup.fn.fn-bio a::before{content:"\1F4D6\00A0"}
   sup.fn.fn-bio a:hover{background:rgba(45,106,142,.24)}
 
-  footer{padding:32px 26px 44px;margin-bottom:28px;color:var(--muted);font-size:13px;background:rgba(251,250,247,.86);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(2px)}
+  footer{padding:32px 26px 44px;margin-bottom:28px;color:var(--muted);font-size:calc(13px * var(--fs));background:rgba(251,250,247,.86);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(2px)}
   footer h3{color:var(--ink);font-family:var(--serif);font-size:22px}
   .refnote{max-width:84ch;margin:6px 0}
   ul.srcs{padding-left:26px;max-width:84ch;margin:16px 0}
@@ -332,10 +335,13 @@
 
     <p class="intro-body">Well, he could have easily done nothing. Walking away from the $15 million deal would have saved him from immense personal agony and preserved the core of his life's work: The Declaration of Independence. Later in life, he made his peace with it: <i>this</i>, as the <a href="#film">documentary</a> puts it, <i>is one of those cases where duty to national interest transcends philosophical consistency.</i> In his own words: <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-03-02-0060" target="_blank" rel="noopener">"The laws of necessity, of self-preservation, of saving our country when in danger, are of higher obligation."</a></p>
 
-    <p class="intro-body">His friendship with John Adams carried the same tension — between what he owed a friend and what he believed he owed the country. They had stood together in 1776, Adams the voice for independence, Jefferson the pen, and they grew closer still as fellow diplomats in Europe, where their families shared dinners in Paris and London. In 1787, Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-11-02-0095" target="_blank" rel="noopener">wrote</a> of Adams to Madison: "He is so amiable, that I pronounce you will love him if ever you become acquainted with him." Then in 1791, the republic they had built together pulled them apart. Each came to believe the other's politics would ruin it — and each held that belief as a duty. In the campaign to unseat the Federalists, <a class="src" href="https://en.wikipedia.org/wiki/James_T._Callender" target="_blank" rel="noopener">Wikipedia</a> records, "Jefferson supported Callender financially and provided feedback on early proofs of Callender's anti-Federalist pamphlet, <i>The Prospect Before Us</i>" — the scandal-monger's broadside against the Adams administration. The cause came first, and the friendship paid for it: for more than a decade afterward, the two old friends had almost nothing to say to each other. If you've ever let a silence with an old friend run too long to know how to break it, you know exactly where he stood.</p>
-    <p class="intro-body">Yet neither could quite let the other go. In their retirement years, each let mutual friends know he missed the other — and it was <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">Adams who broke the silence</a>, with a short New Year's letter on January 1, 1812, wishing Jefferson many happy new years to come. Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0334" target="_blank" rel="noopener">fondly responded</a>, "A letter from you calls up recollections very dear to my mind. It carries me back to the times when, beset with difficulties & dangers, we were fellow laborers in the same cause, struggling for what is most valuable to man, his right of self-government."  When Abigail Adams died in 1818, Jefferson, her friend since their Paris years, wrote to Adams <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-13-02-0353" target="_blank" rel="noopener">"mingling sincerely my tears with yours"</a>. They wrote to each other for the rest of their lives — 158 letters, through every argument and every grief — until they <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">both died</a> on July 4, 1826 — the Declaration's fiftieth anniversary. Belief had pulled them apart; affection got the last word.</p>
+    <p class="intro-body">His friendship with John Adams carried the same tension — between what he owed a friend and what he believed he owed the country. They had stood together in 1776, Adams the voice for independence, Jefferson the pen, and they grew closer still as fellow diplomats in Europe, where their families shared dinners in Paris and London. In 1787, Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-11-02-0095" target="_blank" rel="noopener">wrote</a> of Adams to Madison: "He is so amiable, that I pronounce you will love him if ever you become acquainted with him." Then in 1791, the republic they had built together pulled them apart. Each came to believe the other's politics would ruin it — and each held that belief as a duty. In the campaign to unseat the Federalists in 1800, <a class="src" href="https://en.wikipedia.org/wiki/James_T._Callender" target="_blank" rel="noopener">Wikipedia</a> records, "Jefferson supported Callender financially and provided feedback on early proofs of Callender's anti-Federalist pamphlet, <i>The Prospect Before Us</i>" — the scandal-monger's broadside against the Adams administration. The cause came first, and the friendship paid for it: for more than a decade afterward, the two old friends had almost nothing to say to each other. If you've ever let a silence with an old friend run too long to know how to break it, you know where he stood.</p>
 
-    <p class="intro-body">Though called again and again to the nation's service, Jefferson also pursued happiness in his own quiet way — with his curiosity, his discoveries, and his many hobbies. He loved his garden most of all — and it kept failing on him. Monticello, <a class="src" href="https://encyclopediavirginia.org/entries/jefferson-thomas-and-gardening/" target="_blank" rel="noopener">Encyclopedia Virginia</a> writes, "became his experimental horticultural laboratory," where he "strove to make his plantation … an experimental station of new and unusual plants." He logged every planting in his Garden Book, and made his peace with the losses: "if in the experiments to introduce … new plants," he reflected, "one species in an hundred is found useful and succeeds, the ninety-nine found otherwise are more than paid for." Ninety-nine losses for one win. He kept planting. That patience outlived him — Monticello's <a class="src" href="https://www.monticello.org/house-gardens/center-for-historic-plants/" target="_blank" rel="noopener">Center for Historic Plants</a> still propagates and sells heirloom seeds and historic plants from his garden today.</p>
+    <p class="intro-body">Nevertheless, neither could quite let the other go. In their retirement years, each let mutual friends know they missed the other — and it was <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">Adams who broke the silence</a>, with a short New Year's letter on January 1, 1812, wishing Jefferson many happy new years to come. Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0334" target="_blank" rel="noopener">fondly responded</a>, "A letter from you calls up recollections very dear to my mind. It carries me back to the times when, beset with difficulties & dangers, we were fellow laborers in the same cause, struggling for what is most valuable to man, his right of self-government."  When Abigail Adams died in 1818, Jefferson, her friend since their Paris years, wrote to Adams <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-13-02-0353" target="_blank" rel="noopener">"mingling sincerely my tears with yours"</a>. They wrote to each other for the rest of their lives — 158 letters, through every argument and every grief — until they <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">both died</a> on July 4, 1826 — the Declaration's fiftieth anniversary.</p>
+    
+    Belief had pulled them apart; affection got the last word.</p>
+
+    <p class="intro-body">Though called again and again to the nation's service, Jefferson also pursued happiness in his own quiet way. He loved his garden most of all — and it kept failing on him. Monticello, <a class="src" href="https://encyclopediavirginia.org/entries/jefferson-thomas-and-gardening/" target="_blank" rel="noopener">Encyclopedia Virginia</a> writes, "became his experimental horticultural laboratory," where he "strove to make his plantation … an experimental station of new and unusual plants." From 1766 to 1824, he logged every planting in his Garden Book, and made his peace with the constant losses. As he later reflected in an 1803 letter, "if in the experiments to introduce … new plants, one species in an hundred is found useful and succeeds, the ninety-nine found otherwise are more than paid for." Ninety-nine losses for one win. And he kept planting. That patience outlived him — Monticello's <a class="src" href="https://www.monticello.org/house-gardens/center-for-historic-plants/" target="_blank" rel="noopener">Center for Historic Plants</a> still propagates and sells heirloom seeds and historic plants from his garden today.</p>
   </section>
 
   <!-- PART ONE: IN OTHERS' EYES -->
@@ -668,6 +674,12 @@
     <div class="a11y-row">
       <button class="a11y-btn" id="dysToggle" aria-pressed="false">Dyslexia-friendly font</button>
     </div>
+    <p class="ttl">Text size</p>
+    <div class="a11y-row" role="group" aria-label="Text size">
+      <button class="a11y-btn" id="fsSmall" aria-pressed="false">Small</button>
+      <button class="a11y-btn" id="fsMedium" aria-pressed="true">Medium</button>
+      <button class="a11y-btn" id="fsLarge" aria-pressed="false">Large</button>
+    </div>
     <p class="a11y-status" id="arStatus" role="status" aria-live="polite"></p>
   </div>
 </div>
@@ -702,6 +714,25 @@
     setDyslexic(!document.body.classList.contains('dyslexic'));
   });
   try{ if(localStorage.getItem('sb-dyslexic') === '1') setDyslexic(true); }catch(_){}
+
+  /* ---------- text size: small / medium / large (persisted; medium is the page default) ---------- */
+  var fsButtons = { small:  document.getElementById('fsSmall'),
+                    medium: document.getElementById('fsMedium'),
+                    large:  document.getElementById('fsLarge') };
+  function setFontSize(size){
+    if(!fsButtons[size]) size = 'medium';
+    document.body.classList.toggle('font-small', size === 'small');
+    document.body.classList.toggle('font-large', size === 'large');
+    for(var k in fsButtons){ fsButtons[k].setAttribute('aria-pressed', k === size ? 'true' : 'false'); }
+    try{ localStorage.setItem('sb-fontsize', size); }catch(_){}
+  }
+  fsButtons.small.addEventListener('click',  function(){ setFontSize('small');  });
+  fsButtons.medium.addEventListener('click', function(){ setFontSize('medium'); });
+  fsButtons.large.addEventListener('click',  function(){ setFontSize('large');  });
+  try{
+    var savedFs = localStorage.getItem('sb-fontsize');
+    if(savedFs && savedFs !== 'medium') setFontSize(savedFs);
+  }catch(_){}
 
   /* ---------- read aloud with live word highlighting ---------- */
   var supported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
