@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remembering Jefferson</title>
+<meta name="description" content="The words of Thomas Jefferson (1743–1826), with his documentary, gathered from his letters and founding documents and traced to their sources.">
+<style>
+  :root{
+    --ink:#1a1a1a; --paper:#fbfaf7; --muted:#6b6b6b; --line:#e3e0d8;
+    --accent:#b8472d; --accent2:#2d6a8e; --gold:#c08a2e; --green:#3d7a5a;
+    --card:#ffffff;
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;position:relative;background:
+      radial-gradient(120% 80% at 50% -10%, rgba(61,122,90,.10), transparent 60%),
+      linear-gradient(180deg, var(--paper), #f5f4ec 70%, #eef1e6);
+    color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;
+    /* bear paw-print cursor, matching the site home page */
+    cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%2334383c' stroke='%23ffffff' stroke-width='1'%3E%3Cellipse cx='16' cy='21' rx='7.5' ry='6'/%3E%3Cellipse cx='8.5' cy='13' rx='2.7' ry='3.4'/%3E%3Cellipse cx='14' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='20' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='24.5' cy='13.5' rx='2.7' ry='3.4'/%3E%3C/g%3E%3C/svg%3E") 16 16,auto}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+  /* Garden — botanical layer behind everything, scrolling with the page */
+  .garden{position:absolute;top:0;bottom:0;left:0;right:0;z-index:0;pointer-events:none;opacity:.5}
+  .garden svg{width:100%;height:100%;display:block}
+  /* Monticello rising at the foot — architecture follows agriculture as you scroll */
+  .architecture{position:absolute;left:0;right:0;bottom:0;height:min(78vh,680px);z-index:0;pointer-events:none;opacity:.42}
+  .architecture svg{width:100%;height:100%;display:block}
+  /* a leafy meadow rooted at the foot of the page, in front of the house */
+  .meadow{position:absolute;left:0;right:0;bottom:0;height:min(30vh,240px);z-index:0;pointer-events:none;opacity:.6}
+  .meadow svg{width:100%;height:100%;display:block}
+
+  /* Hero */
+  header.hero{padding:80px 0 48px;border-bottom:3px double var(--line)}
+  .kicker{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;font-size:12px;color:var(--accent);font-weight:700;margin-bottom:18px}
+  h1{font-family:var(--serif);font-weight:700;font-size:clamp(34px,6vw,60px);line-height:1.05;margin:0 0 18px;letter-spacing:-.01em}
+  .lede{font-family:var(--serif);font-size:clamp(18px,2.4vw,22px);color:#333;max-width:62ch;margin:0 0 10px}
+  /* Intro overview */
+  #intro{scroll-margin-top:64px}
+  .roles{font-family:var(--serif);font-weight:700;font-size:clamp(22px,3.4vw,32px);line-height:1.38;color:var(--ink);letter-spacing:-.01em;margin:0 0 10px}
+  .intro-lead{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.6vw,24px);color:var(--accent);margin:0 0 22px}
+  .intro-body{color:#2a2a2a;font-size:17.5px}
+  /* a quiet breath between the invitation and the three stories */
+  .intro-pause{border:0;width:54px;height:2px;background:var(--green);opacity:.45;margin:32px 0}
+  .coda{font-family:var(--serif);font-size:clamp(19px,2.5vw,24px);line-height:1.55;color:#333;max-width:56ch;margin:8px auto;text-align:center;font-style:italic}
+  .coda::before,.coda::after{content:"";display:block;width:44px;height:1px;background:var(--green);opacity:.5;margin:22px auto}
+  .coda p{margin:0}
+  .coda .coda-label{font-family:var(--sans);font-style:normal;text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:var(--accent);margin:0 0 14px}
+
+  /* Nav */
+  /* Layout: sticky vertical contents sidebar + body column */
+  .shell{max-width:1360px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:214px minmax(0,1fr);gap:38px;align-items:start;position:relative;z-index:1}
+  .body-col{grid-column:2;min-width:0}
+  .sidenav{position:fixed;top:50%;transform:translateY(-50%);left:calc(max(0px, (100vw - 1360px) / 2) + 24px);width:214px;z-index:5;max-height:calc(100vh - 32px);overflow:auto;padding:18px 0;font-family:var(--sans)}
+  .sidenav a{display:block;text-decoration:none;color:var(--muted);font-size:14.5px;line-height:1.35;padding:6px 12px;border-radius:8px;transition:.15s}
+  .sidenav a:hover{color:var(--ink);background:#efece4}
+  .sidenav .toc-lead{font-weight:700;color:var(--ink)}
+  .sidenav .toc-group{margin:14px 0;padding-top:12px;border-top:1px solid var(--line)}
+  .sidenav .toc-head{text-transform:uppercase;letter-spacing:.1em;font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:4px}
+  .sidenav .toc-head:hover{background:#f3e6e1;color:var(--accent)}
+  .sidenav .toc-group a:not(.toc-head){padding-left:16px}
+  @media (max-width:1040px){
+    .shell{display:block;padding:0}
+    .sidenav{position:sticky;top:0;left:auto;transform:none;width:auto;z-index:20;max-height:none;overflow-x:auto;overflow-y:hidden;white-space:nowrap;display:flex;align-items:center;gap:4px;padding:8px 16px;background:rgba(251,250,247,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-bottom:8px}
+    .sidenav .toc-group{display:contents}
+    .sidenav .toc-group,.sidenav .toc-head{border:0;margin:0}
+    .sidenav a{display:inline-block;white-space:nowrap;padding:6px 12px;border-radius:20px}
+    .sidenav .toc-head{padding:6px 10px}
+    .sidenav .toc-group a:not(.toc-head){padding-left:12px}
+  }
+
+  section[id]{scroll-margin-top:64px}
+  .part[id]{scroll-margin-top:56px}
+  section{padding:54px 0;border-bottom:1px solid var(--line)}
+  .sec-num{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+  h2{font-family:var(--serif);font-size:clamp(26px,4vw,38px);line-height:1.1;margin:8px 0 14px;letter-spacing:-.01em;display:flex;align-items:center;gap:14px}
+  h2::before{content:"";flex:none;width:24px;height:32px;opacity:.9;background:center/contain no-repeat url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2028'%3E%3Cpath%20d='M12%201C4%209%205%2022%2012%2027%2019%2022%2020%209%2012%201Z'%20fill='%233d7a5a'/%3E%3Cpath%20d='M12%207C10%2013%2010%2018%2012%2022'%20fill='none'%20stroke='%23fbfaf7'%20stroke-width='1.4'%20stroke-linecap='round'/%3E%3C/svg%3E")}
+  p{max-width:82ch}
+  /* Part dividers — the two halves of the page */
+  .part{text-align:center;margin:16px 0 -18px;padding-top:26px}
+  .part-eyebrow{display:block;font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:12px;font-weight:700;color:var(--accent)}
+  h2.part-title{display:block;text-align:center;font-size:clamp(28px,4.6vw,44px);line-height:1.08;margin:12px 0 0}
+  h2.part-title::before{content:none}
+  h2.part-title::after{content:"";display:block;width:54px;height:2px;background:var(--green);opacity:.55;margin:18px auto 0}
+  a.src{color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(45,106,142,.3)}
+  a.src:hover{border-color:var(--accent2)}
+  p.note{font-size:13.5px;color:var(--muted);font-style:italic}
+
+  /* Documentary embed */
+  .film{margin:30px 0 8px}
+  .film .frame{position:relative;width:100%;padding-top:56.25%;background:#000;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 0 rgba(0,0,0,.02),0 18px 50px -28px rgba(0,0,0,.5)}
+  .film .poster{display:block;text-decoration:none;cursor:pointer}
+  .film .poster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s ease,filter .3s ease}
+  .film .poster:hover img{transform:scale(1.03);filter:brightness(.88)}
+  .film .poster .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:78px;height:78px;border-radius:50%;background:rgba(184,71,45,.92);box-shadow:0 8px 30px -6px rgba(0,0,0,.6);transition:transform .2s ease,background .2s ease}
+  .film .poster .play::after{content:"";position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);border-style:solid;border-width:15px 0 15px 26px;border-color:transparent transparent transparent #fff}
+  .film .poster:hover .play{transform:translate(-50%,-50%) scale(1.08);background:var(--accent)}
+  .film .poster .stamp{position:absolute;right:12px;bottom:12px;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.04em;color:#fff;background:rgba(0,0,0,.72);padding:5px 9px;border-radius:6px}
+
+  /* Quote cards */
+  .quote{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:0 12px 12px 0;padding:26px 30px;margin:22px 0;box-shadow:0 1px 0 rgba(0,0,0,.02),0 10px 30px -22px rgba(0,0,0,.25)}
+  .quote blockquote{margin:0;font-family:var(--serif);font-size:clamp(18px,2.4vw,23px);line-height:1.38;color:#222}
+  .quote blockquote::before{content:"\201C";color:var(--accent);font-size:1.1em;line-height:0;vertical-align:-.28em;margin-right:.04em}
+  .quote .cite{margin-top:16px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+  .quote .cite .where{font-weight:600;color:var(--ink)}
+  sup.fn{font-family:var(--sans);font-style:normal;font-size:.58em;line-height:0;vertical-align:super;margin-left:2px}
+  sup.fn a{color:var(--accent2);text-decoration:none;font-weight:700;scroll-margin-top:70px}
+  sup.fn a:hover{text-decoration:underline}
+  sup.fn a:target{background:rgba(192,138,46,.28);border-radius:3px;padding:0 3px}
+  /* Biography source — a more visible chip than the numbered footnotes */
+  sup.fn.fn-bio{font-size:.82em;vertical-align:baseline;line-height:0;margin-left:7px}
+  sup.fn.fn-bio a{background:rgba(45,106,142,.14);border:1px solid rgba(45,106,142,.4);border-radius:6px;padding:2px 8px;font-weight:700}
+  sup.fn.fn-bio a::before{content:"\1F4D6\00A0"}
+  sup.fn.fn-bio a:hover{background:rgba(45,106,142,.24)}
+
+  footer{padding:32px 26px 44px;margin-bottom:28px;color:var(--muted);font-size:13px;background:rgba(251,250,247,.86);border:1px solid var(--line);border-radius:14px;backdrop-filter:blur(2px)}
+  footer h3{color:var(--ink);font-family:var(--serif);font-size:22px}
+  .refnote{max-width:84ch;margin:6px 0}
+  ul.srcs{padding-left:26px;max-width:84ch;margin:16px 0}
+  ul.srcs li{margin:9px 0}
+  .reading-head{scroll-margin-top:70px;margin-top:32px}
+  .reading{max-width:74ch;margin-top:12px}
+  .reading h4{font-family:var(--sans);text-transform:uppercase;letter-spacing:.12em;font-size:11px;font-weight:700;color:var(--accent);margin:18px 0 6px}
+  .reading ul{margin:0;padding-left:18px}
+  .reading li{margin:6px 0;color:#3a3a3a}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--accent2);padding:2px 8px;border-radius:4px;vertical-align:middle}
+
+  /* Return navigation */
+  .topbar{position:relative;z-index:2;border-bottom:1px solid var(--line);background:var(--paper)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:13px 24px;font-size:13px}
+  .topbar a{color:var(--accent2);text-decoration:none;font-weight:600}
+  .topbar a:hover{text-decoration:underline}
+  .topbar .home{font-family:var(--serif);font-weight:700;color:var(--ink);font-size:17px}
+  .topbar .home:hover{color:var(--accent)}
+  .topbar .crumbs a{color:var(--accent2)}
+  .topbar.bottom{border-top:1px solid var(--line);border-bottom:none}
+
+  /* ============================================================
+     ACCESSIBILITY LAYER
+     Skip link · keyboard focus · read-aloud word highlight ·
+     dyslexia-friendly font · accessibility toolbar · reduced motion
+     ============================================================ */
+
+  /* OpenDyslexic — weighted letters + wide spacing ease dyslexic reading.
+     Fetched from the Fontsource CDN only when the toggle turns it on. */
+  @font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:400;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-400-normal.woff2') format('woff2')}
+  @font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:700;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-700-normal.woff2') format('woff2')}
+  @font-face{font-family:'OpenDyslexic';font-style:italic;font-weight:400;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-400-italic.woff2') format('woff2')}
+
+  body.dyslexic{
+    --serif:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+    --sans:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+    letter-spacing:.02em;word-spacing:.06em;line-height:1.8}
+  body.dyslexic p,body.dyslexic .lede,body.dyslexic blockquote,
+  body.dyslexic .intro-body,body.dyslexic li{line-height:1.85;text-align:left}
+  body.dyslexic h1,body.dyslexic h2{letter-spacing:0;line-height:1.25}
+
+  /* Skip-to-content link — first tab stop */
+  .skip{position:fixed;left:12px;top:-60px;z-index:100;background:var(--accent2);color:#fff;
+    padding:11px 16px;border-radius:0 0 10px 10px;font-family:var(--sans);font-weight:700;
+    text-decoration:none;transition:top .16s ease}
+  .skip:focus{top:0}
+
+  /* Clear keyboard focus ring everywhere */
+  a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visible{
+    outline:3px solid var(--accent2);outline-offset:2px;border-radius:4px}
+
+  /* Read-aloud: the word currently being spoken (Custom Highlight API) */
+  ::highlight(speech){background-color:rgba(192,138,46,.32);color:inherit;
+    text-decoration-line:underline;text-decoration-color:var(--accent);
+    text-decoration-thickness:3px;text-underline-offset:3px}
+  /* the block currently being read gets a soft wash */
+  .ar-active{background:linear-gradient(90deg,rgba(192,138,46,.12),rgba(192,138,46,.02));
+    border-radius:8px;box-shadow:0 0 0 6px rgba(192,138,46,.06)}
+  .quote.ar-active{background:linear-gradient(90deg,rgba(192,138,46,.12),var(--card))}
+
+  /* Accessibility toolbar */
+  .a11y{position:fixed;right:16px;bottom:16px;z-index:70;font-family:var(--sans);cursor:auto}
+  .a11y button,.a11y select,.a11y label{cursor:pointer}
+  .a11y-toggle{display:inline-flex;align-items:center;gap:8px;border:none;
+    background:var(--accent2);color:#fff;border-radius:26px;padding:12px 17px;
+    font-size:14px;font-weight:700;box-shadow:0 10px 26px -10px rgba(0,0,0,.55)}
+  .a11y-toggle:hover{background:#255878}
+  .a11y-toggle .ico{font-size:17px;line-height:1}
+  .a11y-panel{position:absolute;right:0;bottom:58px;width:280px;background:#fff;
+    border:1px solid var(--line);border-radius:16px;padding:16px;
+    box-shadow:0 22px 60px -22px rgba(0,0,0,.55);display:grid;gap:13px}
+  .a11y-panel[hidden]{display:none}
+  .a11y-panel .ttl{font-size:11px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.14em;color:var(--muted);margin:0}
+  .a11y-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .a11y-btn{flex:1 1 auto;background:#f3f1ea;border:1px solid var(--line);border-radius:11px;
+    padding:11px 12px;font-size:14px;font-weight:600;color:var(--ink);
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px}
+  .a11y-btn:hover{background:#eae6db}
+  .a11y-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .a11y-btn.primary:hover{background:#a23d26}
+  .a11y-btn[aria-pressed="true"]{background:var(--green);color:#fff;border-color:var(--green)}
+  .a11y-btn:disabled{opacity:.5;cursor:not-allowed}
+  .a11y label{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .a11y select{font:inherit;font-size:13px;padding:7px 8px;border-radius:9px;
+    border:1px solid var(--line);background:#fff;color:var(--ink)}
+  .a11y-status{margin:0;font-size:12.5px;color:var(--muted);min-height:1.15em;line-height:1.3}
+  @media (max-width:520px){.a11y-panel{width:min(280px,calc(100vw - 32px))}}
+
+  /* Honor reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+      transition-duration:.001ms!important;scroll-behavior:auto!important}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#intro">Skip to the writing</a>
+
+<!-- Botanical layer: a scattered herbarium of leaf sprigs, after Jefferson's garden -->
+<div class="garden" aria-hidden="true">
+  <svg width="100%" height="100%" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <g id="sprig">
+        <path d="M0 74 C 4 50 -4 26 0 2" fill="none" stroke="#3d7a5a" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M0 58 C -4 50 -12 46 -19 46 C -13 40 -6 39 0 44 Z" fill="#3d7a5a" fill-opacity=".28"/>
+        <path d="M0 58 C 4 50 12 46 19 46 C 13 40 6 39 0 44 Z" fill="#3d7a5a" fill-opacity=".22"/>
+        <path d="M0 40 C -4 32 -12 28 -18 28 C -12 22 -5 21 0 26 Z" fill="#3d7a5a" fill-opacity=".28"/>
+        <path d="M0 40 C 4 32 12 28 18 28 C 12 22 5 21 0 26 Z" fill="#3d7a5a" fill-opacity=".22"/>
+        <path d="M0 22 C -3 15 -9 12 -14 12 C -9 7 -3 6 0 11 Z" fill="#3d7a5a" fill-opacity=".28"/>
+        <path d="M0 22 C 3 15 9 12 14 12 C 9 7 3 6 0 11 Z" fill="#3d7a5a" fill-opacity=".22"/>
+        <path d="M0 8 C -2 2 -2 -4 0 -9 C 2 -4 2 2 0 8 Z" fill="#3d7a5a" fill-opacity=".3"/>
+      </g>
+      <g id="leaf">
+        <path d="M0 0 C -10 -18 -10 -40 0 -58 C 10 -40 10 -18 0 0 Z" fill="#3d7a5a" fill-opacity=".26"/>
+        <path d="M0 -3 V-54" fill="none" stroke="#3d7a5a" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M0 -20 L -7 -28 M0 -20 L 7 -28 M0 -34 L -7 -42 M0 -34 L 7 -42" fill="none" stroke="#3d7a5a" stroke-width=".9" stroke-opacity=".55"/>
+      </g>
+      <g id="frond">
+        <path d="M0 4 C 3 -28 -3 -60 0 -94" fill="none" stroke="#3d7a5a" stroke-width="1.3" stroke-linecap="round"/>
+        <g fill="#3d7a5a" fill-opacity=".24">
+          <path d="M0 -8 C -8 -10 -14 -18 -16 -26 C -8 -24 -3 -17 0 -8 Z"/>
+          <path d="M0 -8 C 8 -10 14 -18 16 -26 C 8 -24 3 -17 0 -8 Z"/>
+          <path d="M0 -30 C -7 -32 -12 -39 -14 -46 C -7 -44 -2 -38 0 -30 Z"/>
+          <path d="M0 -30 C 7 -32 12 -39 14 -46 C 7 -44 2 -38 0 -30 Z"/>
+          <path d="M0 -52 C -5 -54 -9 -59 -11 -65 C -5 -63 -1 -58 0 -52 Z"/>
+          <path d="M0 -52 C 5 -54 9 -59 11 -65 C 5 -63 1 -58 0 -52 Z"/>
+          <path d="M0 -72 C -3 -74 -6 -78 -7 -83 C -3 -81 -1 -77 0 -72 Z"/>
+          <path d="M0 -72 C 3 -74 6 -78 7 -83 C 3 -81 1 -77 0 -72 Z"/>
+          <path d="M0 -88 C -2 -90 -2 -94 0 -98 C 2 -94 2 -90 0 -88 Z"/>
+        </g>
+      </g>
+      <g id="twig">
+        <path d="M0 0 C 8 -8 18 -13 28 -16" fill="none" stroke="#3d7a5a" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M9 -7 C 1 -10 -4 -18 -5 -26 C 4 -23 9 -16 9 -7 Z" fill="#3d7a5a" fill-opacity=".26"/>
+        <path d="M20 -13 C 15 -21 15 -30 18 -37 C 24 -30 25 -21 20 -13 Z" fill="#3d7a5a" fill-opacity=".22"/>
+        <path d="M28 -16 C 26 -24 28 -32 33 -37 C 35 -29 34 -21 28 -16 Z" fill="#3d7a5a" fill-opacity=".2"/>
+      </g>
+      <pattern id="gardenPattern" patternUnits="userSpaceOnUse" width="760" height="760">
+        <use href="#sprig" transform="translate(90,160) rotate(-14) scale(1.7)"/>
+        <use href="#frond" transform="translate(470,120) rotate(22) scale(1.5)"/>
+        <use href="#leaf"  transform="translate(662,340) rotate(-34) scale(1.7)"/>
+        <use href="#twig"  transform="translate(220,380) rotate(8) scale(1.9)"/>
+        <use href="#sprig" transform="translate(560,560) rotate(30) scale(1.2)"/>
+        <use href="#leaf"  transform="translate(120,600) rotate(42) scale(2.1)"/>
+        <use href="#frond" transform="translate(370,660) rotate(-10) scale(1.15)"/>
+        <use href="#twig"  transform="translate(690,650) rotate(-24) scale(1.4)"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#gardenPattern)"/>
+  </svg>
+</div>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="home" href="../../index.html">Stars&nbsp& Bears</a>
+    <span class="crumbs"><a href="../../index.html">All notes</a> &nbsp;·&nbsp; <a href="../../index.html#hist">History</a></span>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidenav" aria-label="Contents">
+    <a class="toc-lead" href="#intro">Introduction</a>
+    <div class="toc-group">
+      <a class="toc-head" href="#part-one">In the Eyes of History</a>
+      <a href="#film">The Documentary</a>
+      <a href="#tribute">A Tribute</a>
+    </div>
+    <div class="toc-group">
+      <a class="toc-head" href="#part-two">In his own words</a>
+      <a href="#mind">The rights of man</a>
+      <a href="#discovery">The free mind at work</a>
+      <a href="#invention">Ideas &amp; designs for the common good</a>
+      <a href="#future">A society that advances</a>
+      <a href="#creed">The creed of a government for the people</a>
+    </div>
+    <a class="toc-lead" href="#sources">Sources</a>
+    <a class="toc-lead" href="#reading">Further sources</a>
+  </nav>
+  <div class="body-col">
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">An American Spirit</div>
+    <h1>Remembering our farther<br> Thomas Jefferson</h1>
+    <p class="lede">Curated &amp; written by Claude.</p>
+    <!-- <i>Last updated: July 5th, 2026</i> -->
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- INTRO -->
+  <section id="intro" tabindex="-1" style="border-bottom:none;outline:none">
+    <p class="roles">Lawyer. Father. Scientist. Writer. Revolutionary.<br>
+    Governor. Diplomat. Vice President. President.<br>
+    Philosopher. Architect. Slave Owner.<br>
+    Author of The Declaration of Independence.</p>
+    <p class="intro-lead">Many words describe Thomas Jefferson.<sup class="fn fn-bio"><a href="https://www.monticello.org/biography-of-jefferson" target="_blank" rel="noopener" aria-label="A biography of Thomas Jefferson, Monticello">Biography</a></sup></p>
+    <p class="intro-body">And maybe every one of us can see a bit of ourselves in Jefferson — torn between belief and duty, tender under the politics, and cheerfully trying again in his experiments.</p>
+
+    <hr class="intro-pause" aria-hidden="true">
+
+    <p class="intro-body">In 1803, Napoleon offered to sell Louisiana, placing everything the young republic desperately needed suddenly on the table: New Orleans, the mouth of the Mississippi, the farmland of half a continent, and <a class="src" href="https://en.wikipedia.org/wiki/Lewis_and_Clark_Expedition" target="_blank" rel="noopener">a path to the West</a>. One peaceful treaty could instantly redraw the map of the United States and double the nation's size. The western border would leap from the Mississippi River to the Rocky Mountains, and a seaboard republic could begin a continental future. Few decisions carried such staggering weight for what the United States would become today.</p>
+
+    <p class="intro-body">But for Jefferson, this geopolitical triumph was an ideological trap for Jefferson. He had spent decades arguing for a small federal government strictly bound to the letter of the Constitution — and the Constitution, he knew, granted no power to buy foreign land. The constitutional amendment to authorize the purchase would take years, and Napoleon's offer might not survive the wait. What would you do when the chance of a lifetime requires a power you don't believe you have?</p>
+
+    <p class="intro-body">No one felt this agonizing friction more sharply than Jefferson himself, privately <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-41-02-0139" target="_blank" rel="noopener">confessing</a> to Senator John Breckinridge: "the Constitution has made no provision for our holding foreign territory, still less for incorporating foreign nations into our Union." Ultimately, he chose the burden of "personal hypocrisy" over the ruin of national opportunity — with a single pen stroke, forever carrying the weight that he had <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-41-02-0139" target="_blank" rel="noopener">"done an act beyond the Constitution"</a>. He was attacked for violating his own principles. And the purchase, might sometimes been seen as <a class="src" href="https://constitutioncenter.org/blog/the-louisiana-purchase-jeffersons-constitutional-gamble" target="_blank" rel="noopener">"Jefferson's constitutional gamble"</a>, albeit <a class="src" href="https://www.cfr.org/articles/the-louisiana-purchase" target="_blank" rel="noopener">The Senate ratified the Louisiana Purchase Treaty by a vote of 24 to 7</a>.</p>
+
+    <p class="intro-body">Well, he could have easily done nothing. Walking away from the $15 million deal would have saved him from immense personal agony and preserved the core of his life's work: The Declaration of Independence. Later in life, he made his peace with it: <i>this</i>, as the <a href="#film">documentary</a> puts it, <i>is one of those cases where duty to national interest transcends philosophical consistency.</i> In his own words: <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-03-02-0060" target="_blank" rel="noopener">"The laws of necessity, of self-preservation, of saving our country when in danger, are of higher obligation."</a></p>
+
+    <p class="intro-body">His friendship with John Adams carried the same tension — between what he owed a friend and what he believed he owed the country. They had stood together in 1776, Adams the voice for independence, Jefferson the pen, and they grew closer still as fellow diplomats in Europe, where their families shared dinners in Paris and London. In 1787, Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-11-02-0095" target="_blank" rel="noopener">wrote</a> of Adams to Madison: "He is so amiable, that I pronounce you will love him if ever you become acquainted with him." Then in 1791, the republic they had built together pulled them apart. Each came to believe the other's politics would ruin it — and each held that belief as a duty. In the campaign to unseat the Federalists, <a class="src" href="https://en.wikipedia.org/wiki/James_T._Callender" target="_blank" rel="noopener">Wikipedia</a> records, "Jefferson supported Callender financially and provided feedback on early proofs of Callender's anti-Federalist pamphlet, <i>The Prospect Before Us</i>" — the scandal-monger's broadside against the Adams administration. The cause came first, and the friendship paid for it: for more than a decade afterward, the two old friends had almost nothing to say to each other. If you've ever let a silence with an old friend run too long to know how to break it, you know exactly where he stood.</p>
+    <p class="intro-body">Yet neither could quite let the other go. In their retirement years, each let mutual friends know he missed the other — and it was <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">Adams who broke the silence</a>, with a short New Year's letter on January 1, 1812, wishing Jefferson many happy new years to come. Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0334" target="_blank" rel="noopener">fondly responded</a>, "A letter from you calls up recollections very dear to my mind. It carries me back to the times when, beset with difficulties & dangers, we were fellow laborers in the same cause, struggling for what is most valuable to man, his right of self-government."  When Abigail Adams died in 1818, Jefferson, her friend since their Paris years, wrote to Adams <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-13-02-0353" target="_blank" rel="noopener">"mingling sincerely my tears with yours"</a>. They wrote to each other for the rest of their lives — 158 letters, through every argument and every grief — until they <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">both died</a> on July 4, 1826 — the Declaration's fiftieth anniversary. Belief had pulled them apart; affection got the last word.</p>
+
+    <p class="intro-body">Though called again and again to the nation's service, Jefferson also pursued happiness in his own quiet way — with his curiosity, his discoveries, and his many hobbies. He loved his garden most of all — and it kept failing on him. Monticello, <a class="src" href="https://encyclopediavirginia.org/entries/jefferson-thomas-and-gardening/" target="_blank" rel="noopener">Encyclopedia Virginia</a> writes, "became his experimental horticultural laboratory," where he "strove to make his plantation … an experimental station of new and unusual plants." He logged every planting in his Garden Book, and made his peace with the losses: "if in the experiments to introduce … new plants," he reflected, "one species in an hundred is found useful and succeeds, the ninety-nine found otherwise are more than paid for." Ninety-nine losses for one win. He kept planting. That patience outlived him — Monticello's <a class="src" href="https://www.monticello.org/house-gardens/center-for-historic-plants/" target="_blank" rel="noopener">Center for Historic Plants</a> still propagates and sells heirloom seeds and historic plants from his garden today.</p>
+  </section>
+
+  <!-- PART ONE: IN OTHERS' EYES -->
+  <div class="part" id="part-one">
+    <span class="part-eyebrow">Part One</span>
+    <h2 class="part-title">In the Eyes of History</h2>
+  </div>
+
+  <!-- DOCUMENTARY -->
+  <section id="film">
+    <h2>The Documentary</h2>
+    <div class="film">
+      <a class="frame poster" href="https://www.youtube.com/watch?v=0f2lgaAuRUE&t=4406s" target="_blank" rel="noopener" aria-label="Watch the Thomas Jefferson documentary on YouTube, starting at 1:13:26">
+        <img src="https://i.ytimg.com/vi/0f2lgaAuRUE/maxresdefault.jpg" alt="Thomas Jefferson documentary" loading="lazy"
+             onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0f2lgaAuRUE/hqdefault.jpg'">
+        <span class="play" aria-hidden="true"></span>
+        <span class="stamp">1:13:00</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- TRIBUTE -->
+  <section id="tribute">
+    <h2>A word from Lincoln</h2>
+
+    <div class="quote">
+      <blockquote>All honor to Jefferson — to the man who, in the concrete pressure of a struggle for national independence by a single people, had the coolness, forecast, and capacity to introduce into a merely revolutionary document, an abstract truth, applicable to all men and all times, and so to embalm it there, that to-day and in all coming days, it shall be a rebuke and a stumbling-block to the very harbingers of reappearing tyranny and oppression.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://www.abrahamlincolnonline.org/lincoln/speeches/pierce.htm" target="_blank" rel="noopener">Abraham Lincoln, letter to Henry L. Pierce &amp; others</a></span><span>April 6, 1859</span></div>
+    </div>
+  </section>
+
+  <!-- PART TWO: IN HIS OWN WORDS -->
+  <div class="part" id="part-two">
+    <span class="part-eyebrow">Part Two</span>
+    <h2 class="part-title">In his own words</h2>
+  </div>
+
+  <!-- STEP 1: THE RIGHTS OF MAN -->
+  <section id="mind">
+    <h2>The rights of man</h2>
+
+    <div class="quote">
+      <blockquote>We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable rights; that among these are life, liberty, and the pursuit of happiness.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://www.archives.gov/founding-docs/declaration-transcript" target="_blank" rel="noopener">The Declaration of Independence</a></span><span>July 4, 1776</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>This was the object of the Declaration of Independence. Not to find out new principles, or new arguments, never before thought of, not merely to say things which had never been said before; but to place before mankind the common sense of the subject, in terms so plain and firm as to command their assent, and to justify ourselves in the independent stand we are compelled to take. Neither aiming at originality of principle or sentiment, nor yet copied from any particular and previous writing, it was intended to be an expression of the American mind, and to give to that expression the proper tone and spirit called for by the occasion.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/98-01-02-5212" target="_blank" rel="noopener">Letter to Henry Lee · looking back on the Declaration</a></span><span>May 8, 1825</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>Almighty God hath created the mind free.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://www.nps.gov/thje/learn/photosmultimedia/quotations.htm" target="_blank" rel="noopener">A Bill for Establishing Religious Freedom</a></span><span>drafted 1777 · enacted by Virginia, 1786 · Jefferson Memorial, NW portico</span></div>
+    </div>
+  </section>
+
+  <!-- STEP 2: THE FREE MIND AT WORK -->
+  <section id="discovery">
+    <h2>The free mind at work</h2>
+
+    <div class="quote">
+      <blockquote>Nature intended me for the tranquil pursuits of science, by rendering them my supreme delight.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/99-01-02-9936" target="_blank" rel="noopener">Letter to Pierre Samuel du Pont de Nemours</a></span><span>March 2, 1809</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>No occupation is so delightful to me as the culture of the earth, and no culture comparable to that of the garden. … But though an old man, I am but a young gardener.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0090" target="_blank" rel="noopener">Letter to Charles Willson Peale · on agriculture</a></span><span>August 20, 1811</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>The object of your mission is to explore the Missouri river, and such principal stream of it as, by its course and communication with the waters of the Pacific ocean, may offer the most direct and practicable water communication across this continent, for the purposes of commerce.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-40-02-0136-0005" target="_blank" rel="noopener">Instructions to Meriwether Lewis · the Corps of Discovery</a></span><span>June 20, 1803</span></div>
+    </div>
+  </section>
+
+  <!-- STEP 3: IDEAS & DESIGNS FOR THE COMMON GOOD -->
+  <section id="invention">
+    <h2>Ideas &amp; designs for the common good</h2>
+    <div class="quote">
+      <blockquote>
+    If nature has made any one thing less susceptible than all others of exclusive property, it is the action of the thinking power called an idea, which an individual may exclusively possess as long as he keeps it to himself; but the moment it is divulged, it forces itself into the possession of every one, and the receiver cannot dispossess himself of it. Its peculiar character, too, is that no one possesses the less, because every other possesses the whole of it. He who receives an idea from me, receives instruction himself without lessening mine; as he who lights his taper at mine, receives light without darkening me. That ideas should freely spread from one to another over the globe, for the moral and mutual instruction of man, and improvement of his condition, seems to have been peculiarly and benevolently designed by nature, when she made them, like fire, expansible over all space, without lessening their density in any point, and like the air in which we breathe, move, and have our physical being, incapable of confinement or exclusive appropriation. Inventions then cannot, in nature, be a subject of property. Society may give an exclusive right to the profits arising from them, as an encouragement to men to pursue ideas which may produce utility, but this may or may not be done, according to the will and convenience of the society, without claim or complaint from anybody. … Considering the exclusive right to invention as given not of natural right, but for the benefit of society, I know well the difficulty of drawing a line between the things which are worth to the public the embarrassment of an exclusive patent, and those which are not.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://press-pubs.uchicago.edu/founders/documents/a1_8_8s12.html" target="_blank" rel="noopener">Letter to Isaac McPherson · on invention &amp; the mechanic arts</a></span><span>August 13, 1813</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>Architecture worth great attention. As we double our numbers every 20 years we must double our houses. Besides we build of such perishable materials that one half of our houses must be rebuilt in every space of 20 years. So that in that term, houses are to be built for three fourths of our inhabitants. It is then among the most important arts: and it is desireable to introduce taste into an art which shews so much.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-13-02-0173" target="_blank" rel="noopener">Hints to Americans Travelling in Europe</a></span><span>ca. June 19, 1788</span></div>
+    </div>
+  </section>
+
+  <!-- STEP 4: A SOCIETY THAT ADVANCES -->
+  <section id="future">
+    <h2>A society that advances</h2>
+
+    <div class="quote">
+      <blockquote>I am not an advocate for frequent changes in laws and constitutions, but laws and institutions must go hand in hand with the progress of the human mind. As that becomes more developed, more enlightened, as new discoveries are made, new truths discovered and manners and opinions change, with the change of circumstances, institutions must advance also to keep pace with the times.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://www.nps.gov/thje/learn/photosmultimedia/quotations.htm" target="_blank" rel="noopener">Letter to Samuel Kercheval</a></span><span>July 12, 1816 · Jefferson Memorial, SE portico</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>But we cannot always do what is absolutely best. Those with whom we act, entertaining different views, have the power and the right of carrying them into practice. Truth advances, and error recedes step by step only; and to do to our fellow-men the most good in our power, we must lead where we can, follow where we cannot, and still go with them, watching always the favorable moment for helping them to another step.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/03-08-02-0007" target="_blank" rel="noopener">Letter to Thomas Cooper · on founding the University of Virginia</a></span><span>October 7, 1814</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>I set out on this ground, which I suppose to be self-evident, that the earth belongs in usufruct to the living: that the dead have neither powers nor rights over it.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-15-02-0375-0003" target="_blank" rel="noopener">Letter to James Madison · on the rights of generations</a></span><span>Paris, September 6, 1789</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>I like the dreams of the future better than the history of the past.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://tjrs.monticello.org/letter/1388" target="_blank" rel="noopener">Letter to John Adams</a></span><span>August 1, 1816</span></div>
+    </div>
+
+  </section>
+
+  </section>
+
+  <!-- STEP 6: THE CREED OF THE REPUBLIC -->
+  <section id="creed">
+    <h2>The creed of a government for the people</h2>
+
+    <div class="quote">
+      <blockquote>A wise and frugal government, which shall restrain men from injuring one another, shall leave them otherwise free to regulate their own pursuits of industry and improvement, and shall not take from the mouth of labor the bread it has earned. This is the sum of good government, and this is necessary to close the circle of our felicities.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address</a></span><span>March 4, 1801</span></div>
+    </div>
+    <div class="quote">
+      <blockquote>but this being now decided by the voice of the nation, announced according to the rules of the constitution all will of course arrange themselves under the will of the law, and unite in common efforts for the common good. All too will bear in mind this sacred principle, that though the will of the majority is in all cases to prevail, that will, to be rightful, must be reasonable; that the minority possess their equal rights, which equal laws must protect, and to violate would be oppression. Let us then, fellow citizens, unite with one heart and one mind, let us restore to social intercourse that harmony and affection without which liberty, and even life itself, are but dreary things.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>We have called by different names brethren of the same principle. We are all republicans: we are all federalists. If there be any among us who would wish to dissolve this Union, or to change its republican form, let them stand undisturbed as monuments of the safety with which error of opinion may be tolerated, where reason is left free to combat it.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>About to enter, fellow citizens, on the exercise of duties which comprehend every thing dear and valuable to you, it is proper you should understand what I deem the essential principles of our government, and consequently those which ought to shape its administration. I will compress them within the narrowest compass they will bear, stating the general principle, but not all its limitations.<br>
+        — Equal and exact justice to all men, of whatever state or persuasion, religious or political<br>
+        — peace, commerce, and honest friendship with all nations, entangling alliances with none<br>
+        — the support of the state governments in all their rights, as the most competent administrations for our domestic concerns, and the surest bulwarks against anti-republican tendencies<br>
+        — the preservation of the General government in its whole constitutional vigor, as the sheet anchor of our peace at home, and safety abroad<br>
+        — a jealous care of the right of election by the people, a mild and safe corrective of abuses which are lopped by the sword of revolution where peaceable remedies are unprovided.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+    </div>
+
+    <div class="quote">
+      <blockquote>
+      Let us then, with courage and confidence, pursue our own federal and republican principles; our attachment to union and representative government. Kindly separated by nature and a wide ocean from the exterminating havoc of one quarter of the globe; too high minded to endure the degradations of the others, possessing a chosen country, with room enough for our descendants to the thousandth and thousandth generation, entertaining a due sense of our equal right to the use of our own faculties, to the acquisitions of our own industry, to honor and confidence from our fellow citizens, resulting not from birth, but from our actions and their sense of them, enlightened by a benign religion, professed indeed and practised in various forms, yet all of them inculcating honesty, truth, temperance, gratitude and the love of man, acknowledging and adoring an overruling providence, which by all its dispensations proves that it delights in the happiness of man here, and his greater happiness hereafter;</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+
+  </section>
+
+
+  <!-- CODA: his own epitaph -->
+  <section id="coda" style="border-bottom:none">
+    <div class="coda">
+      <p class="coda-label">The way he wanted people to remember him</p>
+      <p>Author of the Declaration of American Independence<br>
+      of the Statute of Virginia for Religious Freedom<br>
+      &amp; Father of the University of Virginia</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- SOURCES -->
+<footer class="wrap" id="sources">
+  <h3>Sources</h3>
+  <p class="refnote">Every quotation on this page links directly to its source document from the citation line beneath it. The sites behind those documents:</p>
+  <p class="refnote"><b>Documentary:</b> <i>Thomas Jefferson</i> — linked above (<a class="src" href="https://www.youtube.com/watch?v=0f2lgaAuRUE&t=4406s" target="_blank" rel="noopener">YouTube</a>). See also the HISTORY Channel six-part docuseries (2025, <a class="src" href="https://en.wikipedia.org/wiki/Thomas_Jefferson_(miniseries)" target="_blank" rel="noopener">overview</a>) and Ken Burns' two-part PBS film (1997, <a class="src" href="https://en.wikipedia.org/wiki/Thomas_Jefferson_(film)" target="_blank" rel="noopener">overview</a>, <a class="src" href="https://kenburns.com/films/thomas-jefferson/" target="_blank" rel="noopener">kenburns.com</a>).</p>
+  <ul class="srcs">
+    <li><a class="src" href="https://founders.archives.gov/" target="_blank" rel="noopener">Founders Online</a>, National Archives — Jefferson's complete papers, and the source of most letters quoted here.</li>
+    <li><a class="src" href="https://www.monticello.org/" target="_blank" rel="noopener">Monticello</a>, the Thomas Jefferson Foundation — including his <a class="src" href="https://www.monticello.org/biography-of-jefferson" target="_blank" rel="noopener">biography</a> (the source of the roles that open this page) and <a class="src" href="https://tjrs.monticello.org/" target="_blank" rel="noopener">Jefferson Quotes &amp; Family Letters</a>.</li>
+    <li><a class="src" href="https://www.archives.gov/founding-docs" target="_blank" rel="noopener">America's Founding Documents</a>, National Archives — the Declaration of Independence transcript.</li>
+    <li><a class="src" href="https://www.nps.gov/thje/" target="_blank" rel="noopener">Thomas Jefferson Memorial</a>, National Park Service — the memorial's inscriptions.</li>
+    <li><a class="src" href="https://constitutioncenter.org/" target="_blank" rel="noopener">National Constitution Center</a> — the First Inaugural Address and the Louisiana Purchase essay.</li>
+    <li><a class="src" href="https://www.cfr.org/articles" target="_blank" rel="noopener">Council on Foreign Relations</a> — the Louisiana Purchase and its ratification.</li>
+    <li><a class="src" href="https://press-pubs.uchicago.edu/founders/" target="_blank" rel="noopener">The Founders' Constitution</a>, University of Chicago Press.</li>
+    <li><a class="src" href="https://www.abrahamlincolnonline.org/" target="_blank" rel="noopener">Abraham Lincoln Online</a> — Lincoln's tribute letter.</li>
+    <li><a class="src" href="https://encyclopediavirginia.org/" target="_blank" rel="noopener">Encyclopedia Virginia</a> — Jefferson and gardening.</li>
+    <li><a class="src" href="https://www.history.com/" target="_blank" rel="noopener">HISTORY</a> and <a class="src" href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a> — the Adams friendship and the Callender affair.</li>
+  </ul>
+  <p class="note">Quotation wording follows the primary sources above, with light modernization of spelling and punctuation as in the memorial and archive transcriptions.</p>
+
+  <h3 id="reading" class="reading-head">Further sources</h3>
+  <div class="reading">
+    <h4>On the web</h4>
+    <ul>
+      <li>Wikipedia: <a class="src" href="https://en.wikipedia.org/wiki/Thomas_Jefferson" target="_blank" rel="noopener">Thomas Jefferson</a>, <a class="src" href="https://en.wikipedia.org/wiki/Louisiana_Purchase" target="_blank" rel="noopener">the Louisiana Purchase</a>, and <a class="src" href="https://en.wikipedia.org/wiki/Lewis_and_Clark_Expedition" target="_blank" rel="noopener">the Lewis &amp; Clark Expedition</a>.</li>
+      <li><a class="src" href="https://www.monticello.org/research-education/thomas-jefferson-encyclopedia/" target="_blank" rel="noopener">Thomas Jefferson Encyclopedia</a>, Monticello.</li>
+      <li>His <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-33-02-0116-0004" target="_blank" rel="noopener">First Inaugural Address</a> (1801), Founders Online — and his <a class="src" href="https://en.wikipedia.org/wiki/First_inauguration_of_Thomas_Jefferson" target="_blank" rel="noopener">first inauguration</a> on Wikipedia.</li>
+      <li><a class="src" href="https://millercenter.org/president/jefferson" target="_blank" rel="noopener">Thomas Jefferson</a>, Miller Center, University of Virginia.</li>
+      <li><a class="src" href="https://founders.archives.gov/" target="_blank" rel="noopener">Founders Online</a>, National Archives — his complete papers.</li>
+      <li><a class="src" href="https://www.loc.gov/collections/thomas-jefferson-papers/" target="_blank" rel="noopener">The Thomas Jefferson Papers</a>, Library of Congress.</li>
+    </ul>
+    <h4>Books</h4>
+    <ul>
+      <li><a class="src" href="https://www.amazon.com/s?k=Thomas+Jefferson+The+Art+of+Power+Meacham" target="_blank" rel="noopener"><i>Thomas Jefferson: The Art of Power</i></a> — Jon Meacham (2012).</li>
+      <li><a class="src" href="https://www.amazon.com/s?k=American+Sphinx+Joseph+Ellis+Jefferson" target="_blank" rel="noopener"><i>American Sphinx: The Character of Thomas Jefferson</i></a> — Joseph J. Ellis (1997).</li>
+      <li><a class="src" href="https://www.amazon.com/s?k=The+Hemingses+of+Monticello+Gordon-Reed" target="_blank" rel="noopener"><i>The Hemingses of Monticello: An American Family</i></a> — Annette Gordon-Reed (2008).</li>
+      <li><a class="src" href="https://www.amazon.com/s?k=Jefferson+and+His+Time+Dumas+Malone" target="_blank" rel="noopener"><i>Jefferson and His Time</i></a> — Dumas Malone, 6 vols. (1948–1981).</li>
+      <li><a class="src" href="https://www.amazon.com/s?k=The+Adams-Jefferson+Letters+Cappon" target="_blank" rel="noopener"><i>The Adams–Jefferson Letters</i></a> — edited by Lester J. Cappon (1959); the correspondence behind the second story.</li>
+      <li><a class="src" href="https://www.goodreads.com/author/show/1673.Thomas_Jefferson" target="_blank" rel="noopener">Thomas Jefferson on Goodreads</a> — his works, quotes and readers' reviews.</li>
+    </ul>
+    <h4>Newsletters &amp; more</h4>
+    <ul>
+      <li><a class="src" href="https://www.monticello.org/monticello-magazine" target="_blank" rel="noopener">Monticello Magazine</a>, the Thomas Jefferson Foundation's biannual publication.</li>
+      <li><a class="src" href="https://www.monticello.org/house-gardens/center-for-historic-plants/stay-in-touch/farm-and-garden-e-newsletter-signup/" target="_blank" rel="noopener">Monticello's Farm &amp; Garden e-newsletter</a> — seeds, plants, and the historic gardens behind the third story.</li>
+      <li>The <a class="src" href="https://www.monticello.org/exhibits-events/blog/" target="_blank" rel="noopener">Monticello blog</a> and <a class="src" href="https://www.monticello.org/exhibits-events/first-to-know/" target="_blank" rel="noopener">email updates</a>.</li>
+    </ul>
+  </div>
+</footer>
+
+  </div>
+</div>
+
+<div class="topbar bottom">
+  <div class="wrap">
+    <a href="../../../index.html">← The Pacific</a>
+    <a href="../../../index.html#hist">More in History →</a>
+  </div>
+</div>
+
+<!-- Architecture: Monticello, Jefferson's own design, rising as the page descends -->
+<div class="architecture" aria-hidden="true">
+  <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" stroke="#6b5a44" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">
+      <!-- ground -->
+      <path d="M0 430 H1200"/>
+      <!-- left terrace wing + balustrade -->
+      <path d="M250 430 V360 H470"/>
+      <g stroke-width="1.5">
+        <path d="M258 346 H470"/>
+        <path d="M272 360 V346 M302 360 V346 M332 360 V346 M362 360 V346 M392 360 V346 M422 360 V346 M452 360 V346"/>
+      </g>
+      <!-- right terrace wing + balustrade -->
+      <path d="M950 430 V360 H730"/>
+      <g stroke-width="1.5">
+        <path d="M730 346 H942"/>
+        <path d="M748 360 V346 M778 360 V346 M808 360 V346 M838 360 V346 M868 360 V346 M898 360 V346 M928 360 V346"/>
+      </g>
+      <!-- main house body + windows -->
+      <path d="M470 430 V250 H730 V430"/>
+      <g stroke-width="1.5">
+        <rect x="486" y="298" width="26" height="42"/>
+        <rect x="688" y="298" width="26" height="42"/>
+        <rect x="486" y="360" width="26" height="42"/>
+        <rect x="688" y="360" width="26" height="42"/>
+      </g>
+      <!-- portico: steps, columns, entablature, pediment -->
+      <path d="M486 420 H714 M492 400 H708 M498 382 H702"/>
+      <g stroke-width="2">
+        <path d="M520 382 V262"/><path d="M560 382 V262"/><path d="M600 382 V262"/><path d="M640 382 V262"/><path d="M680 382 V262"/>
+      </g>
+      <path d="M498 262 H702 V248 H498 Z"/>
+      <path d="M492 248 L600 196 L708 248"/>
+      <!-- octagonal dome drum + dome + finial -->
+      <path d="M556 196 V150 H644 V196"/>
+      <path d="M556 150 Q600 104 644 150"/>
+      <path d="M600 127 V112"/>
+      <circle cx="600" cy="106" r="5"/>
+    </g>
+  </svg>
+</div>
+
+<!-- Meadow: grasses and blooms rising from the foot of the page -->
+<div class="meadow" aria-hidden="true">
+  <svg viewBox="0 0 1200 240" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <g id="tuft" fill="none" stroke="#3d7a5a" stroke-width="2.4" stroke-linecap="round">
+        <path d="M0 0 C -6 -34 -14 -58 -24 -84"/>
+        <path d="M0 0 C -2 -40 -4 -74 -2 -108"/>
+        <path d="M0 0 C 4 -38 6 -70 14 -100"/>
+        <path d="M0 0 C 10 -30 20 -52 30 -76"/>
+        <path d="M0 0 C -10 -30 -20 -50 -30 -70"/>
+      </g>
+      <g id="bloom">
+        <path d="M0 0 C 0 -60 -2 -120 0 -168" fill="none" stroke="#3d7a5a" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M0 -96 C -14 -104 -24 -98 -30 -90 C -18 -86 -6 -90 0 -96 Z" fill="#3d7a5a" fill-opacity=".3"/>
+        <g transform="translate(0,-176)">
+          <circle r="10" fill="#c08a2e"/>
+          <circle r="10" fill="none" stroke="#b8472d" stroke-width="2.4"/>
+          <circle r="3.4" fill="#b8472d"/>
+        </g>
+      </g>
+    </defs>
+    <g opacity=".9">
+      <use href="#tuft" transform="translate(60,240) scale(1.15)"/>
+      <use href="#tuft" transform="translate(190,240) scale(.85)"/>
+      <use href="#bloom" transform="translate(300,240) scale(.9)"/>
+      <use href="#tuft" transform="translate(400,240) scale(1.05)"/>
+      <use href="#tuft" transform="translate(530,240) scale(.8)"/>
+      <use href="#bloom" transform="translate(640,240) scale(1.05)"/>
+      <use href="#tuft" transform="translate(760,240) scale(1.1)"/>
+      <use href="#tuft" transform="translate(880,240) scale(.9)"/>
+      <use href="#bloom" transform="translate(980,240) scale(.82)"/>
+      <use href="#tuft" transform="translate(1080,240) scale(1.15)"/>
+      <use href="#tuft" transform="translate(1170,240) scale(.85)"/>
+    </g>
+  </svg>
+</div>
+
+<!-- Accessibility toolbar -->
+<div class="a11y">
+  <button class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel">
+    <span class="ico" aria-hidden="true">&#9855;</span> Accessibility
+  </button>
+  <div class="a11y-panel" id="a11yPanel" role="region" aria-label="Accessibility tools" hidden>
+    <p class="ttl">Read aloud</p>
+    <div class="a11y-row">
+      <button class="a11y-btn primary" id="arPlay" aria-pressed="false">
+        <span aria-hidden="true">&#9654;</span> <span id="arPlayLabel">Read aloud</span>
+      </button>
+      <button class="a11y-btn" id="arStop">Stop</button>
+    </div>
+    <div class="a11y-row">
+      <label for="arRate">Speed
+        <select id="arRate">
+          <option value="0.8">0.8&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.25">1.25&times;</option>
+          <option value="1.5">1.5&times;</option>
+        </select>
+      </label>
+    </div>
+    <p class="ttl">Reading comfort</p>
+    <div class="a11y-row">
+      <button class="a11y-btn" id="dysToggle" aria-pressed="false">Dyslexia-friendly font</button>
+    </div>
+    <p class="a11y-status" id="arStatus" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- panel open/close ---------- */
+  var toggle = document.getElementById('a11yToggle');
+  var panel  = document.getElementById('a11yPanel');
+  toggle.addEventListener('click', function(){
+    var open = panel.hasAttribute('hidden');
+    if(open){ panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden',''); }
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !panel.hasAttribute('hidden')){
+      panel.setAttribute('hidden',''); toggle.setAttribute('aria-expanded','false'); toggle.focus();
+    }
+  });
+
+  /* ---------- dyslexia-friendly font (persisted) ---------- */
+  var dysToggle = document.getElementById('dysToggle');
+  function setDyslexic(on){
+    document.body.classList.toggle('dyslexic', on);
+    dysToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    try{ localStorage.setItem('sb-dyslexic', on ? '1' : '0'); }catch(_){}
+  }
+  dysToggle.addEventListener('click', function(){
+    setDyslexic(!document.body.classList.contains('dyslexic'));
+  });
+  try{ if(localStorage.getItem('sb-dyslexic') === '1') setDyslexic(true); }catch(_){}
+
+  /* ---------- read aloud with live word highlighting ---------- */
+  var supported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  var hlOK = !!(window.CSS && CSS.highlights && window.Highlight);
+  var hl = null;
+  if(hlOK){ hl = new Highlight(); CSS.highlights.set('speech', hl); }
+
+  var playBtn = document.getElementById('arPlay');
+  var playLbl = document.getElementById('arPlayLabel');
+  var stopBtn = document.getElementById('arStop');
+  var rateSel = document.getElementById('arRate');
+  var statusEl = document.getElementById('arStatus');
+
+  var blocks = [];    // { el, text, map:[{node,offset}|null] }
+  var segments = [];  // { b, start, end, text }
+  var segIdx = -1;
+  var active = false, paused = false, gen = 0, rate = 1;
+  var currentBlock = null, keepAlive = null, voice = null;
+
+  function status(msg){ statusEl.textContent = msg; }
+
+  if(!supported){
+    playBtn.disabled = true; stopBtn.disabled = true;
+    status('Your browser does not support read-aloud.');
+  } else {
+    // Restore saved speed
+    try{ var r = localStorage.getItem('sb-rate'); if(r){ rate = parseFloat(r) || 1; rateSel.value = String(rate); } }catch(_){}
+    pickVoice();
+    if(typeof speechSynthesis !== 'undefined') speechSynthesis.onvoiceschanged = pickVoice;
+    window.addEventListener('beforeunload', function(){ try{ speechSynthesis.cancel(); }catch(_){} });
+  }
+
+  function pickVoice(){
+    try{
+      var vs = speechSynthesis.getVoices() || [];
+      voice = vs.filter(function(v){ return /^en(\b|[-_])/i.test(v.lang); })[0] || vs[0] || null;
+    }catch(_){ voice = null; }
+  }
+
+  /* Build spoken text + a char->DOM map for one element,
+     skipping footnote/backref markers and turning <br> into a space. */
+  function buildReadable(el){
+    var S = '', map = [];
+    function pushText(node){
+      var t = node.nodeValue;
+      for(var i=0;i<t.length;i++){ S += t[i]; map.push({node:node, offset:i}); }
+    }
+    function pushGap(){ S += ' '; map.push(null); }
+    (function walk(n){
+      var kids = n.childNodes;
+      for(var i=0;i<kids.length;i++){
+        var c = kids[i];
+        if(c.nodeType === 3){ pushText(c); }
+        else if(c.nodeType === 1){
+          if(c.getAttribute && c.getAttribute('aria-hidden') === 'true') continue;
+          var cl = c.classList;
+          if(cl && (cl.contains('fn') || cl.contains('backref'))) continue; // footnote numbers / return arrows
+          var tag = c.tagName.toLowerCase();
+          if(tag === 'br'){ pushGap(); continue; }
+          walk(c);
+          // adjoining elements (e.g. cite spans) render with CSS spacing but
+          // have no whitespace in the DOM — add a gap so words don't fuse
+          if(S.length && S[S.length - 1] !== ' ') pushGap();
+        }
+      }
+    })(el);
+    return { text:S, map:map };
+  }
+
+  function collect(){
+    var sel = [
+      'header.hero h1','header.hero .lede',
+      '#intro .roles','#intro .intro-lead','#intro .intro-body',
+      '.part-title','main section > h2','.quote blockquote','.quote .cite',
+      '#coda .coda p'
+    ].join(',');
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    blocks = []; segments = [];
+    els.forEach(function(el){
+      var r = buildReadable(el);
+      if(!/\S/.test(r.text)) return;
+      var b = { el:el, text:r.text, map:r.map };
+      blocks.push(b);
+      // split into sentence-ish segments to dodge the ~15s Chrome cutoff
+      var re = /[^.!?]*[.!?]+["')\]]*\s*|[^.!?]+\s*$/g, m, any = false;
+      while((m = re.exec(r.text)) !== null){
+        if(m[0].length === 0){ re.lastIndex++; continue; }
+        if(/\S/.test(m[0])){ segments.push({ b:b, start:m.index, end:m.index + m[0].length, text:m[0] }); any = true; }
+      }
+      if(!any) segments.push({ b:b, start:0, end:r.text.length, text:r.text });
+    });
+  }
+
+  function clearHighlight(){ if(hl) hl.clear(); }
+  function clearActive(){ if(currentBlock){ currentBlock.el.classList.remove('ar-active'); currentBlock = null; } }
+
+  var wordRe = /\S/;
+  function highlightWord(b, ci){
+    if(!hl) return;
+    var S = b.text, map = b.map;
+    if(ci >= S.length) return;
+    var s = ci; while(s < S.length && !wordRe.test(S[s])) s++;       // skip to a word char
+    if(s >= S.length) return;
+    var e = s; while(e < S.length && wordRe.test(S[e])) e++;         // to end of token
+    var a = map[s], z = map[e-1];
+    if(!a || !z) return;
+    try{
+      var range = document.createRange();
+      range.setStart(a.node, a.offset);
+      range.setEnd(z.node, z.offset + 1);
+      hl.clear(); hl.add(range);
+      ensureVisible(range);
+    }catch(_){}
+  }
+
+  function ensureVisible(range){
+    var rect = range.getBoundingClientRect();
+    if(!rect || (rect.top === 0 && rect.bottom === 0)) return;
+    var pad = 96;
+    if(rect.top < pad || rect.bottom > (window.innerHeight - pad)){
+      var y = window.scrollY + rect.top - window.innerHeight * 0.38;
+      window.scrollTo({ top: Math.max(0, y), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  }
+
+  function speakSeg(i){
+    if(!active) return;
+    if(i >= segments.length){ finish(); return; }
+    segIdx = i;
+    var seg = segments[i], myGen = gen;
+    if(currentBlock !== seg.b){
+      clearActive();
+      currentBlock = seg.b; currentBlock.el.classList.add('ar-active');
+      status('Reading — ' + (blocks.indexOf(seg.b) + 1) + ' of ' + blocks.length);
+    }
+    var u = new SpeechSynthesisUtterance(seg.text);
+    u.rate = rate; u.lang = 'en-US'; if(voice) u.voice = voice;
+    u.onboundary = function(ev){
+      if(myGen !== gen) return;
+      if(ev.charIndex == null) return;
+      if(ev.name && ev.name !== 'word') return;
+      highlightWord(seg.b, seg.start + ev.charIndex);
+    };
+    u.onend = function(){ if(myGen !== gen || !active || paused) return; speakSeg(i + 1); };
+    try{ speechSynthesis.speak(u); }catch(_){ status('Read-aloud failed to start.'); stop(); }
+  }
+
+  function startKeepAlive(){
+    stopKeepAlive();
+    keepAlive = setInterval(function(){       // Chrome pauses long sessions; nudge it awake
+      if(active && !paused){ try{ speechSynthesis.resume(); }catch(_){} }
+    }, 9000);
+  }
+  function stopKeepAlive(){ if(keepAlive){ clearInterval(keepAlive); keepAlive = null; } }
+
+  function setBtn(){
+    var reading = active && !paused;
+    playBtn.setAttribute('aria-pressed', reading ? 'true' : 'false');
+    playLbl.textContent = reading ? 'Pause' : (paused ? 'Resume' : 'Read aloud');
+  }
+
+  function play(){
+    if(!supported) return;
+    if(paused){ paused = false; try{ speechSynthesis.resume(); }catch(_){} startKeepAlive(); setBtn(); status('Reading…'); return; }
+    if(active) return;
+    if(!segments.length) collect();
+    if(!segments.length){ status('Nothing to read here.'); return; }
+    active = true; paused = false; gen++;
+    setBtn(); startKeepAlive();
+    var start = (segIdx >= 0 && segIdx < segments.length) ? segIdx : 0;
+    try{ speechSynthesis.cancel(); }catch(_){}
+    speakSeg(start);
+  }
+
+  function pause(){
+    if(!active || paused) return;
+    paused = true; try{ speechSynthesis.pause(); }catch(_){}
+    stopKeepAlive(); setBtn(); status('Paused.');
+  }
+
+  function stop(){
+    active = false; paused = false; gen++;
+    try{ speechSynthesis.cancel(); }catch(_){}
+    stopKeepAlive(); clearHighlight(); clearActive();
+    segIdx = -1; setBtn(); status('Stopped.');
+  }
+
+  function finish(){
+    active = false; paused = false; gen++;
+    stopKeepAlive(); clearHighlight(); clearActive();
+    segIdx = -1; setBtn(); status('Finished reading.');
+  }
+
+  playBtn.addEventListener('click', function(){ if(active && !paused){ pause(); } else { play(); } });
+  stopBtn.addEventListener('click', stop);
+  rateSel.addEventListener('change', function(){
+    rate = parseFloat(rateSel.value) || 1;
+    try{ localStorage.setItem('sb-rate', String(rate)); }catch(_){}
+    if(active){                               // re-speak current segment at the new speed
+      gen++; try{ speechSynthesis.cancel(); }catch(_){}   // (also un-pauses, so the change is audible now)
+      var resume = segIdx; active = true; paused = false; setBtn(); startKeepAlive(); speakSeg(resume);
+    }
+  });
+})();
+</script>
+</body>
+</html>
