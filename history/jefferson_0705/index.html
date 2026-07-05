@@ -24,7 +24,7 @@
     color:var(--ink);font-family:var(--sans);font-size:calc(16px * var(--fs));line-height:1.6;-webkit-font-smoothing:antialiased;
     /* bear paw-print cursor, matching the site home page */
     cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg fill='%2334383c' stroke='%23ffffff' stroke-width='1'%3E%3Cellipse cx='16' cy='21' rx='7.5' ry='6'/%3E%3Cellipse cx='8.5' cy='13' rx='2.7' ry='3.4'/%3E%3Cellipse cx='14' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='20' cy='9' rx='2.7' ry='3.6'/%3E%3Cellipse cx='24.5' cy='13.5' rx='2.7' ry='3.4'/%3E%3C/g%3E%3C/svg%3E") 16 16,auto}
-  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 clamp(28px,6vw,60px);position:relative;z-index:1}
 
   /* Garden — botanical layer behind everything, scrolling with the page */
   .garden{position:absolute;top:0;bottom:0;left:0;right:0;z-index:0;pointer-events:none;opacity:.5}
@@ -45,9 +45,11 @@
   #intro{scroll-margin-top:64px}
   .roles{font-family:var(--serif);font-weight:700;font-size:clamp(22px,3.4vw,32px);line-height:1.38;color:var(--ink);letter-spacing:-.01em;margin:0 0 10px}
   .intro-lead{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.6vw,24px);color:var(--accent);margin:0 0 22px}
-  .intro-body{color:#2a2a2a;font-size:calc(17.5px * var(--fs))}
+  .intro-body{color:#2a2a2a;font-size:calc(19px * var(--fs));text-align:justify;hyphens:auto}
   /* a quiet breath between the invitation and the three stories */
   .intro-pause{border:0;width:54px;height:2px;background:var(--green);opacity:.45;margin:32px 0}
+  /* inline custom emoji, sized to the surrounding text */
+  img.emoji{height:1.15em;width:auto;vertical-align:-.18em}
   .coda{font-family:var(--serif);font-size:clamp(19px,2.5vw,24px);line-height:1.55;color:#333;max-width:56ch;margin:8px auto;text-align:center;font-style:italic}
   .coda::before,.coda::after{content:"";display:block;width:44px;height:1px;background:var(--green);opacity:.5;margin:22px auto}
   .coda p{margin:0}
@@ -55,9 +57,9 @@
 
   /* Nav */
   /* Layout: sticky vertical contents sidebar + body column */
-  .shell{max-width:1360px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:214px minmax(0,1fr);gap:38px;align-items:start;position:relative;z-index:1}
+  .shell{max-width:1360px;margin:0 auto;padding:0 clamp(28px,6vw,60px);display:grid;grid-template-columns:214px minmax(0,1fr);gap:38px;align-items:start;position:relative;z-index:1}
   .body-col{grid-column:2;min-width:0}
-  .sidenav{position:fixed;top:50%;transform:translateY(-50%);left:calc(max(0px, (100vw - 1360px) / 2) + 24px);width:214px;z-index:5;max-height:calc(100vh - 32px);overflow:auto;padding:18px 0;font-family:var(--sans)}
+  .sidenav{position:fixed;top:50%;transform:translateY(-50%);left:calc(max(0px, (100vw - 1360px) / 2) + clamp(28px,6vw,60px));width:214px;z-index:5;max-height:calc(100vh - 32px);overflow:auto;padding:18px 0;font-family:var(--sans)}
   .sidenav a{display:block;text-decoration:none;color:var(--muted);font-size:14.5px;line-height:1.35;padding:6px 12px;border-radius:8px;transition:.15s}
   .sidenav a:hover{color:var(--ink);background:#efece4}
   .sidenav .toc-lead{font-weight:700;color:var(--ink)}
@@ -84,8 +86,7 @@
   p{max-width:82ch}
   /* Part dividers — the two halves of the page */
   .part{text-align:center;margin:16px 0 -18px;padding-top:26px}
-  .part-eyebrow{display:block;font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:12px;font-weight:700;color:var(--accent)}
-  h2.part-title{display:block;text-align:center;font-size:clamp(28px,4.6vw,44px);line-height:1.08;margin:12px 0 0}
+  h2.part-title{display:block;text-align:center;font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:clamp(17px,2.4vw,22px);font-weight:700;color:var(--accent);line-height:1.3;margin:12px 0 0}
   h2.part-title::before{content:none}
   h2.part-title::after{content:"";display:block;width:54px;height:2px;background:var(--green);opacity:.55;margin:18px auto 0}
   a.src{color:var(--accent2);text-decoration:none;border-bottom:1px solid rgba(45,106,142,.3)}
@@ -295,10 +296,10 @@
     <div class="toc-group">
       <a class="toc-head" href="#part-two">In his own words</a>
       <a href="#mind">The rights of man</a>
-      <a href="#discovery">The free mind at work</a>
-      <a href="#invention">Ideas &amp; designs for the common good</a>
+      <a href="#discovery">The spirit of discovery</a>
+      <a href="#invention">The right to invention</a>
       <a href="#future">A society that advances</a>
-      <a href="#creed">The creed of a government for the people</a>
+      <a href="#creed">The First Inaugural Address</a>
     </div>
     <a class="toc-lead" href="#sources">Sources</a>
     <a class="toc-lead" href="#reading">Further sources</a>
@@ -320,33 +321,40 @@
   <section id="intro" tabindex="-1" style="border-bottom:none;outline:none">
     <p class="roles">Lawyer. Father. Scientist. Writer. Revolutionary.<br>
     Governor. Diplomat. Vice President. President.<br>
-    Philosopher. Architect. Slave Owner.<br>
-    Author of The Declaration of Independence.</p>
+    Philosopher. Architect. Slave Owner.<br></p>
     <p class="intro-lead">Many words describe Thomas Jefferson.<sup class="fn fn-bio"><a href="https://www.monticello.org/biography-of-jefferson" target="_blank" rel="noopener" aria-label="A biography of Thomas Jefferson, Monticello">Biography</a></sup></p>
-    <p class="intro-body">And maybe every one of us can see a bit of ourselves in Jefferson — torn between belief and duty, tender under the politics, and cheerfully trying again in his experiments.</p>
+    <p class="intro-body">In a way, we can all find a bit of ourselves in Jefferson — torn between public duty, political reality and personal belief, deeply tender beneath the storms, and always cheerfully willing to try again.</p>
 
     <hr class="intro-pause" aria-hidden="true">
 
     <p class="intro-body">In 1803, Napoleon offered to sell Louisiana, placing everything the young republic desperately needed suddenly on the table: New Orleans, the mouth of the Mississippi, the farmland of half a continent, and <a class="src" href="https://en.wikipedia.org/wiki/Lewis_and_Clark_Expedition" target="_blank" rel="noopener">a path to the West</a>. One peaceful treaty could instantly redraw the map of the United States and double the nation's size. The western border would leap from the Mississippi River to the Rocky Mountains, and a seaboard republic could begin a continental future. Few decisions carried such staggering weight for what the United States would become today.</p>
 
-    <p class="intro-body">But for Jefferson, this geopolitical triumph was an ideological trap for Jefferson. He had spent decades arguing for a small federal government strictly bound to the letter of the Constitution — and the Constitution, he knew, granted no power to buy foreign land. The constitutional amendment to authorize the purchase would take years, and Napoleon's offer might not survive the wait. What would you do when the chance of a lifetime requires a power you don't believe you have?</p>
+    <p class="intro-body">But for Jefferson, this geopolitical triumph was an ideological trap. He had spent decades arguing for a small federal government strictly bound to the letter of the Constitution — and the Constitution, he knew, said nothing about buying a foreign land. Even though a constitutional amendment could authorize the purchase, Napoleon's offer might not survive years of wait. Securing the deal meant crossing the very line the Executive drew.</p>
 
-    <p class="intro-body">No one felt this agonizing friction more sharply than Jefferson himself, privately <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-41-02-0139" target="_blank" rel="noopener">confessing</a> to Senator John Breckinridge: "the Constitution has made no provision for our holding foreign territory, still less for incorporating foreign nations into our Union." Ultimately, he chose the burden of "personal hypocrisy" over the ruin of national opportunity — with a single pen stroke, forever carrying the weight that he had <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-41-02-0139" target="_blank" rel="noopener">"done an act beyond the Constitution"</a>. He was attacked for violating his own principles. And the purchase, might sometimes been seen as <a class="src" href="https://constitutioncenter.org/blog/the-louisiana-purchase-jeffersons-constitutional-gamble" target="_blank" rel="noopener">"Jefferson's constitutional gamble"</a>, albeit <a class="src" href="https://www.cfr.org/articles/the-louisiana-purchase" target="_blank" rel="noopener">The Senate ratified the Louisiana Purchase Treaty by a vote of 24 to 7</a>.</p>
+    <p class="intro-body">No one felt this agonizing friction more sharply than Jefferson himself, privately <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-41-02-0139" target="_blank" rel="noopener">confessing</a> to Senator John Breckinridge: "the Constitution has made no provision for our holding foreign territory, still less for incorporating foreign nations into our Union." In between the ruin of national opportunity and the burden of "personal hypocrisy", ultimately, he chose the latter — with a single pen stroke, forever carrying the weight that he had <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-41-02-0139" target="_blank" rel="noopener">"done an act beyond the Constitution"</a>. He was criticized and attacked for violating his own principles. And the purchase might sometimes be seen as <a class="src" href="https://constitutioncenter.org/blog/the-louisiana-purchase-jeffersons-constitutional-gamble" target="_blank" rel="noopener">"Jefferson's constitutional gamble"</a> — though <a class="src" href="https://www.cfr.org/articles/the-louisiana-purchase" target="_blank" rel="noopener">the Senate ratified the Louisiana Purchase Treaty by a vote of 24 to 7</a>.</p>
 
-    <p class="intro-body">Well, he could have easily done nothing. Walking away from the $15 million deal would have saved him from immense personal agony and preserved the core of his life's work: The Declaration of Independence. Later in life, he made his peace with it: <i>this</i>, as the <a href="#film">documentary</a> puts it, <i>is one of those cases where duty to national interest transcends philosophical consistency.</i> In his own words: <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-03-02-0060" target="_blank" rel="noopener">"The laws of necessity, of self-preservation, of saving our country when in danger, are of higher obligation."</a></p>
+    <p class="intro-body">Well, he could have easily done nothing. Walking away from the $15 million deal would have saved him from immense personal agony and preserved the core of his life's work. Later in life, he made his peace with it: <i>this</i>, as the <a href="#film">documentary</a> puts it, <i>is one of those cases where duty to national interest transcends philosophical consistency.</i> <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-03-02-0060" target="_blank" rel="noopener">In his own words</a>: "The laws of necessity, of self-preservation, of saving our country when in danger, are of higher obligation."</p>
 
-    <p class="intro-body">His friendship with John Adams carried the same tension — between what he owed a friend and what he believed he owed the country. They had stood together in 1776, Adams the voice for independence, Jefferson the pen, and they grew closer still as fellow diplomats in Europe, where their families shared dinners in Paris and London. In 1787, Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-11-02-0095" target="_blank" rel="noopener">wrote</a> of Adams to Madison: "He is so amiable, that I pronounce you will love him if ever you become acquainted with him." Then in 1791, the republic they had built together pulled them apart. Each came to believe the other's politics would ruin it — and each held that belief as a duty. In the campaign to unseat the Federalists in 1800, <a class="src" href="https://en.wikipedia.org/wiki/James_T._Callender" target="_blank" rel="noopener">Wikipedia</a> records, "Jefferson supported Callender financially and provided feedback on early proofs of Callender's anti-Federalist pamphlet, <i>The Prospect Before Us</i>" — the scandal-monger's broadside against the Adams administration. The cause came first, and the friendship paid for it: for more than a decade afterward, the two old friends had almost nothing to say to each other. If you've ever let a silence with an old friend run too long to know how to break it, you know where he stood.</p>
 
-    <p class="intro-body">Nevertheless, neither could quite let the other go. In their retirement years, each let mutual friends know they missed the other — and it was <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">Adams who broke the silence</a>, with a short New Year's letter on January 1, 1812, wishing Jefferson many happy new years to come. Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0334" target="_blank" rel="noopener">fondly responded</a>, "A letter from you calls up recollections very dear to my mind. It carries me back to the times when, beset with difficulties & dangers, we were fellow laborers in the same cause, struggling for what is most valuable to man, his right of self-government."  When Abigail Adams died in 1818, Jefferson, her friend since their Paris years, wrote to Adams <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-13-02-0353" target="_blank" rel="noopener">"mingling sincerely my tears with yours"</a>. They wrote to each other for the rest of their lives — 158 letters, through every argument and every grief — until they <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">both died</a> on July 4, 1826 — the Declaration's fiftieth anniversary.</p>
+    <hr class="intro-pause" aria-hidden="true">
+
+    <p class="intro-body">His friendship with John Adams carried the same unbearable tension — a collision between the allegiance he felt toward a brother-in-arms and the future he envisioned for the republic. They had stood together in 1776, Adams the voice for independence, Jefferson the pen. And they grew closer still as fellow diplomats in Europe, where their families shared dinners in Paris and London. Jefferson adored him, <a class="src" href="https://founders.archives.gov/documents/Jefferson/01-11-02-0095" target="_blank" rel="noopener">writing to Madison</a> in 1787: "He is so amiable, that I pronounce you will love him if ever you become acquainted with him." Then, the very republic they had built together pulled them apart. By 1791, the ideological cracks had formed; by 1800, they were an abyss. Each honestly believed the other's vision would ruin the country — and each held their belief as a duty. In the campaign to unseat the Federalists in 1800, <a class="src" href="https://en.wikipedia.org/wiki/James_T._Callender" target="_blank" rel="noopener">Wikipedia records</a>, "Jefferson supported Callender financially and provided feedback on early proofs of Callender's anti-Federalist pamphlet, <i>The Prospect Before Us</i>" — the scandal-monger's broadsides against the Adams administration. The cause came first, and the friendship paid for it. For a decade afterward, the two old friends fell into a total, icy silence.</p>
+
+    <p class="intro-body">Nevertheless, neither could quite let the other go. In their retirement years, each let mutual friends know they missed the other. And, it was <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">Adams who broke the silence</a>, with a short New Year's letter on January 1, 1812, wishing Jefferson many happy new years to come. Jefferson <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0334" target="_blank" rel="noopener">fondly responded</a>, "A letter from you calls up recollections very dear to my mind. It carries me back to the times when, beset with difficulties & dangers, we were fellow laborers in the same cause, struggling for what is most valuable to man, his right of self-government."  When Abigail Adams died in 1818, Jefferson, her friend since their Paris years, wrote to Adams <a class="src" href="https://founders.archives.gov/documents/Jefferson/03-13-02-0353" target="_blank" rel="noopener">"mingling sincerely my tears with yours"</a> <img class="emoji" src="assets/crying-emoji.png" alt="" aria-hidden="true"></p>
+
+    <p class="intro-body">They wrote to each other for the rest of their lives — 158 letters, through every argument and every grief — until they <a class="src" href="https://www.history.com/this-day-in-history/july-4/thomas-jefferson-and-john-adams-die" target="_blank" rel="noopener">both died</a> on July 4, 1826 — the Declaration's fiftieth anniversary.</p>
     
-    Belief had pulled them apart; affection got the last word.</p>
+    <p class="intro-body">Belief had pulled them apart; affection got the last word.</p>
 
-    <p class="intro-body">Though called again and again to the nation's service, Jefferson also pursued happiness in his own quiet way. He loved his garden most of all — and it kept failing on him. Monticello, <a class="src" href="https://encyclopediavirginia.org/entries/jefferson-thomas-and-gardening/" target="_blank" rel="noopener">Encyclopedia Virginia</a> writes, "became his experimental horticultural laboratory," where he "strove to make his plantation … an experimental station of new and unusual plants." From 1766 to 1824, he logged every planting in his Garden Book, and made his peace with the constant losses. As he later reflected in an 1803 letter, "if in the experiments to introduce … new plants, one species in an hundred is found useful and succeeds, the ninety-nine found otherwise are more than paid for." Ninety-nine losses for one win. And he kept planting. That patience outlived him — Monticello's <a class="src" href="https://www.monticello.org/house-gardens/center-for-historic-plants/" target="_blank" rel="noopener">Center for Historic Plants</a> still propagates and sells heirloom seeds and historic plants from his garden today.</p>
+    <hr class="intro-pause" aria-hidden="true">
+
+    <p class="intro-body">Though called again and again to the nation's service, Jefferson also pursued happiness in his own quiet way. He loved his garden most of all — and it kept failing on him. Monticello, <a class="src" href="https://encyclopediavirginia.org/entries/jefferson-thomas-and-gardening/" target="_blank" rel="noopener">Encyclopedia Virginia writes</a>, "became his experimental horticultural laboratory," where he "strove to make his plantation … an experimental station of new and unusual plants." From 1766 to 1824, he logged every planting in his Garden Book, and made his peace with the constant losses. As he reflected in a <a class="src" href="https://encyclopediavirginia.org/primary-documents/letter-from-thomas-jefferson-to-samuel-vaughan-jr-november-27-1790/" target="_blank" rel="noopener">1790 letter to Samuel Vaughan Jr.</a>, "if in the experiments to introduce … new plants, one species in an hundred is found useful and succeeds, the ninety-nine found otherwise are more than paid for." Ninety-nine losses for one win. And, he kept planting.</p>
+
+    <p class="intro-body">That patience outlived him — today, Monticello's <a class="src" href="https://www.monticello.org/house-gardens/center-for-historic-plants/" target="_blank" rel="noopener">Center for Historic Plants</a> still propagates and sells historic plants and heirloom seeds from his garden.</p>
   </section>
 
   <!-- PART ONE: IN OTHERS' EYES -->
   <div class="part" id="part-one">
-    <span class="part-eyebrow">Part One</span>
     <h2 class="part-title">In the Eyes of History</h2>
   </div>
 
@@ -358,7 +366,7 @@
         <img src="https://i.ytimg.com/vi/0f2lgaAuRUE/maxresdefault.jpg" alt="Thomas Jefferson documentary" loading="lazy"
              onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/0f2lgaAuRUE/hqdefault.jpg'">
         <span class="play" aria-hidden="true"></span>
-        <span class="stamp">1:13:00</span>
+        <span class="stamp">1:13:26</span>
       </a>
     </div>
   </section>
@@ -368,14 +376,14 @@
     <h2>A word from Lincoln</h2>
 
     <div class="quote">
-      <blockquote>All honor to Jefferson — to the man who, in the concrete pressure of a struggle for national independence by a single people, had the coolness, forecast, and capacity to introduce into a merely revolutionary document, an abstract truth, applicable to all men and all times, and so to embalm it there, that to-day and in all coming days, it shall be a rebuke and a stumbling-block to the very harbingers of reappearing tyranny and oppression.</blockquote>
+      <blockquote>All honor to Jefferson — to the man who, in the concrete pressure of a struggle for national independence by a single people, had the coolness, forecast, and capacity to introduce into a merely revolutionary document, an abstract truth, applicable to all men and all times, and so to embalm it there, that to-day and in all coming days, it shall be a rebuke and a stumbling-block to the very harbingers of reappearing tyranny and oppression.<br>
+      </blockquote>
       <div class="cite"><span class="where"><a class="src" href="https://www.abrahamlincolnonline.org/lincoln/speeches/pierce.htm" target="_blank" rel="noopener">Abraham Lincoln, letter to Henry L. Pierce &amp; others</a></span><span>April 6, 1859</span></div>
     </div>
   </section>
 
   <!-- PART TWO: IN HIS OWN WORDS -->
   <div class="part" id="part-two">
-    <span class="part-eyebrow">Part Two</span>
     <h2 class="part-title">In his own words</h2>
   </div>
 
@@ -392,16 +400,11 @@
       <blockquote>This was the object of the Declaration of Independence. Not to find out new principles, or new arguments, never before thought of, not merely to say things which had never been said before; but to place before mankind the common sense of the subject, in terms so plain and firm as to command their assent, and to justify ourselves in the independent stand we are compelled to take. Neither aiming at originality of principle or sentiment, nor yet copied from any particular and previous writing, it was intended to be an expression of the American mind, and to give to that expression the proper tone and spirit called for by the occasion.</blockquote>
       <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/98-01-02-5212" target="_blank" rel="noopener">Letter to Henry Lee · looking back on the Declaration</a></span><span>May 8, 1825</span></div>
     </div>
-
-    <div class="quote">
-      <blockquote>Almighty God hath created the mind free.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://www.nps.gov/thje/learn/photosmultimedia/quotations.htm" target="_blank" rel="noopener">A Bill for Establishing Religious Freedom</a></span><span>drafted 1777 · enacted by Virginia, 1786 · Jefferson Memorial, NW portico</span></div>
-    </div>
   </section>
 
-  <!-- STEP 2: THE FREE MIND AT WORK -->
+  <!-- STEP 2: The spirit of discovery -->
   <section id="discovery">
-    <h2>The free mind at work</h2>
+    <h2>The spirit of discovery</h2>
 
     <div class="quote">
       <blockquote>Nature intended me for the tranquil pursuits of science, by rendering them my supreme delight.</blockquote>
@@ -409,28 +412,29 @@
     </div>
 
     <div class="quote">
-      <blockquote>No occupation is so delightful to me as the culture of the earth, and no culture comparable to that of the garden. … But though an old man, I am but a young gardener.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0090" target="_blank" rel="noopener">Letter to Charles Willson Peale · on agriculture</a></span><span>August 20, 1811</span></div>
+      <blockquote>The greatest service which can be rendered any country is to add an useful plant to its culture.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://encyclopediavirginia.org/primary-documents/summary-of-public-service-by-thomas-jefferson-after-september-2-1800/" target="_blank" rel="noopener">Summary of Public Service · reflecting on his own contributions</a></span><span>after September 2, 1800</span></div>
     </div>
 
     <div class="quote">
       <blockquote>The object of your mission is to explore the Missouri river, and such principal stream of it as, by its course and communication with the waters of the Pacific ocean, may offer the most direct and practicable water communication across this continent, for the purposes of commerce.</blockquote>
       <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-40-02-0136-0005" target="_blank" rel="noopener">Instructions to Meriwether Lewis · the Corps of Discovery</a></span><span>June 20, 1803</span></div>
     </div>
+
+    <div class="quote">
+      <blockquote>No occupation is so delightful to me as the culture of the earth, and no culture comparable to that of the garden. … But though an old man, I am but a young gardener.</blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/03-04-02-0090" target="_blank" rel="noopener">Letter to Charles Willson Peale · on agriculture</a></span><span>August 20, 1811</span></div>
+    </div>
   </section>
 
-  <!-- STEP 3: IDEAS & DESIGNS FOR THE COMMON GOOD -->
+  <!-- STEP 3: The right to invention -->
   <section id="invention">
-    <h2>Ideas &amp; designs for the common good</h2>
+    <h2>The right to invention</h2>
     <div class="quote">
       <blockquote>
-    If nature has made any one thing less susceptible than all others of exclusive property, it is the action of the thinking power called an idea, which an individual may exclusively possess as long as he keeps it to himself; but the moment it is divulged, it forces itself into the possession of every one, and the receiver cannot dispossess himself of it. Its peculiar character, too, is that no one possesses the less, because every other possesses the whole of it. He who receives an idea from me, receives instruction himself without lessening mine; as he who lights his taper at mine, receives light without darkening me. That ideas should freely spread from one to another over the globe, for the moral and mutual instruction of man, and improvement of his condition, seems to have been peculiarly and benevolently designed by nature, when she made them, like fire, expansible over all space, without lessening their density in any point, and like the air in which we breathe, move, and have our physical being, incapable of confinement or exclusive appropriation. Inventions then cannot, in nature, be a subject of property. Society may give an exclusive right to the profits arising from them, as an encouragement to men to pursue ideas which may produce utility, but this may or may not be done, according to the will and convenience of the society, without claim or complaint from anybody. … Considering the exclusive right to invention as given not of natural right, but for the benefit of society, I know well the difficulty of drawing a line between the things which are worth to the public the embarrassment of an exclusive patent, and those which are not.</blockquote>
+    If nature has made any one thing less susceptible than all others of exclusive property, it is the action of the thinking power called an idea, which an individual may exclusively possess as long as he keeps it to himself; but the moment it is divulged, it forces itself into the possession of every one, and the receiver cannot dispossess himself of it. Its peculiar character, too, is that no one possesses the less, because every other possesses the whole of it. He who receives an idea from me, receives instruction himself without lessening mine; as he who lights his taper at mine, receives light without darkening me. That ideas should freely spread from one to another over the globe, for the moral and mutual instruction of man, and improvement of his condition, seems to have been peculiarly and benevolently designed by nature, when she made them, like fire, expansible over all space, without lessening their density in any point, and like the air in which we breathe, move, and have our physical being, incapable of confinement or exclusive appropriation. Inventions then cannot, in nature, be a subject of property. Society may give an exclusive right to the profits arising from them, as an encouragement to men to pursue ideas which may produce utility, but this may or may not be done, according to the will and convenience of the society, without claim or complaint from anybody. … Considering the exclusive right to invention as given not of natural right, but for the benefit of society, I know well the difficulty of drawing a line between the things which are worth to the public the embarrassment of an exclusive patent, and those which are not.
+      </blockquote>
       <div class="cite"><span class="where"><a class="src" href="https://press-pubs.uchicago.edu/founders/documents/a1_8_8s12.html" target="_blank" rel="noopener">Letter to Isaac McPherson · on invention &amp; the mechanic arts</a></span><span>August 13, 1813</span></div>
-    </div>
-
-    <div class="quote">
-      <blockquote>Architecture worth great attention. As we double our numbers every 20 years we must double our houses. Besides we build of such perishable materials that one half of our houses must be rebuilt in every space of 20 years. So that in that term, houses are to be built for three fourths of our inhabitants. It is then among the most important arts: and it is desireable to introduce taste into an art which shews so much.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-13-02-0173" target="_blank" rel="noopener">Hints to Americans Travelling in Europe</a></span><span>ca. June 19, 1788</span></div>
     </div>
   </section>
 
@@ -457,44 +461,38 @@
       <blockquote>I like the dreams of the future better than the history of the past.</blockquote>
       <div class="cite"><span class="where"><a class="src" href="https://tjrs.monticello.org/letter/1388" target="_blank" rel="noopener">Letter to John Adams</a></span><span>August 1, 1816</span></div>
     </div>
-
   </section>
 
-  </section>
-
-  <!-- STEP 6: THE CREED OF THE REPUBLIC -->
+  <!-- STEP 5: THE FIRST INAUGURAL -->
   <section id="creed">
-    <h2>The creed of a government for the people</h2>
+    <h2>The First Inaugural Address</h2>
 
     <div class="quote">
       <blockquote>A wise and frugal government, which shall restrain men from injuring one another, shall leave them otherwise free to regulate their own pursuits of industry and improvement, and shall not take from the mouth of labor the bread it has earned. This is the sum of good government, and this is necessary to close the circle of our felicities.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address</a></span><span>March 4, 1801</span></div>
-    </div>
-    <div class="quote">
-      <blockquote>but this being now decided by the voice of the nation, announced according to the rules of the constitution all will of course arrange themselves under the will of the law, and unite in common efforts for the common good. All too will bear in mind this sacred principle, that though the will of the majority is in all cases to prevail, that will, to be rightful, must be reasonable; that the minority possess their equal rights, which equal laws must protect, and to violate would be oppression. Let us then, fellow citizens, unite with one heart and one mind, let us restore to social intercourse that harmony and affection without which liberty, and even life itself, are but dreary things.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-33-02-0116-0004" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
     </div>
 
     <div class="quote">
-      <blockquote>We have called by different names brethren of the same principle. We are all republicans: we are all federalists. If there be any among us who would wish to dissolve this Union, or to change its republican form, let them stand undisturbed as monuments of the safety with which error of opinion may be tolerated, where reason is left free to combat it.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+      <blockquote>We have called by different names brethren of the same principle. We are all republicans: we are all federalists.<br>
+      ...
+      </blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-33-02-0116-0004" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
     </div>
 
     <div class="quote">
       <blockquote>About to enter, fellow citizens, on the exercise of duties which comprehend every thing dear and valuable to you, it is proper you should understand what I deem the essential principles of our government, and consequently those which ought to shape its administration. I will compress them within the narrowest compass they will bear, stating the general principle, but not all its limitations.<br>
         — Equal and exact justice to all men, of whatever state or persuasion, religious or political<br>
         — peace, commerce, and honest friendship with all nations, entangling alliances with none<br>
-        — the support of the state governments in all their rights, as the most competent administrations for our domestic concerns, and the surest bulwarks against anti-republican tendencies<br>
-        — the preservation of the General government in its whole constitutional vigor, as the sheet anchor of our peace at home, and safety abroad<br>
-        — a jealous care of the right of election by the people, a mild and safe corrective of abuses which are lopped by the sword of revolution where peaceable remedies are unprovided.</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+        ...
+      </blockquote>
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-33-02-0116-0004" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
     </div>
 
     <div class="quote">
       <blockquote>
       Let us then, with courage and confidence, pursue our own federal and republican principles; our attachment to union and representative government. Kindly separated by nature and a wide ocean from the exterminating havoc of one quarter of the globe; too high minded to endure the degradations of the others, possessing a chosen country, with room enough for our descendants to the thousandth and thousandth generation, entertaining a due sense of our equal right to the use of our own faculties, to the acquisitions of our own industry, to honor and confidence from our fellow citizens, resulting not from birth, but from our actions and their sense of them, enlightened by a benign religion, professed indeed and practised in various forms, yet all of them inculcating honesty, truth, temperance, gratitude and the love of man, acknowledging and adoring an overruling providence, which by all its dispensations proves that it delights in the happiness of man here, and his greater happiness hereafter;</blockquote>
-      <div class="cite"><span class="where"><a class="src" href="https://constitutioncenter.org/the-constitution/historic-document-library/detail/thomas-jefferson-first-inaugural-address-1801" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
-
+      <div class="cite"><span class="where"><a class="src" href="https://founders.archives.gov/documents/Jefferson/01-33-02-0116-0004" target="_blank" rel="noopener">First Inaugural Address · after the bitter election of 1800</a></span><span>March 4, 1801</span></div>
+    </div>
   </section>
 
 
@@ -520,11 +518,11 @@
     <li><a class="src" href="https://www.monticello.org/" target="_blank" rel="noopener">Monticello</a>, the Thomas Jefferson Foundation — including his <a class="src" href="https://www.monticello.org/biography-of-jefferson" target="_blank" rel="noopener">biography</a> (the source of the roles that open this page) and <a class="src" href="https://tjrs.monticello.org/" target="_blank" rel="noopener">Jefferson Quotes &amp; Family Letters</a>.</li>
     <li><a class="src" href="https://www.archives.gov/founding-docs" target="_blank" rel="noopener">America's Founding Documents</a>, National Archives — the Declaration of Independence transcript.</li>
     <li><a class="src" href="https://www.nps.gov/thje/" target="_blank" rel="noopener">Thomas Jefferson Memorial</a>, National Park Service — the memorial's inscriptions.</li>
-    <li><a class="src" href="https://constitutioncenter.org/" target="_blank" rel="noopener">National Constitution Center</a> — the First Inaugural Address and the Louisiana Purchase essay.</li>
+    <li><a class="src" href="https://constitutioncenter.org/" target="_blank" rel="noopener">National Constitution Center</a> — the Louisiana Purchase essay.</li>
     <li><a class="src" href="https://www.cfr.org/articles" target="_blank" rel="noopener">Council on Foreign Relations</a> — the Louisiana Purchase and its ratification.</li>
     <li><a class="src" href="https://press-pubs.uchicago.edu/founders/" target="_blank" rel="noopener">The Founders' Constitution</a>, University of Chicago Press.</li>
     <li><a class="src" href="https://www.abrahamlincolnonline.org/" target="_blank" rel="noopener">Abraham Lincoln Online</a> — Lincoln's tribute letter.</li>
-    <li><a class="src" href="https://encyclopediavirginia.org/" target="_blank" rel="noopener">Encyclopedia Virginia</a> — Jefferson and gardening.</li>
+    <li><a class="src" href="https://encyclopediavirginia.org/" target="_blank" rel="noopener">Encyclopedia Virginia</a> — its <a class="src" href="https://encyclopediavirginia.org/entries/jefferson-thomas-and-gardening/" target="_blank" rel="noopener">Jefferson and gardening</a> entry, and its primary transcription of the <a class="src" href="https://encyclopediavirginia.org/primary-documents/letter-from-thomas-jefferson-to-samuel-vaughan-jr-november-27-1790/" target="_blank" rel="noopener">letter to Samuel Vaughan Jr., November 27, 1790</a> and of his <a class="src" href="https://encyclopediavirginia.org/primary-documents/summary-of-public-service-by-thomas-jefferson-after-september-2-1800/" target="_blank" rel="noopener">Summary of Public Service</a> (ca. 1800).</li>
     <li><a class="src" href="https://www.history.com/" target="_blank" rel="noopener">HISTORY</a> and <a class="src" href="https://en.wikipedia.org/" target="_blank" rel="noopener">Wikipedia</a> — the Adams friendship and the Callender affair.</li>
   </ul>
   <p class="note">Quotation wording follows the primary sources above, with light modernization of spelling and punctuation as in the memorial and archive transcriptions.</p>
