@@ -317,6 +317,30 @@ article.post{position:relative;z-index:1;padding:46px 0 10px}
     margin:5px auto 0;transform:rotate(-1.5deg)}
   .masthead .wrap{padding-top:0}  /* notes are in-flow on mobile; no clearance needed */
 }
+/* Phones: OpenDyslexic runs wide, so scale type + spacing down to de-crowd */
+@media(max-width:520px){
+  body{font-size:16.5px;line-height:1.6;letter-spacing:0;word-spacing:.02em;
+    overflow-x:clip}                   /* contain decorative doodles on tiny screens */
+  .board-frame{border-width:6px}
+  .eyebrow{font-size:clamp(14px,3.4vw,16px)}
+  .nameplate{font-size:clamp(29px,9vw,42px);margin:4px 0 24px}
+  .hey-star{width:96px;height:82px}
+  .motto{font-size:clamp(14px,3.2vw,16px)}
+  .curious-minds{font-size:clamp(19px,4.6vw,22px);margin-top:18px}
+  .filter-btn{font-size:16px;padding:6px 10px}
+  .sectionbar{gap:4px 2px}
+  .article{padding:22px 18px 24px}
+  .article .headline{font-size:clamp(19px,4.6vw,22px)}
+  .article .teaser{font-size:15px}
+  .sub-card{padding:26px 18px 24px}
+  .sub-eyebrow{font-size:15px}
+  .sub-head{font-size:clamp(22px,5.4vw,26px)}
+  .sub-sub{font-size:14.5px}
+  .sub-form input{font-size:16px;min-height:46px}
+  .sub-form button{font-size:16px;min-height:46px;padding:11px 16px}
+  .join-link{font-size:15px}
+  .join-lead{font-size:13px}
+}
 @media(prefers-reduced-motion:reduce){
   .draw path{stroke-dashoffset:0;animation:none}
   .eyebrow,.nameplate,.motto{animation:none}
