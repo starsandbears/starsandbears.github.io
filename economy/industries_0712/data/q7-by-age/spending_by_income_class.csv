@@ -1,0 +1,6 @@
+income_quintile,income_before_taxes,total_expenditures,food,shelter,utilities_fuels_public_services,household_other,apparel,transportation,healthcare,entertainment,education,personal_insurance_pensions,other,year,source
+Lowest 20%,16658,35046,5498,9178,2934,2450,1124,5105,3445,1316,828,711,2457,2024,"BLS Consumer Expenditure Survey 2024, Table 1101 (Quintiles of income before taxes); via BLS/FRED series CXU*LB010xM; released 2025-12-19"
+Second 20%,42925,50054,7400,11902,4065,3208,1328,8430,4826,2156,407,2712,3620,2024,"BLS Consumer Expenditure Survey 2024, Table 1101 (Quintiles of income before taxes); via BLS/FRED series CXU*LB010xM; released 2025-12-19"
+Third 20%,74474,66900,9097,15257,4635,4202,1642,11657,5676,2764,749,6248,4973,2024,"BLS Consumer Expenditure Survey 2024, Table 1101 (Quintiles of income before taxes); via BLS/FRED series CXU*LB010xM; released 2025-12-19"
+Fourth 20%,121548,89972,11845,17851,5431,6091,2034,15952,7247,4133,1353,11934,6101,2024,"BLS Consumer Expenditure Survey 2024, Table 1101 (Quintiles of income before taxes); via BLS/FRED series CXU*LB010xM; released 2025-12-19"
+Highest 20%,264510,150342,16989,27338,6607,10088,3872,25378,9771,7660,4492,27279,10868,2024,"BLS Consumer Expenditure Survey 2024, Table 1101 (Quintiles of income before taxes); via BLS/FRED series CXU*LB010xM; released 2025-12-19"

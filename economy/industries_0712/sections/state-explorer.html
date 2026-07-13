@@ -1,0 +1,41 @@
+{% raw %}
+  <!-- STATE EXPLORER -->
+  <section class="qa" id="state-explorer" style="--c:var(--sky)">
+    <div class="kid-q">
+      <div class="avatar">🧒</div>
+      <div class="bubble" style="--c:#bfe6f5"><span class="qn">Pick your state</span>Is it the same everywhere? Does <em>my</em> state make and do the same stuff?</div>
+    </div>
+    <div class="claude-a">
+      <div class="avatar">✦</div>
+      <div class="answer">
+        <h2>Nope — every state has its own flavor. Pick one and watch the charts change!</h2>
+        <p>The country's cake is really 50 little cakes added up, and each state's looks different — lots of <strong>farming</strong> in one, <strong>oil</strong> or <strong>tech</strong> or <strong>tourism</strong> in another. Choose a state below: first you'll see its industry <strong>mix side-by-side with the whole country</strong> — what it leans on <em>more</em> or <em>less</em> than average — then four charts show <em>its</em> value added, how its layers <em>grew over 20 years</em>, and its jobs and pay by industry. <em>(M2 and gross output are national totals, so those two don't split by state.)</em></p>
+        <div class="state-picker">
+          <label for="stateSel">🗺️ Show me:</label>
+          <select id="stateSel" aria-label="Choose a state"></select>
+        </div>
+        <div class="chart" style="--c:var(--berry)">
+          <div class="chart-cap">🇺🇸 <b id="capCmp">United States</b>: each industry's share of the economy (value added, 2025), next to the US average (grey bars). Longer colored bars show what your state leans on <b>more</b> than the country. <button class="save-btn" type="button" data-t="stCmp">📷 Save PNG</button></div>
+          <div id="stCmp" class="plot" style="height:560px"></div>
+        </div>
+        <div class="chart" style="--c:var(--grass)">
+          <div class="chart-cap">💰 Value each industry adds to <b id="capA">the United States</b>'s cake (GDP, 2025). <button class="save-btn" type="button" data-t="stGdp">📷 Save PNG</button></div>
+          <div id="stGdp" class="plot" style="height:520px"></div>
+        </div>
+        <div class="chart" style="--c:var(--grass)">
+          <div class="chart-cap">🕰️ How <b id="capD">the United States</b>'s layers grew, 2005–2025 (value added per year, in each year's own dollars — so part of every climb is inflation). The <b>thickest layers</b> start visible; <b>click a name in the legend</b> to show or hide any layer. <button class="save-btn" type="button" data-t="stHist">📷 Save PNG</button></div>
+          <div id="stHist" class="plot" style="height:620px"></div>
+        </div>
+        <div class="chart" style="--c:var(--sky)">
+          <div class="chart-cap">👷 How many people work in each industry in <b id="capB">the United States</b> (thousands of jobs, 2025). <button class="save-btn" type="button" data-t="stJobs">📷 Save PNG</button></div>
+          <div id="stJobs" class="plot" style="height:520px"></div>
+        </div>
+        <div class="chart" style="--c:var(--berry)">
+          <div class="chart-cap">💵 Average pay per worker in <b id="capC">the United States</b> (2025), next to the US average (grey bars); dashed line = that state's poverty line for a family of 4 (2025 guideline: $32,150 — higher in Alaska &amp; Hawaii). <button class="save-btn" type="button" data-t="stPay">📷 Save PNG</button></div>
+          <div id="stPay" class="plot" style="height:520px"></div>
+        </div>
+        <p class="tip">Same real data as the national charts, split by state — GDP from BEA (2025); jobs &amp; pay from BLS QCEW (2025; private industries are private-sector, "Government" is federal + state + local). A few tiny industries in small states aren't shown on the jobs &amp; pay charts because the government withholds very small counts to protect privacy. Press <b>📷 Save PNG</b> on any chart to download it as a picture.</p>
+      </div>
+    </div>
+  </section>
+{% endraw %}

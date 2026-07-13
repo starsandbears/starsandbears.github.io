@@ -1,0 +1,388 @@
+/* style.css — all styles for us-econ-and-money-intro.html
+   (kids' economy report). Loaded via <link> from the main file; edit here. */
+  :root{
+    --cream:#fff8ec; --paper:#fff8ec; --ink:#3d2f24; --muted:#8a7a68; --line:#ece0c8;
+    --tomato:#e8552d; --sun:#f2b134; --sky:#2f9fd1; --grass:#57a75a;
+    --grape:#8a5cc4; --berry:#d94f7a; --teal:#2fa89a;
+    --card:#ffffff;
+    --display:'Fredoka',system-ui,sans-serif;
+    --body:'Quicksand',system-ui,sans-serif;
+    --hand:'Patrick Hand','Comic Sans MS',cursive;
+  }
+  *{box-sizing:border-box}
+  html,body{overflow-x:clip}   /* long chart titles etc. can't widen the page */
+  /* Stars & Bears: the bear leaves its paw print as the mouse cursor 🐾
+     (interactive elements keep their own cursors: pointer, text, zoom…) */
+  html{cursor:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><text y="24" font-size="24">%F0%9F%90%BE</text></svg>') 4 4, auto}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;color:var(--ink);font-family:var(--body);line-height:1.62;font-weight:500;
+    background-color:#fff8ec;
+    background-image:radial-gradient(#efe2c8 1.1px, transparent 1.2px);
+    background-size:22px 22px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1100px;margin:0 auto;padding:0 22px}
+  a{color:var(--sky)}
+
+  /* Top bar */
+  .topbar{background:rgba(255,248,236,.9);backdrop-filter:blur(6px);border-bottom:2px dotted var(--line)}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;padding:12px 22px;font-size:14px;font-weight:600}
+  .topbar a{text-decoration:none}
+  .topbar .home{font-family:var(--display);font-weight:700;color:var(--ink);font-size:18px}
+
+  /* Hero */
+  header.hero{padding:64px 0 38px;text-align:center}
+  .hero .badge{display:inline-flex;align-items:center;gap:8px;background:var(--sun);color:#5a3d0a;font-weight:700;font-size:13px;
+    padding:7px 16px;border-radius:999px;transform:rotate(-2deg);box-shadow:0 4px 0 #d89a1f}
+  h1{font-family:var(--display);font-weight:700;font-size:clamp(36px,7vw,66px);line-height:1.02;margin:22px 0 12px;letter-spacing:-.01em}
+  h1 .u{background:linear-gradient(transparent 62%, #ffd98a 62% 92%, transparent 92%)}
+  .hero p{font-size:clamp(17px,2.3vw,21px);color:#5c4b3a;max-width:60ch;margin:0 auto 8px}
+  .hero .cast{margin-top:20px;font-family:var(--hand);font-size:20px;color:var(--muted)}
+  .hero .cast b{color:var(--tomato)}
+  .hero .meta{font-size:13.5px;color:var(--muted);margin-top:10px}
+
+  /* Q&A blocks */
+  section.qa{padding:40px 0;border-bottom:2px dotted var(--line)}
+  .kid-q{display:flex;gap:14px;align-items:flex-end;margin-bottom:26px}
+  .avatar{flex:0 0 auto;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:27px;
+    box-shadow:0 4px 0 rgba(0,0,0,.12)}
+  .kid-q .avatar{background:#ffe1b0}
+  .bubble{position:relative;background:var(--c,#ffe1b0);color:#3a2a18;font-family:var(--hand);font-size:clamp(21px,3vw,27px);
+    line-height:1.28;padding:16px 22px;border-radius:22px 22px 22px 6px;max-width:none;box-shadow:0 5px 0 rgba(0,0,0,.10)}
+  .bubble .qn{display:block;font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    opacity:.62;margin-bottom:5px}
+  .claude-a{display:flex;gap:14px;align-items:flex-start}
+  .claude-a .avatar{background:linear-gradient(135deg,#6a8fd4,#8a5cc4);color:#fff;font-size:24px}
+  .answer{flex:1;min-width:0}
+  .answer h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,3.4vw,30px);margin:4px 0 10px;line-height:1.12}
+  .answer p{font-size:calc(16.5px * var(--fs,1) * var(--dys,1));margin:0 0 13px;max-width:82ch;
+    text-align:justify;hyphens:auto}   /* flush right edge (Jefferson style); bubbles stay ragged */
+  .answer p .big{font-family:var(--display);font-weight:700;color:var(--tomato)}
+  .answer strong{font-weight:700}
+  .tip{font-size:13.5px;color:var(--muted);font-style:italic}
+  /* side notes stay ragged; only the main narrative justifies.
+     (needs .answer p.tip to outrank .answer p's justify) */
+  .answer p.tip{text-align:left;hyphens:none}
+
+  /* Chart cards */
+  .chart{position:relative;background:var(--card);border:2px solid var(--line);border-radius:18px;padding:16px 14px 8px;margin:20px 0;overflow:hidden;
+    box-shadow:0 6px 0 #efe2c8;scroll-margin-top:16px}
+  .chart-cap{font-family:var(--body);font-weight:600;font-size:13.5px;color:#6b5a46;margin:2px 6px 12px;
+    padding-left:12px;border-left:5px solid var(--c,var(--tomato));border-radius:2px}
+  .chart-cap .fig-no{font-weight:700;color:var(--c,var(--tomato))}
+  a.figref{font-weight:700;white-space:nowrap}
+  .chart img.zoomable{cursor:zoom-in}
+  .zoom-overlay{position:fixed;inset:0;z-index:999;display:flex;overflow:auto;padding:26px;
+    background:rgba(61,47,36,.78);cursor:zoom-out;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  .zoom-overlay img{margin:auto;display:block;max-width:min(1200px,94vw);max-height:88vh;
+    background:#fff;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.35);cursor:zoom-in}
+  .zoom-overlay.zoomed img{max-width:none;max-height:none;width:1500px;cursor:zoom-out}
+  .zoom-close{position:fixed;top:14px;right:18px;z-index:1000;font-size:22px;line-height:1;font-weight:700;
+    background:#fff;color:var(--ink);border:2px solid var(--line);border-radius:50%;width:44px;height:44px;
+    cursor:pointer;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+  /* the 🔍 zoom button every chart card gets (wired up in page-scripts) */
+  .zoom-btn{position:absolute;top:10px;right:10px;z-index:5;font-size:15px;line-height:1;
+    background:#fff;border:2px solid var(--line);border-radius:10px;width:34px;height:34px;
+    cursor:zoom-in;box-shadow:0 3px 0 #efe2c8;padding:0;filter:grayscale(35%);opacity:.85}
+  .zoom-btn:hover{filter:none;opacity:1}
+  .chart-cap{margin-right:48px}   /* keep captions clear of the button */
+  /* a live-chart card expanded to fill the screen */
+  .chart.fullchart{position:fixed;inset:0;z-index:998;margin:0;border-radius:0;overflow:auto;
+    box-shadow:none;
+    /* cap the content width so stretch-width charts (the Bokeh donuts etc.)
+       keep a sane aspect instead of inflating to full-bleed and clipping */
+    padding:20px max(26px,calc((100vw - 1160px)/2)) 12px}
+  /* while a chart is expanded, the floating page chrome steps aside */
+  body.chart-zoomed .sidenav,body.chart-zoomed .a11y,body.chart-zoomed .topbar{display:none}
+  .chart.fullchart .zoom-btn{position:fixed;top:14px;right:18px;cursor:zoom-out}
+  .chart.fullchart .plot{height:calc(100vh - 130px) !important}
+  .plot{width:100%}
+
+  /* stat chips */
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:6px 0 4px}
+  .chip{background:#fff;border:2px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:0 4px 0 #efe2c8}
+  .chip b{font-family:var(--display);font-weight:700;font-size:20px;color:var(--c,var(--tomato));display:block;line-height:1}
+  .chip span{font-size:12px;color:var(--muted);font-weight:600}
+
+  /* treemap detail */
+  .kidcard{background:#fffdf7;border:2px solid var(--line);border-left:6px solid var(--sky);border-radius:14px;padding:14px 18px;margin:6px 0 0}
+  .kidcard.ph{border-left-color:var(--line);color:var(--muted);font-style:italic}
+  .kidcard .kc-h{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 4px;display:flex;gap:10px;flex-wrap:wrap;align-items:baseline}
+  .kidcard .kc-h .kc-pct{font-family:var(--body);font-size:13px;color:var(--tomato);font-weight:700}
+  .kidcard .kc-b{font-size:15px;margin:0 0 6px}
+  .kidcard .kc-eg{font-size:14px;margin:0;color:#6b5a46}
+  .kidcard .kc-eg b{color:var(--sky)}
+
+  /* allocator */
+  .alloc{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:20px 20px 16px;margin:20px 0;box-shadow:0 6px 0 #efe2c8}
+  .alloc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 26px}
+  @media(max-width:680px){.alloc-grid{grid-template-columns:1fr}}
+  .alloc-rhead{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px}
+  .alloc-label{font-size:14.5px;font-weight:700}
+  .alloc-nums{font-size:13px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .alloc-nums .you{color:var(--tomato);font-weight:700}
+  .alloc-nums .us{color:var(--sky)}
+  .alloc-slider{width:100%;margin:1px 0 6px;accent-color:var(--tomato);cursor:pointer}
+  .alloc-track{position:relative;height:10px;background:#f0e7d4;border-radius:6px}
+  .alloc-fill{height:100%;background:var(--tomato);border-radius:6px;transition:width .07s linear}
+  .alloc-mark{position:absolute;top:-3px;bottom:-3px;width:3px;background:var(--sky);border-radius:2px}
+  .alloc-foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:16px;border-top:2px dotted var(--line);padding-top:14px}
+  .alloc-total{font-family:var(--display);font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+  .alloc-total.ok{color:var(--grass)}
+  .alloc-total.off{color:var(--tomato)}
+  .alloc-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .alloc-btn{font-family:var(--body);font-size:13.5px;font-weight:700;border:2px solid var(--line);background:#fff;color:var(--ink);
+    padding:9px 15px;border-radius:12px;cursor:pointer;transition:.12s;box-shadow:0 4px 0 #efe2c8}
+  .alloc-btn:hover{transform:translateY(-1px)}
+  .alloc-btn:active{transform:translateY(2px);box-shadow:0 2px 0 #efe2c8}
+  .alloc-btn.primary{background:var(--sky);border-color:var(--sky);color:#fff;box-shadow:0 4px 0 #2179a3}
+  .alloc-btn.primary[aria-pressed="true"]{background:var(--tomato);border-color:var(--tomato);box-shadow:0 4px 0 #b53c1c}
+  .alloc-takeaway{background:#fff4e2;border:2px solid #f2d9a8;border-left:6px solid var(--sun);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:16px 0 0;font-size:15px}
+
+  /* footer */
+  footer{padding:44px 0 76px;color:var(--muted);font-size:13.5px}
+  footer h3{font-family:var(--display);color:var(--ink);font-weight:700}
+  footer ul{padding-left:18px;max-width:82ch}
+  footer li{margin:5px 0}
+  .disc{background:#fffdf7;border:2px solid var(--line);border-left:6px solid var(--sun);border-radius:0 12px 12px 0;padding:14px 18px;margin-top:16px}
+  .visitors{margin-top:26px;padding-top:18px;border-top:2px dotted var(--line)}
+  .visitors .hits{height:20px;vertical-align:middle;margin:0 0 2px 4px}
+
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .6s ease forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}}
+
+  /* state picker + save button */
+  .state-picker{display:flex;gap:10px;align-items:center;margin:10px 0 2px;font-weight:700;font-size:16px;flex-wrap:wrap}
+  .state-picker select{font-family:var(--body);font-weight:700;font-size:16px;color:var(--ink);background:#fff;
+    border:2px solid var(--line);border-radius:12px;padding:9px 14px;cursor:pointer;box-shadow:0 4px 0 #efe2c8}
+  .save-btn{font-family:var(--body);font-weight:700;font-size:12px;border:2px solid var(--line);background:#fff;color:var(--ink);
+    padding:4px 10px;border-radius:10px;cursor:pointer;float:right;margin-left:8px;box-shadow:0 3px 0 #efe2c8}
+  .save-btn:hover{transform:translateY(-1px)}
+  .save-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #efe2c8}
+
+  /* ===== background playground: seesaws with rolling & riding shapes =====
+     A pointer-transparent layer behind the content, anchored to the DOCUMENT
+     (position:absolute over the whole page, body is its containing block) so
+     the shapes scroll together with the text; instances are spread down the
+     page with percentage tops. Each seesaw loops a tiny physics story: the
+     plank tips, the sphere rolls downhill, rests, then the tilt flips and it
+     rolls back — while a triangle and a cube ride the ends, squashing when
+     their side lands. Pure CSS transforms (cheap), hidden from screen
+     readers, and frozen under prefers-reduced-motion. */
+  body{position:relative}
+  .playground{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+  .topbar,header.hero,main,footer{position:relative;z-index:1}
+  .seesaw{position:absolute;width:300px;height:124px;opacity:.4;
+    transform:scale(calc(var(--s,1) * var(--bgk,1)))}
+  .seesaw.flip{transform:scale(calc(var(--s,1) * var(--bgk,1))) scaleX(-1)}   /* mirrored copy */
+  .fulcrum{position:absolute;left:50%;bottom:0;width:58px;height:52px;
+    transform:translateX(-50%);background:#e7d6af;
+    clip-path:polygon(50% 0,100% 100%,0 100%)}
+  .plank{position:absolute;left:0;bottom:50px;width:300px;height:15px;
+    border-radius:9px;background:#dcbd8f;transform-origin:50% 100%;
+    animation:ss-tilt var(--d,12s) ease-in-out infinite;
+    animation-delay:var(--t,0s);will-change:transform}
+  .plank>span{position:absolute;bottom:15px}
+  .go-ball{left:96px;width:44px;height:44px;border-radius:50%;
+    background:radial-gradient(circle at 32% 28%,var(--hi,#a5d9f0),var(--c1,#2f9fd1) 68%);
+    animation:ss-roll var(--d,12s) ease-in-out infinite;
+    animation-delay:var(--t,0s);will-change:transform}
+  .go-tri{left:54px;width:38px;height:33px;background:var(--c2,#e8552d);
+    clip-path:polygon(50% 0,100% 100%,0 100%);transform-origin:50% 100%;
+    animation:ss-sink var(--d,12s) ease-in-out infinite;animation-delay:var(--t,0s)}
+  .go-cube{left:258px;width:28px;height:28px;border-radius:6px;
+    background:var(--c3,#f2b134);transform-origin:50% 100%;
+    animation:ss-rise var(--d,12s) ease-in-out infinite;animation-delay:var(--t,0s)}
+  /* plank leads (weight shifts), ball follows two beats later, riders react */
+  @keyframes ss-tilt{0%,12%{transform:rotate(calc(var(--tilt,7deg)*-1))}
+    38%,62%{transform:rotate(var(--tilt,7deg))}88%,100%{transform:rotate(calc(var(--tilt,7deg)*-1))}}
+  /* ball rests beside the triangle (96px), rolls over and kisses the cube */
+  @keyframes ss-roll{0%,14%{transform:translateX(0) rotate(0turn)}
+    40%,64%{transform:translateX(118px) rotate(.9turn)}90%,100%{transform:translateX(0) rotate(0turn)}}
+  @keyframes ss-sink{0%,12%{transform:scaleY(.88)}
+    38%,62%{transform:scaleY(1.07) translateY(-3px)}88%,100%{transform:scaleY(.88)}}
+  @keyframes ss-rise{0%,12%{transform:scaleY(1.07) translateY(-3px)}
+    38%,62%{transform:scaleY(.88)}88%,100%{transform:scaleY(1.07) translateY(-3px)}}
+  /* cursor-as-weight: while "held", idle animations yield to JS-driven tilt */
+  .seesaw.held .plank,.seesaw.held .plank>span{animation:none}
+  .seesaw.held .plank{transition:transform .22s ease-out}
+  .seesaw.held .go-ball{transition:transform .5s cubic-bezier(.3,.8,.4,1)}
+  .seesaw.held .go-tri,.seesaw.held .go-cube{transition:transform .3s ease}
+
+  /* floating cake slices — the report's GDP cake, drifting by 🍰
+     Real artwork instead of hand-drawn CSS: Twemoji's shortcake SVG loaded
+     from CDN (like the page's chart libraries; attributed in the footer).
+     Color variants via --hue (hue-rotate); gentle bob & sway on the wrapper. */
+  .cake{position:absolute;width:calc(118px * var(--bgk,1));opacity:.55;
+    filter:hue-rotate(var(--hue,0deg)) saturate(.9);
+    transform:scale(var(--k,1)) rotate(var(--rot,0deg));
+    animation:cake-bob var(--cd,9s) ease-in-out infinite alternate;
+    animation-delay:var(--ct,0s)}
+  /* each slice keeps its own base tilt (--rot, -45..45deg) and sways ±2.5deg around it */
+  @keyframes cake-bob{from{transform:scale(var(--k,1)) translateY(0) rotate(calc(var(--rot,0deg) - 2.5deg))}
+    to{transform:scale(var(--k,1)) translateY(-11px) rotate(calc(var(--rot,0deg) + 2.5deg))}}
+
+  @media(max-width:1200px){.seesaw,.cake{opacity:.15}} /* behind content: fainter */
+  @media(prefers-reduced-motion:reduce){.playground *{animation:none!important}}
+
+  /* ============================================================
+     SIDENAV + SHELL — contents rail on the left (Jefferson design)
+     ============================================================ */
+  .shell{max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;
+    grid-template-columns:214px minmax(0,1fr);gap:38px;align-items:start;position:relative;z-index:1}
+  .body-col{min-width:0;grid-column:2} /* the fixed sidenav leaves the grid flow, so pin the body past the rail column */
+  .sidenav{position:fixed;top:50%;transform:translateY(-50%);
+    left:calc(max(0px,(100vw - 1360px)/2) + clamp(20px,4vw,48px));width:214px;z-index:5;
+    max-height:calc(100vh - 32px);overflow:auto;padding:18px 0;font-family:var(--body)}
+  .sidenav a{display:block;text-decoration:none;color:var(--muted);font-size:14px;
+    line-height:1.35;padding:6px 12px;border-radius:10px;transition:.15s;font-weight:600}
+  .sidenav a:hover{color:var(--ink);background:#f6ecd6}
+  .sidenav .toc-lead{font-weight:700;color:var(--ink)}
+  .sidenav .toc-group{margin:12px 0;padding-top:10px;border-top:2px dotted var(--line)}
+  .sidenav .toc-head{text-transform:uppercase;letter-spacing:.1em;font-size:12px;
+    font-weight:700;color:var(--tomato);margin-bottom:4px}
+  .sidenav .toc-head:hover{background:#fde4d8;color:var(--tomato)}
+  .sidenav .toc-group a:not(.toc-head){padding-left:16px}
+  @media (max-width:1040px){
+    .shell{display:block}
+    .sidenav{position:sticky;top:0;left:auto;transform:none;width:auto;z-index:20;
+      max-height:none;overflow-x:auto;overflow-y:hidden;white-space:nowrap;display:flex;
+      align-items:center;gap:4px;padding:8px 16px;background:rgba(255,248,236,.94);
+      backdrop-filter:blur(8px);border-bottom:2px dotted var(--line);margin-bottom:8px}
+    .sidenav .toc-group{display:contents}
+    .sidenav .toc-group,.sidenav .toc-head{border:0;margin:0}
+    .sidenav a{display:inline-block;white-space:nowrap;padding:6px 12px;border-radius:20px}
+    .sidenav .toc-group a:not(.toc-head){padding-left:12px}
+  }
+  section.qa{scroll-margin-top:24px}
+
+  /* topbar crumbs + bottom return bar (Jefferson pattern) */
+  .topbar .crumbs{font-size:13.5px}
+  .topbar .crumbs a{color:var(--sky);font-weight:700}
+  .topbar.bottom{border-top:2px dotted var(--line);border-bottom:none}
+
+  /* ============================================================
+     ACCESSIBILITY LAYER (Jefferson design, this page's palette)
+     Skip link · focus rings · read-aloud highlight · dyslexia font ·
+     text size · toolbar · reduced motion
+     ============================================================ */
+  @font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:400;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-400-normal.woff2') format('woff2')}
+  @font-face{font-family:'OpenDyslexic';font-style:normal;font-weight:700;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-700-normal.woff2') format('woff2')}
+  @font-face{font-family:'OpenDyslexic';font-style:italic;font-weight:400;font-display:swap;
+    src:url('https://cdn.jsdelivr.net/fontsource/fonts/opendyslexic@latest/latin-400-italic.woff2') format('woff2')}
+  /* OpenDyslexic's x-height is much larger than Quicksand's, so at equal px
+     it reads ~15% bigger (user calibration: dyslexic Small ≈ default Medium).
+     --dys:.87 downsizes it, and line-height stays ~1.65 (OpenDyslexic's own
+     tall glyph box already adds air), so switching barely moves the layout.
+     (jefferson_0705 doesn't compensate; this improves on the port.) */
+  body.dyslexic{
+    --display:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+    --body:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+    --hand:'OpenDyslexic','Segoe UI',Verdana,sans-serif;
+    --dys:.87;
+    letter-spacing:.02em;word-spacing:.03em;line-height:1.64}
+  body.dyslexic h1{font-size:calc(clamp(36px,7vw,66px) * var(--dys,1))}
+  body.dyslexic .answer h2{font-size:calc(clamp(22px,3.4vw,30px) * var(--dys,1))}
+  body.dyslexic .hero p{font-size:calc(clamp(17px,2.3vw,21px) * var(--dys,1))}
+  body.dyslexic .hero .cast{font-size:17px}
+  body.dyslexic .answer p,body.dyslexic .bubble,body.dyslexic li{line-height:1.66;text-align:left}
+  body.dyslexic h1,body.dyslexic h2{letter-spacing:0;line-height:1.25}
+
+  /* text size (multiplier consumed by body + .answer p) */
+  body{font-size:calc(16px * var(--fs,1) * var(--dys,1))}
+  body.font-small{--fs:.88}
+  body.font-large{--fs:1.15}
+  .bubble{font-size:calc(clamp(21px,3vw,27px) * var(--fs,1) * var(--dys,1))}
+  .tip{font-size:calc(13.5px * var(--fs,1) * var(--dys,1))}
+
+  /* skip link — first tab stop */
+  .skip{position:fixed;left:12px;top:-60px;z-index:100;background:var(--sky);color:#fff;
+    padding:11px 16px;border-radius:0 0 10px 10px;font-family:var(--body);font-weight:700;
+    text-decoration:none;transition:top .16s ease}
+  .skip:focus{top:0}
+
+  /* clear keyboard focus ring everywhere */
+  a:focus-visible,button:focus-visible,select:focus-visible,[tabindex]:focus-visible{
+    outline:3px solid var(--sky);outline-offset:2px;border-radius:4px}
+
+  /* read-aloud: current word + current block */
+  ::highlight(speech){background-color:rgba(242,177,52,.38);color:inherit;
+    text-decoration-line:underline;text-decoration-color:var(--tomato);
+    text-decoration-thickness:3px;text-underline-offset:3px}
+  .ar-active{background:linear-gradient(90deg,rgba(242,177,52,.14),rgba(242,177,52,.02));
+    border-radius:8px;box-shadow:0 0 0 6px rgba(242,177,52,.07)}
+
+  /* accessibility toolbar */
+  .a11y{position:fixed;right:16px;bottom:16px;z-index:70;font-family:var(--body);cursor:auto}
+  .a11y button,.a11y select,.a11y label{cursor:pointer}
+  .a11y-toggle{display:inline-flex;align-items:center;gap:8px;border:none;
+    background:var(--sky);color:#fff;border-radius:26px;padding:12px 17px;
+    font-family:var(--body);font-size:14px;font-weight:700;box-shadow:0 10px 26px -10px rgba(0,0,0,.5)}
+  .a11y-toggle:hover{background:#2179a3}
+  .a11y-toggle .ico{font-size:17px;line-height:1}
+  .a11y-panel{position:absolute;right:0;bottom:58px;width:280px;background:#fff;
+    border:2px solid var(--line);border-radius:16px;padding:16px;
+    box-shadow:0 22px 60px -22px rgba(0,0,0,.5);display:grid;gap:13px}
+  .a11y-panel[hidden]{display:none}
+  .a11y-panel .ttl{font-size:11px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.14em;color:var(--muted);margin:0}
+  .a11y-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .a11y-btn{flex:1 1 auto;background:#fdf6e7;border:2px solid var(--line);border-radius:11px;
+    padding:11px 12px;font-family:var(--body);font-size:14px;font-weight:600;color:var(--ink);
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px}
+  .a11y-btn:hover{background:#f6ecd6}
+  .a11y-btn.primary{background:var(--tomato);color:#fff;border-color:var(--tomato)}
+  .a11y-btn.primary:hover{background:#c94523}
+  .a11y-btn[aria-pressed="true"]{background:var(--grass);color:#fff;border-color:var(--grass)}
+  .a11y-btn:disabled{opacity:.5;cursor:not-allowed}
+  .a11y label{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:7px}
+  .a11y select{font:inherit;font-size:13px;padding:7px 8px;border-radius:9px;
+    border:2px solid var(--line);background:#fff;color:var(--ink)}
+  .a11y-status{margin:0;font-size:12.5px;color:var(--muted);min-height:1.15em;line-height:1.3}
+  @media (max-width:520px){.a11y-panel{width:min(280px,calc(100vw - 32px))}}
+
+  /* bigger default reading size on large screens (small screens keep 16.5px) */
+  @media (min-width:1200px){
+    body{font-size:calc(17px * var(--fs,1) * var(--dys,1))}
+    .answer p{font-size:calc(18px * var(--fs,1) * var(--dys,1))}
+    .tip{font-size:calc(14.5px * var(--fs,1) * var(--dys,1))}
+  }
+
+  /* honor reduced-motion globally */
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+      transition-duration:.001ms!important;scroll-behavior:auto!important}
+  }
+
+  /* ============================================================
+     SMALL SCREENS (laptop/tablet/phone) — jefferson_0705 approach:
+     everything scales down with the viewport. --bgk shrinks the
+     background shapes; the text boxes tighten below 700px.
+     ============================================================ */
+  :root{--bgk:1}
+  @media (max-width:1200px){:root{--bgk:.75}}
+  @media (max-width:700px){:root{--bgk:.5}}
+
+  @media (max-width:700px){
+    .wrap{padding:0 14px}
+    section.qa{padding:26px 0}
+    .avatar{width:38px;height:38px;font-size:20px}
+    .kid-q,.claude-a{gap:9px}
+    .bubble{padding:12px 15px}
+    .chart{padding:10px 8px 6px;border-radius:14px}
+    .chip{padding:8px 11px;border-radius:11px}
+    .kidcard{padding:10px 12px}
+    header.hero{padding:40px 0 24px}
+    /* narrower a11y button: icon stacked above the label (two lines) so it
+       overlaps less with text boxes and charts on small screens */
+    .a11y-toggle{flex-direction:column;gap:2px;padding:8px 11px;font-size:12px;
+      line-height:1.15;border-radius:16px}
+    .a11y-toggle .ico{font-size:19px}
+    .a11y-panel{bottom:72px}   /* clear the now-taller button */
+  }

@@ -1,0 +1,34 @@
+{% raw %}
+  <!-- Q9: FAMILY BUDGET -->
+  <section class="qa" id="q5-family-budget" style="--c:var(--tomato)">
+    <div class="kid-q"><div class="avatar">🧒</div>
+      <div class="bubble" style="--c:#ffd7b0"><span class="qn">Question 5</span>Wait — did you say two-thirds of the cake comes from <em>us</em>?</div></div>
+    <div class="claude-a"><div class="avatar">✦</div><div class="answer">
+      <h2>Mostly, yes — follow a dollar upstream and you'll usually find a family's wallet.</h2>
+      <p>Look back at the cake: about <strong>two-thirds</strong> of it — roughly <strong>68&cent; of every $1</strong> — is households like yours buying things. Grown-ups call it <strong>consumer spending</strong>. The shop's money comes from shoppers; the factory's money comes from the shop; the trucker's money comes from the factory. The rest of the cake is businesses building tools for later, governments, and trade with the rest of the world. So the economy's main engine isn't a bank or a boardroom — it's kitchen tables like yours. Welcome to the <strong>consumer world</strong>. 🛒</p>
+      <p>Let's zoom into one of those kitchen tables. The average US household spends about <strong>$78,500</strong> a year. The biggest bite by far is <strong>housing</strong> — about a third — then <strong>getting around</strong> (~17%), <strong>food</strong> (~13%), money <strong>set aside</strong> for savings &amp; insurance (~12%), and <strong>health care</strong> (~8%). The first four bites — home, wheels, food and savings — eat about 74&cent; of every dollar.</p>
+      <div class="chart" style="--c:var(--tomato)"><div class="chart-cap">Every dollar the average family spends, split into slices (BLS Consumer Expenditure Survey, 2024). The five <b>tan slices</b> used to hide inside one big "Everything else" — now you can see what's in it. <b>Hover</b> a slice for the exact dollars.</div><div id="famDonut" class="plot" style="height:560px"></div></div>
+      <p class="tip">"Housing" here is the whole home group: rent or mortgage, plus utilities and stuff for the house.</p>
+      <p class="tip">Note: consumer spending ÷ GDP ≈ 68% — 2025 quarterly average, BEA NIPA table 1.1.10 (FRED <b>DPCERE1Q156NBEA</b>). The other shares: business investment, government, and net exports.</p>
+    </div></div>
+
+    <div class="kid-q"><div class="avatar">🧒</div>
+      <div class="bubble" style="--c:#ffd7b0"><span class="qn">Your turn</span>Wow, so many stuff! If I had $1,000 to spend... how should I split it?</div></div>
+    <div class="claude-a"><div class="avatar">✦</div><div class="answer">
+      <h2>You tell me — try to spend $1,000 on what <em>you</em> value.</h2>
+      <p>Forget prices for a minute. Split <strong>$1,000</strong> by how much each thing <strong>matters to you</strong> — the roof, the rides, the food, the fun. Then press the button to see where a real family's money actually goes. The two won't match — and the gap is the interesting part.</p>
+      <div class="alloc">
+        <div class="alloc-grid" id="allocGrid"></div>
+        <div class="alloc-foot">
+          <div class="alloc-total ok" id="allocTotal">Spent: $1,000 / $1,000 ✓ all done</div>
+          <div class="alloc-actions">
+            <button class="alloc-btn" id="allocReset" type="button">Start over</button>
+            <button class="alloc-btn primary" id="allocCompare" type="button" aria-pressed="false">Compare with a real family</button>
+          </div>
+        </div>
+        <p class="alloc-takeaway" id="allocTakeaway" hidden></p>
+      </div>
+      <p class="tip">Real numbers: how the average US household splits its spending — BLS Consumer Expenditure Survey, 2024 — shown as dollars per $1,000. "Savings &amp; insurance" is money set aside, not spent; "Everything else" is school, gifts, haircuts and odds and ends.</p>
+    </div></div>
+  </section>
+{% endraw %}

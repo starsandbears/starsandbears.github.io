@@ -1,0 +1,22 @@
+{% raw %}
+  <!-- Q12: WHERE YOU LIVE -->
+  <section class="qa" id="q8-where-you-live" style="--c:var(--sky)">
+    <div class="kid-q"><div class="avatar">🧒</div>
+      <div class="bubble" style="--c:#bfe6f5"><span class="qn">Question 8</span>Does our family spend the same as families in other states?</div></div>
+    <div class="claude-a"><div class="avatar">✦</div><div class="answer">
+      <h2>No — where you live changes both <em>how much</em> you spend and <em>on what</em>.</h2>
+      <p>People in richer, pricier states spend more per person; people in cheaper states spend less. On this map, darker means <strong>more spending per person</strong> each year — the Northeast and West Coast glow darkest, the South is lighter.</p>
+      <div class="chart" style="--c:var(--sky)"><div class="chart-cap">Spending per person by state, 2024 (BEA). Darker = more. <b>Hover</b> a state. (Alaska &amp; Hawaii left off to keep the map tidy.)</div><div id="ae6e5f8a-5085-421e-bb7f-7979adfcedc8" data-root-id="p1450" style="display: contents;"></div></div>
+      <p>And the <em>mix</em> shifts too. Pick any state below to see how its spending splits across the big categories — housing takes a giant bite in expensive states, and the slices look different where homes are cheaper.</p>
+      <div class="state-picker">
+        <label for="spendSel">🗺️ Show me:</label>
+        <select id="spendSel" aria-label="Choose a state to see its spending mix"></select>
+      </div>
+      <div class="chart" style="--c:var(--sky)">
+        <div class="chart-cap">Per-person spending by category (BEA PCE by state, 2024), next to the <b>US average (grey)</b> when a state is picked. What's still in "Everything else": personal care, tobacco, magazines, jewelry, donations to churches &amp; charities, and other odds and ends.</div>
+        <div id="spendState" class="plot" style="height:460px"></div>
+      </div>
+      <p class="tip"><b>Heads up — a different ruler.</b> This state chart uses <b>BEA "PCE"</b>: spending <em>per person</em>, and it counts money spent <em>for</em> you too (like the part of a doctor bill your insurance or the government pays). So its numbers run bigger — especially <b>health care</b> — than the family-budget pizzas above, which come from a survey of what households pay out of their own pockets. It's the only spending data that exists for every state, so it's great for comparing places — just not an apples-to-apples match with the family budget.</p>
+    </div></div>
+  </section>
+{% endraw %}

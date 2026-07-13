@@ -1,0 +1,37 @@
+{% raw %}
+<footer class="wrap" id="sources">
+  <h3>Where the numbers come from</h3>
+  <p>Same real data as the grown-up report — just told as a bedtime story. All figures from primary US government and academic sources.</p>
+  <ul>
+    <li><b>Where money comes from (the two nurseries):</b> Bank of England, <a href="https://www.bankofengland.co.uk/quarterly-bulletin/2014/q1/money-creation-in-the-modern-economy">&ldquo;Money creation in the modern economy&rdquo;</a> (Quarterly Bulletin 2014 Q1) — bank lending creates deposits; the money-lifecycle picture follows that mechanism.</li>
+    <li><b>Money piles (M2 &amp; the treasure it left behind):</b> M2 money stock from FRED <a href="https://fred.stlouisfed.org/series/M2SL">M2SL</a> (~$22T, annual average); families' net worth (~$180T) from the Fed's Z.1 Financial Accounts, table B.101 (FRED <a href="https://fred.stlouisfed.org/series/TNWBSHNO">TNWBSHNO</a>).</li>
+    <li><b>Follow the money (who holds it):</b> Federal Reserve, <a href="https://www.federalreserve.gov/releases/z1/">Z.1 Financial Accounts</a>, holder-side accounts by sector, Q1 2026. Context figures outside M2: bank reserves (FRED <a href="https://fred.stlouisfed.org/series/WRESBAL">WRESBAL</a>, ~$3.1T) and the Treasury General Account (FRED <a href="https://fred.stlouisfed.org/series/WTREGEN">WTREGEN</a>, ~$0.8T).</li>
+    <li><b>Question 1 (the cake &amp; its layers, 2025):</b> U.S. Bureau of Economic Analysis, <a href="https://www.bea.gov/data/gdp/gdp-industry">GDP by Industry</a> (value added, full-year 2025). How the layers changed, 2005–2025: same BEA series via <a href="https://fred.stlouisfed.org/release?rid=51">FRED</a> (quarterly series averaged to annual and divided by GDP) — Manufacturing fell from ~13% to 9.4% while professional/tech, health care, finance and information rose.</li>
+    <li><b>Question 2 (the bakers: jobs, pay &amp; the poverty line):</b> U.S. Bureau of Labor Statistics, <a href="https://www.bls.gov/cew/">QCEW</a> — employment and average annual pay per worker by NAICS sector, 2025 (Accommodation &amp; food services $30,935; Information $184,220). Poverty line = 2025 <a href="https://aspe.hhs.gov/topics/poverty-economic-mobility/poverty-guidelines">HHS poverty guideline</a> for a family of four, $32,150 (48 contiguous states). Money flowing <i>through</i> industries: BEA <a href="https://www.bea.gov/data/industries/gross-output-by-industry">Gross Output by Industry</a> via FRED (all-industry gross output ≈$53T, 2025) — M2 is a money <i>stock</i>; gross output and GDP are annual <i>flows</i>.</li>
+    <li><b>Pick your state (the state picker):</b> GDP by industry by state from BEA <a href="https://www.bea.gov/data/gdp/gdp-by-state">SAGDP2</a> (nominal, 2025); jobs &amp; pay by industry by state from BLS <a href="https://www.bls.gov/cew/">QCEW</a> (2025). Private industries are private-sector; "Government" is federal + state + local combined. State figures may differ slightly from the national charts (the private/government split).</li>
+    <li><b>Question 3 (profits — cents kept):</b> Aswath Damodaran (NYU Stern), <a href="https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/margin.html">Margins by Sector</a>, Jan 2026 (US-listed firms).</li>
+    <li><b>Question 4 (what's &ldquo;worth&rdquo; — value &amp; taxes):</b> &ldquo;Value added&rdquo; = each industry's contribution to GDP (BEA, GDP by Industry). Family paycheck split from the BLS <a href="https://www.bls.gov/opub/reports/consumer-expenditures/2023/">Consumer Expenditure Survey, 2023</a> — income before taxes $101,805, after taxes $87,869 (income taxes ≈$13,936), spending $77,280. Kept whole-vintage 2023 (not 2024) because BLS paused its tax estimate in the 2024 release — every piece here is a direct published figure, no estimates.</li>
+    <li><b>Question 5 (the family budget &amp; the $1,000 game):</b> BLS <a href="https://www.bls.gov/news.release/cesan.nr0.htm">Consumer Expenditure Survey, 2024</a> ($78,535 average household spending). Consumer spending ≈68% of GDP: BEA NIPA table 1.1.10 (FRED <a href="https://fred.stlouisfed.org/series/DPCERE1Q156NBEA">DPCERE1Q156NBEA</a>, 2025 quarterly average).</li>
+    <li><b>Question 6 (spending over 40 years):</b> BLS Consumer Expenditure Survey historical tables, 1984–2024 — each category's share of spending, and the dollars, per year.</li>
+    <li><b>Question 7 (spending by age &amp; Engel's law):</b> BLS Consumer Expenditure Survey, 2024 — tables by age of reference person and by income quintile.</li>
+    <li><b>Question 8 (spending where you live):</b> BEA <a href="https://www.bea.gov/data/consumer-spending/state">Personal Consumption Expenditures by State</a>, 2024 — per-person totals (SAPCE2) and category detail (SAPCE3).</li>
+    <li><b>Question 9 (supply vs. the crowd):</b> population from FRED <a href="https://fred.stlouisfed.org/series/POPTHM">POPTHM</a>; housing units from the Census Housing Vacancy Survey (FRED <a href="https://fred.stlouisfed.org/series/ETOTALUSQ176N">ETOTALUSQ176N</a>); registered vehicles from FHWA <a href="https://www.fhwa.dot.gov/policyinformation/statistics/2023/mv1.cfm">Highway Statistics MV-1</a> (through 2023); hospital beds per 1,000 people (including the 1980 ≈6-per-1,000 figure) from the <a href="https://data.worldbank.org/indicator/SH.MED.BEDS.ZS?locations=US">World Bank / OECD</a> (through 2022).</li>
+    <li><b>Background cake artwork:</b> the 🍰 slices are from <a href="https://github.com/jdecked/twemoji">Twemoji</a>, © Twitter/X &amp; contributors, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>.</li>
+  </ul>
+  <p class="disc"><b>For grown-ups:</b> This is a friendly explainer, not investment, financial, or legal advice. Figures are from third-party sources believed reliable but may be revised. The full source list, data vintages, and cross-checks live beside this page in <code>data/</code> (its README.md and sources.md).</p>
+
+  <div class="visitors">
+    <h3>Visitor footprints 🐾</h3>
+    <p>Page visits, counted by <a href="https://hits.sh">hits.sh</a>
+      (a simple public counter — no cookies, nothing personal stored):
+      <img class="hits" alt="visit counter"
+           src="https://hits.sh/starsandbears.github.io/economy/industries_0712/us-econ-and-money-intro.html.svg?style=flat-square&label=visits&color=2f9fd1&labelColor=3d2f24"></p>
+    <!-- WORLD-MAP WIDGET SLOT ————————————————————————————————————————
+         To show footprints on a world map (a dot per reader), generate a
+         free widget at https://clustrmaps.com (Map widget → enter
+         https://starsandbears.github.io → copy the snippet — no account
+         needed) and paste the <script> it gives you RIGHT HERE, replacing
+         this comment. It starts collecting dots from that moment on. -->
+  </div>
+</footer>
+{% endraw %}

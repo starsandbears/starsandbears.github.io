@@ -1,0 +1,49 @@
+{% raw %}
+  <!-- Q1: GDP -->
+  <section class="qa" id="q1-gdp-cake" style="--c:var(--tomato)">
+
+    <div class="kid-q">
+      <div class="avatar">🧒</div>
+      <div class="bubble" style="--c:#c8ebc9"><span class="qn">Rich yet?</span>So does that giant $22 trillion pile mean our country is <em>rich</em>?</div>
+    </div>
+    <div class="claude-a">
+      <div class="avatar">✦</div>
+      <div class="answer">
+        <h2>Not really! A country isn't rich because money sits in its piggy bank — it's rich because of the giant cake it bakes every year: <em>GDP</em>.</h2>
+        <p>To measure how rich a country is, we don't count the cash lying around. That pile is just our ready money. The treasure it left behind — <strong>net worth</strong> — is one answer: what we <em>own</em>. But economists' favorite ruler counts something livelier: all the <strong>new stuff and useful work</strong> everyone makes in a year (houses built, meals served, apps written, patients cared for). That grand total is <strong>Gross Domestic Product (GDP)</strong> &mdash; about <strong>$30.8 trillion</strong> for the US, and we picture it as one giant <strong>cake</strong> to share.</p> 
+      </div>
+    </div>
+
+    <div class="kid-q">
+      <div class="avatar">🧒</div>
+      <div class="bubble" style="--c:#ffd7b0"><span class="qn">Question 1</span>Then… what are the flavors of the cake?</div>
+    </div>
+    <div class="claude-a">
+      <div class="avatar">✦</div>
+      <div class="answer">
+        <h2>Great question. The $30.8 <em>trillion</em> cake has <strong>20 layers</strong> — each with its own flavor.</h2>
+        <p>Think of every kind of business as one <strong>layer</strong> of the cake, with its own <strong>flavor</strong> — housing, health care, food, computers and books. A layer's <strong>thickness</strong> is how much <strong>value</strong> it adds. The surprise? The thickest layer isn't toys, or even computers — it's <strong>houses and apartments</strong> (a flavor we call "real estate"), because everybody needs a place to live.</p>
+        <div class="chips" style="--c:var(--tomato)">
+          <div class="chip"><b>$30.8T</b><span>size of the cake (2025)</span></div>
+          <div class="chip"><b>Real estate</b><span>thickest layer · 14%</span></div>
+          <div class="chip"><b>20</b><span>different flavors</span></div>
+        </div>
+        <div class="chart" id="fig-gdptree" style="--c:var(--tomato)">
+          <div class="chart-cap">Each rectangle is one layer of the cake — one flavor. <b>Hover or tap</b> it to taste what's inside.</div>
+          <div id="gdpTree" class="plot" style="height:500px"></div>
+        </div>
+        <div id="gdpDetail" class="kidcard ph"><p>👆 Touch any flavor above to find out what that part of the economy actually does — and some companies you might know.</p></div>
+        <p style="margin-top:22px"><strong>Has the cake always tasted like this?</strong> Nope — the recipe slowly changes. Over the last 20 years the "<strong>making things</strong>" layer got thinner while the "<strong>services &amp; ideas</strong>" layers got thicker. <strong>Manufacturing</strong> slid from about <strong>13% of the cake down to 9%</strong>, while <strong>professional &amp; tech work</strong>, <strong>health care</strong> and <strong>information</strong> all climbed.</p>
+        <div class="chart" id="fig-gdptime" style="--c:var(--tomato)">
+          <div class="chart-cap">Each line is one big layer's share of the whole cake, every year from 2005 to 2025. Sliding down = a thinning layer; climbing = a thickening one. <b>Hover</b> a line.</div>
+          <div id="gdpTime" class="plot" style="height:460px"></div>
+        </div>
+        <p>Those are the layers as <em>shares</em> of the cake. In plain <strong>dollars</strong>, every layer grew, because the whole cake swelled from about <strong>$13 trillion</strong> in 2005 to <strong>$30.8 trillion</strong> in 2025. Even manufacturing's thinning share means <em>more dollars</em> than before (about $1.7T → $2.9T) — its layer grew <em>slower than the cake</em>; it didn't shrink. And remember: part of every line's climb is just prices going up over the years (<em>inflation</em>), not only more stuff.</p>
+        <div class="chart" id="fig-vadollars" style="--c:var(--tomato)">
+          <div class="chart-cap">The same six layers, now in <b>dollars of new value per year</b> instead of shares. Every line climbs — these are each year's own dollars (not inflation-adjusted), so part of the climb is rising prices. <b>Hover</b> a line.</div>
+          <div id="vaDollars" class="plot" style="height:460px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endraw %}

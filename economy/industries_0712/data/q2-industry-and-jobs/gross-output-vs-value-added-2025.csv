@@ -1,0 +1,11 @@
+industry,gross_output_bn,value_added_bn,va_share_of_go_pct,year,source
+Construction,2534.7,1341.3,53,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Information,2858.1,1695.1,59,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Retail trade,2955.7,1921.8,65,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Wholesale trade,3136.2,1905.4,61,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Professional & tech,3689.8,2494.2,68,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Health care,3843.9,2371.1,62,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Finance & insurance,4433.0,2441.9,55,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Government,5668.5,3447.0,61,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Real estate,6118.4,4238.6,69,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"
+Manufacturing,7254.8,2896.5,40,2025,"BEA GDP-by-Industry via FRED (gross output GO*, qtr avg to annual); value added = 2025 cake"

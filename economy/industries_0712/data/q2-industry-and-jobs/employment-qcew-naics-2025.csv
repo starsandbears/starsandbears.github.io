@@ -1,0 +1,23 @@
+sector,naics,employment_millions,share_pct,qcew_basis
+"Health care & social assistance",62,22.981,14.76,own5
+"Government","fed+state+local",22.568,14.50,"own1+2+3, ind10"
+"Retail trade","44-45",15.388,9.88,own5
+"Accommodation & food services",72,14.112,9.07,own5
+"Manufacturing","31-33",12.578,8.08,own5
+"Professional, scientific & technical",54,10.742,6.90,own5
+"Administrative & waste services",56,9.022,5.79,own5
+"Construction",23,8.246,5.30,own5
+"Transportation & warehousing","48-49",6.619,4.25,own5
+"Finance & insurance",52,6.315,4.06,own5
+"Wholesale trade",42,6.037,3.88,own5
+"Other services",81,4.672,3.00,own5
+"Educational services, private",61,3.245,2.08,own5
+"Information",51,2.849,1.83,own5
+"Arts, entertainment & recreation",71,2.667,1.71,own5
+"Management of companies",55,2.604,1.67,own5
+"Real estate, rental & leasing",53,2.409,1.55,own5
+"Agriculture, forestry, fishing & hunting",11,1.231,0.79,"own5, agglvl14"
+"Utilities",22,0.602,0.39,own5
+"Mining",21,0.571,0.37,own5
+"Unclassified, private",99,0.228,0.15,own5
+"Total covered employment","",155.686,100.00,"own0, ind10"

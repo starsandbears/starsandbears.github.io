@@ -1,0 +1,291 @@
+{% raw %}
+<!-- Accessibility toolbar (design ported from history/jefferson_0705):
+     read-aloud with live word highlighting, dyslexia-friendly font,
+     and text-size controls. Styles live in style.css. -->
+<div class="a11y">
+  <button class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel">
+    <span class="ico" aria-hidden="true">&#9855;</span> Accessibility
+  </button>
+  <div class="a11y-panel" id="a11yPanel" role="region" aria-label="Accessibility tools" hidden>
+    <p class="ttl">Read aloud</p>
+    <div class="a11y-row">
+      <button class="a11y-btn primary" id="arPlay" aria-pressed="false">
+        <span aria-hidden="true">&#9654;</span> <span id="arPlayLabel">Read aloud</span>
+      </button>
+      <button class="a11y-btn" id="arStop">Stop</button>
+    </div>
+    <div class="a11y-row">
+      <label for="arRate">Speed
+        <select id="arRate">
+          <option value="0.8">0.8&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.25">1.25&times;</option>
+          <option value="1.5">1.5&times;</option>
+        </select>
+      </label>
+    </div>
+    <p class="ttl">Reading comfort</p>
+    <div class="a11y-row">
+      <button class="a11y-btn" id="dysToggle" aria-pressed="false">Dyslexia-friendly font</button>
+    </div>
+    <p class="ttl">Text size</p>
+    <div class="a11y-row" role="group" aria-label="Text size">
+      <button class="a11y-btn" id="fsSmall" aria-pressed="false">Small</button>
+      <button class="a11y-btn" id="fsMedium" aria-pressed="true">Medium</button>
+      <button class="a11y-btn" id="fsLarge" aria-pressed="false">Large</button>
+    </div>
+    <p class="a11y-status" id="arStatus" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduceMotion = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- panel open/close ---------- */
+  var toggle = document.getElementById('a11yToggle');
+  var panel  = document.getElementById('a11yPanel');
+  toggle.addEventListener('click', function(){
+    var open = panel.hasAttribute('hidden');
+    if(open){ panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden',''); }
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && !panel.hasAttribute('hidden')){
+      panel.setAttribute('hidden',''); toggle.setAttribute('aria-expanded','false'); toggle.focus();
+    }
+  });
+
+  /* ---------- dyslexia-friendly font (persisted) ---------- */
+  var dysToggle = document.getElementById('dysToggle');
+  function setDyslexic(on){
+    document.body.classList.toggle('dyslexic', on);
+    dysToggle.setAttribute('aria-pressed', on ? 'true' : 'false');
+    try{ localStorage.setItem('sb-dyslexic', on ? '1' : '0'); }catch(_){}
+  }
+  dysToggle.addEventListener('click', function(){
+    setDyslexic(!document.body.classList.contains('dyslexic'));
+  });
+  try{ if(localStorage.getItem('sb-dyslexic') === '1') setDyslexic(true); }catch(_){}
+
+  /* ---------- text size: small / medium / large (persisted) ---------- */
+  var fsButtons = { small:  document.getElementById('fsSmall'),
+                    medium: document.getElementById('fsMedium'),
+                    large:  document.getElementById('fsLarge') };
+  function setFontSize(size){
+    if(!fsButtons[size]) size = 'medium';
+    document.body.classList.toggle('font-small', size === 'small');
+    document.body.classList.toggle('font-large', size === 'large');
+    for(var k in fsButtons){ fsButtons[k].setAttribute('aria-pressed', k === size ? 'true' : 'false'); }
+    try{ localStorage.setItem('sb-fontsize', size); }catch(_){}
+  }
+  fsButtons.small.addEventListener('click',  function(){ setFontSize('small');  });
+  fsButtons.medium.addEventListener('click', function(){ setFontSize('medium'); });
+  fsButtons.large.addEventListener('click',  function(){ setFontSize('large');  });
+  try{
+    var savedFs = localStorage.getItem('sb-fontsize');
+    if(savedFs && savedFs !== 'medium') setFontSize(savedFs);
+  }catch(_){}
+
+  /* ---------- read aloud with live word highlighting ---------- */
+  var supported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  var hlOK = !!(window.CSS && CSS.highlights && window.Highlight);
+  var hl = null;
+  if(hlOK){ hl = new Highlight(); CSS.highlights.set('speech', hl); }
+
+  var playBtn = document.getElementById('arPlay');
+  var playLbl = document.getElementById('arPlayLabel');
+  var stopBtn = document.getElementById('arStop');
+  var rateSel = document.getElementById('arRate');
+  var statusEl = document.getElementById('arStatus');
+
+  var blocks = [];    // { el, text, map:[{node,offset}|null] }
+  var segments = [];  // { b, start, end, text }
+  var segIdx = -1;
+  var active = false, paused = false, gen = 0, rate = 1;
+  var currentBlock = null, keepAlive = null, voice = null;
+
+  function status(msg){ statusEl.textContent = msg; }
+
+  if(!supported){
+    playBtn.disabled = true; stopBtn.disabled = true;
+    status('Your browser does not support read-aloud.');
+  } else {
+    try{ var r = localStorage.getItem('sb-rate'); if(r){ rate = parseFloat(r) || 1; rateSel.value = String(rate); } }catch(_){}
+    pickVoice();
+    if(typeof speechSynthesis !== 'undefined') speechSynthesis.onvoiceschanged = pickVoice;
+    window.addEventListener('beforeunload', function(){ try{ speechSynthesis.cancel(); }catch(_){} });
+  }
+
+  function pickVoice(){
+    try{
+      var vs = speechSynthesis.getVoices() || [];
+      voice = vs.filter(function(v){ return /^en(\b|[-_])/i.test(v.lang); })[0] || vs[0] || null;
+    }catch(_){ voice = null; }
+  }
+
+  /* Build spoken text + a char->DOM map for one element,
+     skipping aria-hidden bits and turning <br> into a space. */
+  function buildReadable(el){
+    var S = '', map = [];
+    function pushText(node){
+      var t = node.nodeValue;
+      for(var i=0;i<t.length;i++){ S += t[i]; map.push({node:node, offset:i}); }
+    }
+    function pushGap(){ S += ' '; map.push(null); }
+    (function walk(n){
+      var kids = n.childNodes;
+      for(var i=0;i<kids.length;i++){
+        var c = kids[i];
+        if(c.nodeType === 3){ pushText(c); }
+        else if(c.nodeType === 1){
+          if(c.getAttribute && c.getAttribute('aria-hidden') === 'true') continue;
+          var tag = c.tagName.toLowerCase();
+          if(tag === 'br'){ pushGap(); continue; }
+          if(tag === 'script' || tag === 'style' || tag === 'svg') continue;
+          walk(c);
+          if(S.length && S[S.length - 1] !== ' ') pushGap();
+        }
+      }
+    })(el);
+    return { text:S, map:map };
+  }
+
+  function collect(){
+    var sel = [
+      'header.hero h1','header.hero p',
+      '.bubble','.answer h2','.answer p',
+      '.chart-cap','.alloc-takeaway',
+      '#sources h3','#sources li','#sources .disc'
+    ].join(',');
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    blocks = []; segments = [];
+    els.forEach(function(el){
+      var r = buildReadable(el);
+      if(!/\S/.test(r.text)) return;
+      var b = { el:el, text:r.text, map:r.map };
+      blocks.push(b);
+      // split into sentence-ish segments to dodge the ~15s Chrome cutoff
+      var re = /[^.!?]*[.!?]+["')\]]*\s*|[^.!?]+\s*$/g, m, any = false;
+      while((m = re.exec(r.text)) !== null){
+        if(m[0].length === 0){ re.lastIndex++; continue; }
+        if(/\S/.test(m[0])){ segments.push({ b:b, start:m.index, end:m.index + m[0].length, text:m[0] }); any = true; }
+      }
+      if(!any) segments.push({ b:b, start:0, end:r.text.length, text:r.text });
+    });
+  }
+
+  function clearHighlight(){ if(hl) hl.clear(); }
+  function clearActive(){ if(currentBlock){ currentBlock.el.classList.remove('ar-active'); currentBlock = null; } }
+
+  var wordRe = /\S/;
+  function highlightWord(b, ci){
+    if(!hl) return;
+    var S = b.text, map = b.map;
+    if(ci >= S.length) return;
+    var s = ci; while(s < S.length && !wordRe.test(S[s])) s++;
+    if(s >= S.length) return;
+    var e = s; while(e < S.length && wordRe.test(S[e])) e++;
+    var a = map[s], z = map[e-1];
+    if(!a || !z) return;
+    try{
+      var range = document.createRange();
+      range.setStart(a.node, a.offset);
+      range.setEnd(z.node, z.offset + 1);
+      hl.clear(); hl.add(range);
+      ensureVisible(range);
+    }catch(_){}
+  }
+
+  function ensureVisible(range){
+    var rect = range.getBoundingClientRect();
+    if(!rect || (rect.top === 0 && rect.bottom === 0)) return;
+    var pad = 96;
+    if(rect.top < pad || rect.bottom > (window.innerHeight - pad)){
+      var y = window.scrollY + rect.top - window.innerHeight * 0.38;
+      window.scrollTo({ top: Math.max(0, y), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
+  }
+
+  function speakSeg(i){
+    if(!active) return;
+    if(i >= segments.length){ finish(); return; }
+    segIdx = i;
+    var seg = segments[i], myGen = gen;
+    if(currentBlock !== seg.b){
+      clearActive();
+      currentBlock = seg.b; currentBlock.el.classList.add('ar-active');
+      status('Reading — ' + (blocks.indexOf(seg.b) + 1) + ' of ' + blocks.length);
+    }
+    var u = new SpeechSynthesisUtterance(seg.text);
+    u.rate = rate; u.lang = 'en-US'; if(voice) u.voice = voice;
+    u.onboundary = function(ev){
+      if(myGen !== gen) return;
+      if(ev.charIndex == null) return;
+      if(ev.name && ev.name !== 'word') return;
+      highlightWord(seg.b, seg.start + ev.charIndex);
+    };
+    u.onend = function(){ if(myGen !== gen || !active || paused) return; speakSeg(i + 1); };
+    try{ speechSynthesis.speak(u); }catch(_){ status('Read-aloud failed to start.'); stop(); }
+  }
+
+  function startKeepAlive(){
+    stopKeepAlive();
+    keepAlive = setInterval(function(){       // Chrome pauses long sessions; nudge it awake
+      if(active && !paused){ try{ speechSynthesis.resume(); }catch(_){} }
+    }, 9000);
+  }
+  function stopKeepAlive(){ if(keepAlive){ clearInterval(keepAlive); keepAlive = null; } }
+
+  function setBtn(){
+    var reading = active && !paused;
+    playBtn.setAttribute('aria-pressed', reading ? 'true' : 'false');
+    playLbl.textContent = reading ? 'Pause' : (paused ? 'Resume' : 'Read aloud');
+  }
+
+  function play(){
+    if(!supported) return;
+    if(paused){ paused = false; try{ speechSynthesis.resume(); }catch(_){} startKeepAlive(); setBtn(); status('Reading…'); return; }
+    if(active) return;
+    if(!segments.length) collect();
+    if(!segments.length){ status('Nothing to read here.'); return; }
+    active = true; paused = false; gen++;
+    setBtn(); startKeepAlive();
+    var start = (segIdx >= 0 && segIdx < segments.length) ? segIdx : 0;
+    try{ speechSynthesis.cancel(); }catch(_){}
+    speakSeg(start);
+  }
+
+  function pause(){
+    if(!active || paused) return;
+    paused = true; try{ speechSynthesis.pause(); }catch(_){}
+    stopKeepAlive(); setBtn(); status('Paused.');
+  }
+
+  function stop(){
+    active = false; paused = false; gen++;
+    try{ speechSynthesis.cancel(); }catch(_){}
+    stopKeepAlive(); clearHighlight(); clearActive();
+    segIdx = -1; setBtn(); status('Stopped.');
+  }
+
+  function finish(){
+    active = false; paused = false; gen++;
+    stopKeepAlive(); clearHighlight(); clearActive();
+    segIdx = -1; setBtn(); status('Finished reading.');
+  }
+
+  playBtn.addEventListener('click', function(){ if(active && !paused){ pause(); } else { play(); } });
+  stopBtn.addEventListener('click', stop);
+  rateSel.addEventListener('change', function(){
+    rate = parseFloat(rateSel.value) || 1;
+    try{ localStorage.setItem('sb-rate', String(rate)); }catch(_){}
+    if(active){                               // re-speak current segment at the new speed
+      gen++; try{ speechSynthesis.cancel(); }catch(_){}
+      var resume = segIdx; active = true; paused = false; setBtn(); startKeepAlive(); speakSeg(resume);
+    }
+  });
+})();
+</script>
+{% endraw %}

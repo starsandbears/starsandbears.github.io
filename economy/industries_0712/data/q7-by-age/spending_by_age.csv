@@ -1,0 +1,8 @@
+age_group,income_before_taxes,total_expenditures,food,shelter,utilities_fuels_public_services,household_other,apparel,transportation,healthcare,entertainment,education,personal_insurance_pensions,other,year,source
+Under 25,48514,47283,7215,12050,2181,2622,1541,9243,1485,1835,2652,4428,2031,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"
+25-34,102494,74475,9630,17656,4076,4649,2220,12802,3825,3224,1418,10701,4274,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"
+35-44,128285,91229,12460,18728,5053,6589,2649,15581,5949,4128,1445,13465,5182,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"
+45-54,141121,100327,12772,19283,5779,5685,2547,17184,6748,4803,3181,14948,7397,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"
+55-64,121571,84946,10214,16507,5138,5374,2032,15085,6711,3706,1856,12172,6151,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"
+65-74,75460,65354,8483,12749,4653,4928,1377,11414,7715,3122,482,4579,5852,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"
+75+,56028,55834,7168,13346,4234,4419,942,6855,7918,2888,354,1908,5802,2024,"BLS Consumer Expenditure Survey 2024, Table by age of reference person; via BLS/FRED series CXU*LB040xM; released 2025-12-19"

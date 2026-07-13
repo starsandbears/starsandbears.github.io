@@ -1,0 +1,252 @@
+---
+---
+{% raw %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Economy Boat &amp; Our Money, Explained to My 8-Year-Old</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-3.9.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-widgets-3.9.1.min.js"></script>
+<script src="https://cdn.bokeh.org/bokeh/release/bokeh-tables-3.9.1.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- decorative background: the balance playground (styles in style.css).
+     Anchored to the document, so it scrolls WITH the text. The shapes are
+     GENERATED from the config in the script below: the pattern repeats down the
+     page (16 seesaws + 18 tilted cakes), with jittered x positions so
+     nothing lines up vertically. Edit the SAWS/CAKES arrays to tune. -->
+<div class="playground" aria-hidden="true"></div>
+
+<script>
+/* Populate the playground. Each row is one shape:
+   SAWS:  [y %, side, x vw, scale, duration s, delay s, tilt deg, palette#]
+   CAKES: [y %, side, x vw, scale, duration s, delay s, hue-rotate deg, tilt deg]
+   Larger shapes keep small x (near the edge); far-in x uses smaller scales,
+   so nothing bulky sits behind the text column. */
+(function () {
+  var PAL = [  /* ball, ball-highlight, triangle, cube */
+    ['#2f9fd1','#a5d9f0','#e8552d','#f2b134'],
+    ['#8a5cc4','#cdb3ea','#57a75a','#d94f7a'],
+    ['#f2b134','#fbdf9d','#2fa89a','#2f9fd1'],
+    ['#d94f7a','#f6cfdd','#2f9fd1','#f2b134'],
+    ['#57a75a','#c8ebc9','#f2b134','#8a5cc4']
+  ];
+  var SAWS = [
+    [2.5,'l', 7, 1,  12,  0, 7, 0], [8, 'r',11, .8, 15, -4, 6, 3],
+    [14, 'r',3.5,.9, 16, -6, 8, 1], [20,'l',12, .75,13, -2, 7, 2],
+    [26, 'l',1.5,.85,19,-13, 6, 4], [32,'r', 8, .9, 14, -9, 7, 0],
+    [38, 'r', 2, .8, 17, -5, 8, 3], [44,'l',10, .8, 15,-11, 6, 1],
+    [50, 'l', 4, .9, 17, -3, 8, 2], [56,'r',13, .7, 12, -7, 7, 4],
+    [62, 'r',4.5,.8, 15,-11, 6, 3], [68,'l', 6, .85,18, -1, 7, 0],
+    [74, 'l', 9, .75,14, -8, 8, 1], [80,'r', 6, .9, 16,-12, 7, 2],
+    [86, 'r',12, .7, 13, -2, 6, 4], [92,'l', 2, .95,18, -6, 8, 0]
+  ];
+  /* last column = base tilt (deg, -45..45) for visual variety */
+  var CAKES = [
+    [5, 'r', 4, 1.15, 9,  0,   0, -12], [10,'l', 9, .85,11, -4, 255,  35],
+    [16,'r',13, .8,  13, -8, 130, -40], [21,'l', 5, 1.05,10, -2,  40,  18],
+    [27,'r', 7, .95, 12, -6, 300,  45], [32,'l', 2, 1.1, 14,-10, 200, -25],
+    [37,'l',13, .75,  9, -3,  25,   8], [43,'r',10, .85, 11, -7, 160, -33],
+    [48,'r',2.5,1.2, 13, -1, 285,  25], [53,'l',11, .8,  10, -5,  80, -45],
+    [59,'l', 3, 1.05,12, -9, 330,  40], [64,'r', 8, .9,  14, -4, 110, -18],
+    [69,'r',14, .7,  11, -6,  60,  30], [75,'l', 7, 1,   13, -3, 220, -38],
+    [80,'l',12, .75, 10, -8, 175,  12], [85,'r', 5, 1.1, 12, -2, 315, -28],
+    [90,'r',10, .8,  14, -7,  95,  42], [95,'l', 4, .95, 11, -5, 145,  -5]
+  ];
+  var SRC = 'https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f370.svg';
+  var html = SAWS.map(function (s) {
+    var p = PAL[s[7]];
+    return '<div class="seesaw' + (s[1] === 'r' ? ' flip' : '') + '" style="' +
+      (s[1] === 'r' ? 'right:' : 'left:') + s[2] + 'vw;top:' + s[0] + '%;' +
+      '--s:' + s[3] + ';--d:' + s[4] + 's;--t:' + s[5] + 's;--tilt:' + s[6] + 'deg;' +
+      '--c1:' + p[0] + ';--hi:' + p[1] + ';--c2:' + p[2] + ';--c3:' + p[3] + '">' +
+      '<div class="plank"><span class="go-ball"></span><span class="go-tri"></span>' +
+      '<span class="go-cube"></span></div><div class="fulcrum"></div></div>';
+  }).join('') + CAKES.map(function (c) {
+    return '<img class="cake" alt="" src="' + SRC + '" style="' +
+      (c[1] === 'r' ? 'right:' : 'left:') + c[2] + 'vw;top:' + c[0] + '%;' +
+      '--k:' + c[3] + ';--cd:' + c[4] + 's;--ct:' + c[5] + 's;--hue:' + c[6] + 'deg;' +
+      '--rot:' + c[7] + 'deg">';
+  }).join('');
+  document.querySelector('.playground').innerHTML = html;
+})();
+</script>
+
+<script>
+/* Cursor-as-weight for the background seesaws. The pointer acts like an
+   extra block set on the plank: tilt = lever-arm physics (force × distance
+   from the fulcrum), so pressing near the tip tips more than near the middle.
+   The ball rolls to whichever end is pushed down. Leaving hands the seesaw
+   back to its idle CSS rocking. Skipped on touch devices & reduced motion. */
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (matchMedia('(hover: none)').matches) return;
+  var MAXT = 13, ROLL = 118;                     // max tilt (deg), ball travel (px)
+  var saws = Array.prototype.map.call(
+    document.querySelectorAll('.playground .seesaw'), function (el) {
+      return {el: el, plank: el.querySelector('.plank'),
+              ball: el.querySelector('.go-ball'),
+              tri: el.querySelector('.go-tri'), cube: el.querySelector('.go-cube'),
+              flip: el.classList.contains('flip'), held: false, timer: 0};
+    });
+  var mx = -1e4, my = -1e4, raf = 0;
+
+  function release(s) {   // ease every piece to the idle animation's 0% pose…
+    s.plank.style.transform = 'rotate(calc(var(--tilt,7deg)*-1))';
+    s.ball.style.transform = 'translateX(0) rotate(0turn)';
+    s.tri.style.transform = 'scaleY(.88)';
+    s.cube.style.transform = 'scaleY(1.07) translateY(-3px)';
+    s.timer = setTimeout(function () {
+      // …then resume idle FROM that pose: restart at delay 0s (a negative
+      // --t offset would resume mid-cycle and visibly snap).
+      var kids = [s.plank, s.ball, s.tri, s.cube];
+      for (var j = 0; j < kids.length; j++) {
+        kids[j].style.animationDelay = '0s';
+        kids[j].style.transform = '';
+      }
+      s.el.classList.remove('held');
+    }, 520);
+  }
+
+  function tick() {
+    raf = 0;
+    for (var i = 0; i < saws.length; i++) {
+      var s = saws[i], r = s.el.getBoundingClientRect();
+      var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+      var inX = Math.abs(mx - cx) < r.width * 0.75;
+      var inY = Math.abs(my - cy) < r.height * 1.7;
+      if (inX && inY) {
+        var lever = Math.max(-1, Math.min(1, (mx - cx) / (r.width / 2)));
+        var press = 1 - Math.abs(my - cy) / (r.height * 1.7);  // closer = heavier
+        var tilt = lever * MAXT * Math.max(.45, press);        // visual degrees
+        var local = s.flip ? -tilt : tilt;       // mirrored saw: flip the sign
+        if (!s.held) { s.held = true; clearTimeout(s.timer); s.el.classList.add('held'); }
+        s.plank.style.transform = 'rotate(' + local.toFixed(2) + 'deg)';
+        var x = (local + MAXT) / (2 * MAXT) * ROLL;            // roll downhill
+        s.ball.style.transform = 'translateX(' + x.toFixed(1) + 'px) rotate(' +
+                                 (x / ROLL * 0.9).toFixed(3) + 'turn)';
+      } else if (s.held) { s.held = false; release(s); }
+    }
+  }
+  addEventListener('pointermove', function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }, {passive: true});
+  addEventListener('scroll', function () {  // rects are viewport-relative; re-tick as saws scroll by
+    if (!raf) raf = requestAnimationFrame(tick);
+  }, {passive: true});
+})();
+</script>
+
+<a class="skip" href="#main">Skip to the questions</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="home" href="../../index.html">Stars&nbsp;&amp;&nbsp;Bears</a>
+    <span class="crumbs"><a href="../../index.html">All notes</a> &nbsp;·&nbsp; <a href="../../index.html#econ">Economy</a></span>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidenav" aria-label="Contents">
+    <a class="toc-lead" href="#q0-money">The life of a $100</a>
+    <div class="toc-group">
+      <a class="toc-head" href="#q1-gdp-cake">The big picture</a>
+      <a href="#q1-gdp-cake">The GDP cake</a>
+      <a href="#q2-industry-and-jobs">Jobs &amp; pay</a>
+      <a href="#q3-productivity">Profits</a>
+      <a href="#state-explorer">Pick your state</a>
+      <a href="#q4-value-of-industry">What's "worth"?</a>
+    </div>
+    <div class="toc-group">
+      <a class="toc-head" href="#q5-family-budget">Our money at home</a>
+      <a href="#q5-family-budget">The family budget</a>
+      <a href="#q6-over-time">Spending over time</a>
+      <a href="#q7-by-age">Spending behaviors</a>
+      <a href="#q8-where-you-live">Where you live</a>
+    </div>
+    <div class="toc-group">
+      <a class="toc-head" href="#q9-supply-demand">The big forces</a>
+      <a href="#q9-supply-demand">Supply &amp; demand</a>
+      <a href="#q10-ai-costs">Will AI cut costs?</a>
+      <a href="#ai-deflation">Too cheap?</a>
+      <a href="#closing">So… the economy?</a>
+    </div>
+    <a class="toc-lead" href="#sources">Sources</a>
+  </nav>
+  <div class="body-col">
+
+<header class="hero">
+  <div class="wrap reveal">
+    <span class="badge">🧒 A bedtime Q&amp;A</span>
+    <h1><span class="u">Our Economy Boat: At Shore</span></h1>
+    <p>My kiddo kept asking the big questions at dinner. So I asked Claude to answer them — with real charts you can actually poke at.</p>
+    <p class="cast">Starring <b>an 8-Year-Old</b> &nbsp;•&nbsp; answers &amp; graphs by <b>Claude</b></p>
+    <p class="meta"><i>Last updated: 07/13/2026 &nbsp;·&nbsp; estimated reading time: 25 mins to 1 hr</i></p>
+  </div>
+</header>
+
+<main class="wrap" id="main" tabindex="-1">
+
+{% endraw %}
+{% include_relative sections/q0-money.html %}
+
+{% include_relative sections/q1-gdp-cake.html %}
+
+{% include_relative sections/q2-industry-and-jobs.html %}
+
+{% include_relative sections/q3-productivity.html %}
+
+{% include_relative sections/state-explorer.html %}
+
+
+
+{% include_relative sections/q4-value-of-industry.html %}
+
+
+{% include_relative sections/q5-family-budget.html %}
+
+{% include_relative sections/q6-over-time.html %}
+
+{% include_relative sections/q7-by-age.html %}
+
+
+{% include_relative sections/q8-where-you-live.html %}
+
+{% include_relative sections/q9-supply-demand.html %}
+
+{% include_relative sections/q10-ai-costs.html %}
+
+{% include_relative sections/ai-deflation.html %}
+
+
+{% include_relative sections/closing.html %}
+
+</main>
+
+{% include_relative sections/footer.html %}
+
+  </div>
+</div>
+
+<div class="topbar bottom">
+  <div class="wrap">
+    <a href="../../index.html">← Stars &amp; Bears</a>
+    <a href="../../index.html#econ">More in Economy →</a>
+  </div>
+</div>
+
+{% include_relative sections/a11y.html %}
+
+{% include_relative sections/page-scripts.html %}
+
+</body>
+</html>

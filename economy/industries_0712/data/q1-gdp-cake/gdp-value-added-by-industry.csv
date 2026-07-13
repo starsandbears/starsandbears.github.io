@@ -1,0 +1,22 @@
+industry,naics,va_2024_report_usd_bn,va_2025_usd_bn,share_2025_pct,fred_series
+"Real estate, rental & leasing",53,4025.8,4238.6,13.78,VARL
+"Government","fed+state+local",3293.7,3447.0,11.21,VAG
+"Manufacturing","31-33",2913.1,2896.5,9.42,VAMA
+"Professional, scientific & technical",54,2381.2,2494.2,8.11,VAPST
+"Finance & insurance",52,2164.2,2441.9,7.94,VAFI
+"Health care & social assistance",62,2211.7,2371.1,7.71,VAHCSA
+"Retail trade","44-45",1841.7,1921.8,6.25,VAR
+"Wholesale trade",42,1706.8,1905.4,6.19,VAW
+"Information",51,1569.5,1695.1,5.51,VAI
+"Construction",23,1312.3,1341.3,4.36,VAC
+"Transportation & warehousing","48-49",969.2,1023.9,3.33,VAT
+"Accommodation & food services",72,956.3,976.5,3.17,VAAF
+"Administrative & waste services",56,927.4,952.5,3.10,"derived (VAPBS-VAPST-VAMCE)"
+"Other services, except government",81,626.7,649.4,2.11,VAOSEG
+"Management of companies",55,538.8,576.8,1.88,VAMCE
+"Utilities",22,437.3,471.2,1.53,VAU
+"Mining",21,393.7,384.3,1.25,VAM
+"Arts, entertainment & recreation",71,336.9,355.9,1.16,VAAER
+"Educational services, private",61,330.3,347.2,1.13,VAES
+"Agriculture, forestry, fishing & hunting",11,248.4,272.0,0.88,VAAFH
+"Total US GDP (nominal)","",29184.9,30762.1,100.00,GDPA
