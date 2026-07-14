@@ -510,4 +510,12 @@ const STHIST={"AL":[[2.7,2.1,2.0,1.9,1.9,1.9,1.6,1.8,3.1,2.6,2.7,2.1,2.4,2.5,2.1
   else document.addEventListener("DOMContentLoaded", fn);
 })();
 </script>
+
+<script>
+/* External links (absolute http/https URLs — sources, citations) open in a
+   new tab; in-page anchors and relative links keep the same tab. */
+document.querySelectorAll('a[href^="http"]').forEach(a => {
+  a.target = '_blank'; a.rel = 'noopener';
+});
+</script>
 {% endraw %}
