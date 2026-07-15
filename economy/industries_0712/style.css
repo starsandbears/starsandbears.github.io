@@ -232,7 +232,7 @@
      SIDENAV + SHELL — contents rail on the left (Jefferson design)
      ============================================================ */
   .shell{max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,48px);display:grid;
-    grid-template-columns:214px minmax(0,1fr);gap:38px;align-items:start;position:relative;z-index:1}
+    grid-template-columns:214px minmax(0,1fr);gap:26px;align-items:start;position:relative;z-index:1}
   .body-col{min-width:0;grid-column:2} /* the fixed sidenav leaves the grid flow, so pin the body past the rail column */
   .sidenav{position:fixed;top:50%;transform:translateY(-50%);
     left:calc(max(0px,(100vw - 1360px)/2) + clamp(20px,4vw,48px));width:214px;z-index:5;
@@ -247,6 +247,9 @@
   .sidenav .toc-head:hover{background:#fde4d8;color:var(--tomato)}
   .sidenav .toc-group a:not(.toc-head){padding-left:16px}
   @media (max-width:1040px){
+    /* single column: Jefferson's fluid side padding (never under 28px) so
+       text boxes keep breathing room from the screen edges */
+    .wrap{padding:0 clamp(28px,6vw,60px)}
     .shell{display:block}
     .sidenav{position:sticky;top:0;left:auto;transform:none;width:auto;z-index:20;
       max-height:none;overflow-x:auto;overflow-y:hidden;white-space:nowrap;display:flex;
@@ -257,6 +260,10 @@
     .sidenav a{display:inline-block;white-space:nowrap;padding:6px 12px;border-radius:20px}
     .sidenav .toc-group a:not(.toc-head){padding-left:12px}
   }
+  /* content sits slightly closer to the nav rail; the spare room goes to
+     the RIGHT side (wrap hugs the left of the column and caps its width) */
+  @media (min-width:1041px){.body-col .wrap{margin:0;max-width:1010px;   /* = 1024px max column (1360 shell − 2×48 pad − 214 rail − 26 gap) − 14px slack */
+    padding:0 22px 0 12px}}
   section.qa{scroll-margin-top:24px}
 
   /* topbar crumbs + bottom return bar (Jefferson pattern) */
@@ -370,7 +377,6 @@
   @media (max-width:700px){:root{--bgk:.5}}
 
   @media (max-width:700px){
-    .wrap{padding:0 14px}
     section.qa{padding:26px 0}
     .avatar{width:38px;height:38px;font-size:20px}
     .kid-q,.claude-a{gap:9px}
