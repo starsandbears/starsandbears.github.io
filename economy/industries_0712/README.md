@@ -3,7 +3,7 @@
 An interactive, kid-friendly Q&A report on the US economy: where money comes
 from, the GDP cake, industries, jobs & pay, the family budget (with a
 "spend $1,000 on what you value" allocator), prices over time, supply &
-demand, and AI & deflation, closing on an open bond/fund question — with live
+demand, and AI & deflation, closing on an AI-abundance vision — with live
 Plotly/Bokeh charts and a pick-your-state explorer.
 
 **Page:** `us-econ-and-money-intro.html`
@@ -35,9 +35,10 @@ sections/
   q7-by-age.html
   q8-where-you-live.html
   q9-supply-demand.html
-  q10-ai-costs.html                   ← AI & costs + good/bad deflation, the
-                                        bond/fund what-if, and the AI-abundance
-                                        smart-city vision
+  q10-ai-costs.html                   ← AI & costs + good/bad deflation and
+                                        the AI-abundance smart-city vision (a
+                                        bond/fund what-if sits inside, commented
+                                        out)
   closing.html                        ← what is the economy / meaning of money
   footer.html                         ← sources & disclaimer
   page-scripts.html                   ← all chart-drawing JavaScript (Plotly
