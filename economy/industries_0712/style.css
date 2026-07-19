@@ -142,8 +142,8 @@
     padding:14px 18px;margin:16px 0 0;font-size:15px}
 
   /* footer */
-  footer{padding:44px 0 76px;color:var(--muted);font-size:13.5px}
-  footer h3{font-family:var(--display);color:var(--ink);font-weight:700}
+  footer{padding:44px 0 76px;color:var(--muted);font-size:15px}
+  footer h3{font-family:var(--display);color:var(--ink);font-weight:700;font-size:clamp(21px,3vw,27px);line-height:1.15}
   footer ul{padding-left:18px;max-width:82ch}
   footer li{margin:5px 0}
   .disc{background:#fffdf7;border:2px solid var(--line);border-left:6px solid var(--sun);border-radius:0 12px 12px 0;padding:14px 18px;margin-top:16px}
@@ -263,7 +263,8 @@
   /* content sits slightly closer to the nav rail; the spare room goes to
      the RIGHT side (wrap hugs the left of the column and caps its width) */
   @media (min-width:1041px){.body-col .wrap{margin:0;max-width:1010px;   /* = 1024px max column (1360 shell − 2×48 pad − 214 rail − 26 gap) − 14px slack */
-    padding:0 22px 0 12px}}
+    padding:0 22px 0 12px}
+    .body-col footer.wrap{padding-left:66px}}  /* sources & thanks: align with the answer text, clear of the contents rail */
   section.qa{scroll-margin-top:24px}
 
   /* topbar crumbs + bottom return bar (Jefferson pattern) */
