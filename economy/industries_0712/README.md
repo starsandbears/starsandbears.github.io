@@ -6,8 +6,8 @@ from, the GDP cake, industries, jobs & pay, the family budget (with a
 demand, and AI & deflation, closing on an AI-abundance vision — with live
 Plotly/Bokeh charts and a pick-your-state explorer.
 
-**Page:** `us-econ-and-money-intro.html`
-**Published at:** `https://starsandbears.github.io/economy/industries_0712/us-econ-and-money-intro.html` (after push)
+**Page:** `index.html`
+**Published at:** `https://starsandbears.github.io/economy/industries_0712/` (after push)
 
 ## How the page is put together
 
@@ -17,7 +17,7 @@ every push. There is nothing to build locally and no generated file to keep in
 sync: **the child files are the only source of truth.**
 
 ```
-us-econ-and-money-intro.html   ← main file: <head>, hero, background
+index.html                            ← main file: <head>, hero, background
                                         playground (seesaws + cake slices),
                                         table of contents, and one include
                                         line per section (like \input)
@@ -27,8 +27,8 @@ sections/
   q0-money.html                       ← one child file per Q&A section; the
   q1-gdp-cake.html                      "qN" in the file name matches the
   q2-industry-and-jobs.html             Question-N chip displayed inside it
-  state-explorer.html                 ← pick-your-state (no question number)
   q3-productivity.html
+  state-explorer.html                 ← pick-your-state (no question number)
   q4-value-of-industry.html
   q5-family-budget.html               ← + the $1,000 allocator
   q6-over-time.html

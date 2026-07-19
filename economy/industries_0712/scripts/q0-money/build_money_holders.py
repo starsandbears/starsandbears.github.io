@@ -4,7 +4,7 @@ Build ../../data/q0-money/money-holders.csv: who HOLDS America's ready money (ch
 deposits & currency, time & savings deposits, money-market fund shares), by
 sector — households, nonfinancial businesses big & small, state & local
 governments, the federal government, and the rest of the world. Powers the
-"who holds the money?" question in us-econ-and-money-intro.html.
+"who holds the money?" question in index.html.
 
 WHY THESE CATEGORIES. M2 (the headline "money supply", ~$23.1T, FRED M2SL) is
 defined from the LIABILITY side: currency + checkable deposits + savings/small

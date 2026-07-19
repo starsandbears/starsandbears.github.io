@@ -3,7 +3,7 @@
 Build ../../data/q0-money/m2-vs-net-worth.csv: the money pile (M2)
 next to what families OWN (household & nonprofit net worth), annual averages,
 1990-latest. Powers the "how much money is alive right now?" chart in
-us-econ-and-money-intro.html (mount point #m2Line).
+index.html (mount point #m2Line).
 
 WHY BOTH SERIES ON ONE CHART. M2 counts the dollars alive right now — but a
 dollar's life story ends with it erased (loan repaid / QT), having been traded

@@ -1,6 +1,6 @@
 # Deep-research cross-check — US economy report
 
-**Subject:** `../us-econ-and-money-intro.html`
+**Subject:** `../index.html`
 **Date of check:** June 2026
 **Method:** Multi-source web research against primary sources (BEA, BLS, NYU Stern/Damodaran, Siblis). Each load-bearing number corroborated against at least one independent source (mostly FRED, which mirrors BEA/BLS primary series).
 

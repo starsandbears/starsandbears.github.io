@@ -1,6 +1,6 @@
 # Data — US economy report
 
-Reference data backing `../us-econ-and-money-intro.html`.
+Reference data backing `../index.html`.
 Compiled June 2026 via a deep-research cross-check against primary sources (BEA, BLS, Damodaran, Siblis), then used to refresh the report to 2025 data on a consistent NAICS classification.
 
 ## Status

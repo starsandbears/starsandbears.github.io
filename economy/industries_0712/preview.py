@@ -2,7 +2,7 @@
 """
 Instant local preview of the report — no Jekyll needed.
 
-The main file (us-econ-and-money-intro.html) is SOURCE: it holds
+The main file (index.html) is SOURCE: it holds
 {% include_relative sections/... %} lines that GitHub Pages' Jekyll expands at
 deploy time. Opening it directly in a browser therefore shows the raw include
 lines instead of the page. This script does the same expansion Jekyll does —
@@ -24,7 +24,7 @@ import sys
 import webbrowser
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MAIN = os.path.join(HERE, "us-econ-and-money-intro.html")
+MAIN = os.path.join(HERE, "index.html")
 OUT = os.path.join(HERE, "_preview.html")
 
 

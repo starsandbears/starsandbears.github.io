@@ -3,7 +3,7 @@
 Build ../../data/q1-gdp-cake/gdp-value-added-dollars-history.csv: each big
 industry's value added in DOLLARS ($ billions), every year 2005-2025. Powers
 the "slices in dollars, over time" line chart next to the shares-over-time
-chart in us-econ-and-money-intro.html.
+chart in index.html.
 
 WHY DOLLARS TOO. The shares-history CSV (gdp-value-added-shares-history.csv)
 answers "did the slice get bigger or smaller *compared to the whole cake*?".
