@@ -1,0 +1,150 @@
+---
+---
+{% raw %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- original title: "No Hand on the Tiller — what the research actually says, in its own words" -->
+<!-- previous title: "How to Be Useful (Without Taking Over) — the research, in its own words" -->
+<!-- previous title: "The Hitchhiker's Guide to Being Useful — without taking over" -->
+<title>The Hitchhiker's Guide to Swimming, Volume One — introducing the water</title>
+<meta name="description" content="A learning note told through verbatim quotations: manipulation philosophy, nudging vs. boosting, autonomy support, scaffolding, inoculation, and machine empowerment — on how to be useful without manipulating.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#thursday">Skip to the note</a>
+
+<!-- Undersea world: sunbeams, bubbles, fish at several depths, two whales, an octopus, a scuttling crab, a turtle, two jellyfish -->
+<div class="rays" aria-hidden="true"></div>
+<div aria-hidden="true">
+  <span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span>
+  <span class="bubble b4"></span><span class="bubble b5"></span><span class="bubble b6"></span>
+  <span class="fish fishA f1"></span>
+  <span class="fish fishC f2"></span>
+  <span class="fish fishB f3"></span>
+  <span class="fish fishC f4"></span>
+  <span class="fish fishC f5"></span>
+  <span class="fish turtle f6"></span>
+  <span class="fish jelly f7"></span>
+  <span class="fish whale f8"></span>
+  <span class="fish octo f9"></span>
+  <span class="fish crab f10"></span>
+  <span class="fish fishC f11"></span>
+  <span class="fish fishA f12"></span>
+  <span class="fish fishB f13"></span>
+  <span class="fish whale f14"></span>
+  <span class="fish jelly f15"></span>
+</div>
+
+<!-- Kelp, seagrass and coral swaying on the seafloor; starfish and sea urchins on the sand -->
+<div class="seafloor" aria-hidden="true">
+  <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <g id="kelp">
+        <path d="M0 0 C 9 -32 -9 -58 3 -92 C 12 -118 -6 -142 2 -168" fill="none" stroke="#2e8b74" stroke-width="7" stroke-linecap="round"/>
+        <path d="M1 -34 q-16 -7 -24 2 q12 8 24 4 M2 -78 q16 -7 24 2 q-12 8 -24 4 M1 -122 q-15 -7 -23 2 q11 8 23 4" fill="#3ba088"/>
+      </g>
+      <g id="grass">
+        <path d="M-12 0 C -14 -22 -8 -40 -10 -54 M-4 0 C -5 -26 1 -44 -1 -62 M4 0 C 5 -24 -1 -40 2 -56 M12 0 C 13 -20 8 -34 10 -48"
+          fill="none" stroke="#2e8b74" stroke-width="4" stroke-linecap="round" opacity=".85"/>
+      </g>
+      <g id="coral">
+        <path d="M0 0 C -2 -14 -14 -16 -16 -30 M0 0 C 0 -18 -4 -26 2 -40 M0 0 C 4 -12 14 -14 15 -28 M-16 -30 C -18 -36 -14 -40 -16 -44 M2 -40 C 0 -46 6 -50 4 -56 M15 -28 C 17 -34 13 -38 16 -44"
+          fill="none" stroke="#c8563b" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <g id="star">
+        <path d="M0 -10 L3 -3 L10 -2 L4 3 L6 10 L0 6 L-6 10 L-4 3 L-10 -2 L-3 -3 Z" fill="#d99a2b"/>
+      </g>
+      <g id="urchin">
+        <g stroke="#4a3b5c" stroke-width="2.5" stroke-linecap="round">
+          <path d="M0 -7 L0 -18 M0 -7 L9 -16 M0 -7 L-9 -16 M0 -7 L14 -9 M0 -7 L-14 -9 M0 -7 L15 -1 M0 -7 L-15 -1 M0 -7 L11 3 M0 -7 L-11 3 M0 -7 L4 -18 M0 -7 L-4 -18"/>
+        </g>
+        <circle cx="0" cy="-7" r="7.5" fill="#5c4a70"/>
+      </g>
+    </defs>
+    <rect x="0" y="196" width="1200" height="24" fill="#d9c692" opacity=".8"/>
+    <rect x="0" y="192" width="1200" height="6" rx="3" fill="#c9b47c" opacity=".55"/>
+    <g transform="translate(90,198)"><g class="sway s1"><use href="#kelp"/></g></g>
+    <g transform="translate(140,198) scale(.7)"><g class="sway s3"><use href="#kelp"/></g></g>
+    <g transform="translate(320,198)"><g class="sway s2"><use href="#grass"/></g></g>
+    <g transform="translate(455,198) scale(1.15)"><g class="sway s4"><use href="#kelp"/></g></g>
+    <g transform="translate(600,198)"><use href="#coral"/></g>
+    <g transform="translate(700,198) scale(.85)"><g class="sway s1"><use href="#grass"/></g></g>
+    <g transform="translate(860,198) scale(.9)"><g class="sway s3"><use href="#kelp"/></g></g>
+    <g transform="translate(915,198) scale(.6)"><g class="sway s2"><use href="#kelp"/></g></g>
+    <g transform="translate(1060,198)"><g class="sway s4"><use href="#grass"/></g></g>
+    <g transform="translate(1150,204) scale(.9)"><use href="#star"/></g>
+    <g transform="translate(240,206) scale(.7)"><use href="#star"/></g>
+    <g transform="translate(55,208) scale(.8)"><use href="#urchin"/></g>
+    <g transform="translate(385,209)"><use href="#urchin"/></g>
+    <g transform="translate(520,210) scale(.6)"><use href="#urchin"/></g>
+    <g transform="translate(770,208) scale(1.1)"><use href="#urchin"/></g>
+    <g transform="translate(1000,209) scale(.75)"><use href="#urchin"/></g>
+  </svg>
+</div>
+
+<div class="topbar" id="top">
+  <div class="wrap">
+    <a class="home" href="../../index.html">Stars&nbsp;&amp;&nbsp;Bears</a>
+    <span class="crumbs"><a href="../../index.html">All notes</a> &nbsp;·&nbsp; <a href="../../index.html">Science</a></span>
+  </div>
+</div>
+
+<div class="shell">
+  <nav class="sidenav" aria-label="Contents">
+    <a class="toc-title" href="#top">The Hitchhiker's Guide to Swimming · Volume I</a>
+    <a class="toc-lead" href="#thursday">1 · An ordinary Thursday</a>
+    <a class="toc-lead" href="#baseline">2 · No neutral water</a>
+    <a class="toc-lead" href="#gifts">3 · Gifts in the water</a>
+    <a class="toc-lead" href="#next">To be continued →</a>
+    <a class="toc-lead" href="#refs">Sources &amp; notes</a>
+  </nav>
+  <div class="body-col">
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">A cheerful, oversized promise: an attempt to learn to be useful without taking over</div>
+    <!-- original title: <h1>No Hand on the <span class="u">Tiller</span></h1> -->
+    <!-- previous title: <h1>How to Be <span class="u">Useful</span> (Without Taking Over)</h1> -->
+    <!-- previous title: <h1>The Hitchhiker's Guide to Being <span class="u">Useful</span> — without taking over</h1> -->
+    <h1>The Hitchhiker's Guide to <span class="u">Swimming</span> · Volume I</h1>
+    <p class="lede"><em>Even tough questions float when they hitch a ride with a joke — and a fellow passenger's first words to a frightened one are "Don't Panic".</em></p>
+  </div>
+</header>
+
+<main class="wrap">
+{% endraw %}
+
+{% include_relative sections/thursday.html %}
+
+{% include_relative sections/no-still-water.html %}
+
+{% include_relative sections/gifts.html %}
+
+{% include_relative sections/next-volume.html %}
+
+</main>
+
+{% include_relative sections/footer.html %}
+
+
+<div class="topbar bottom">
+  <div class="wrap">
+    <a href="../../index.html">← Stars &amp; Bears</a>
+    <a href="../water_temperature/index.html">Volume Two →</a>
+  </div>
+</div>
+
+  </div><!-- /body-col -->
+</div><!-- /shell -->
+
+{% include_relative sections/a11y.html %}
+
+{% include_relative sections/page-scripts.html %}
+</body>
+</html>

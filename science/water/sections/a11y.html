@@ -1,0 +1,38 @@
+{% raw %}
+<!-- Accessibility toolbar -->
+<div class="a11y">
+  <button class="a11y-toggle" id="a11yToggle" aria-expanded="false" aria-controls="a11yPanel">
+    <span class="ico" aria-hidden="true">&#9855;</span> Accessibility
+  </button>
+  <div class="a11y-panel" id="a11yPanel" role="region" aria-label="Accessibility tools" hidden>
+    <p class="ttl">Read aloud</p>
+    <div class="a11y-row">
+      <button class="a11y-btn primary" id="arPlay" aria-pressed="false">
+        <span aria-hidden="true">&#9654;</span> <span id="arPlayLabel">Read aloud</span>
+      </button>
+      <button class="a11y-btn" id="arStop">Stop</button>
+    </div>
+    <div class="a11y-row">
+      <label for="arRate">Speed
+        <select id="arRate">
+          <option value="0.8">0.8&times;</option>
+          <option value="1" selected>1&times;</option>
+          <option value="1.25">1.25&times;</option>
+          <option value="1.5">1.5&times;</option>
+        </select>
+      </label>
+    </div>
+    <p class="ttl">Reading comfort</p>
+    <div class="a11y-row">
+      <button class="a11y-btn" id="dysToggle" aria-pressed="false">Dyslexia-friendly font</button>
+    </div>
+    <p class="ttl">Text size</p>
+    <div class="a11y-row" role="group" aria-label="Text size">
+      <button class="a11y-btn" id="fsSmall" aria-pressed="false">Small</button>
+      <button class="a11y-btn" id="fsMedium" aria-pressed="true">Medium</button>
+      <button class="a11y-btn" id="fsLarge" aria-pressed="false">Large</button>
+    </div>
+    <p class="a11y-status" id="arStatus" role="status" aria-live="polite"></p>
+  </div>
+</div>
+{% endraw %}

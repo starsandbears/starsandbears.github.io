@@ -1,0 +1,116 @@
+{
+  "note": "Bibliography for 'The Hitchhiker's Guide to Swimming' learning note (formerly 'The Hitchhiker's Guide to Being Useful', 'How to Be Useful (Without Taking Over)', and 'No Hand on the Tiller'). Compiled 2026-07-08; verbatim quotes verified against primary sources 2026-07-14/16 (see 'quote' fields — each was copied from the linked source or the stated open-access version, as complete passages with no elisions). Entries without a 'quote' field are cited by paraphrase only, because their full text was paywalled at verification time.",
+  "areas": [
+    "Nudging, boosting & transparency",
+    "Manipulation & the philosophy of influence",
+    "Motivation & autonomy support",
+    "Scaffolding, tutoring & the assistance dilemma",
+    "Resistance, inoculation & self-persuasion",
+    "Epistemic autonomy & epistemic paternalism",
+    "AI, sycophancy & machine empowerment"
+  ],
+  "sources": [
+    {
+      "citekey": "susser2019online",
+      "authors": "Susser, D., Roessler, B. & Nissenbaum, H.",
+      "year": 2019,
+      "title": "Online Manipulation: Hidden Influences in a Digital World",
+      "venue": "Georgetown Law Technology Review 4(1)",
+      "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3306006",
+      "area": "Manipulation & the philosophy of influence",
+      "finding": "Defines manipulation as covertly influencing decision-making by targeting decision-making vulnerabilities; hiddenness is the core wrong, because it subverts the capacity to form decisions one can endorse as one's own.",
+      "quote": "We argue that at its core, manipulation is hidden influence—the covert subversion of another person's decision-making power.",
+      "more_quotes": [
+        "In contrast with persuasion, which is the forthright appeal to another person's decision-making power, or coercion, which is the restriction of acceptable options from which another person might choose, manipulation functions by exploiting the manipulee's cognitive (or affective) weaknesses and vulnerabilities in order to steer his or her decision-making process towards the manipulator's ends.",
+        "In one respect, persuasion and coercion are, therefore, opposites, since persuading someone leaves the choice of the matter entirely up to the target, while coercing someone deprives them of choice. But what persuasion and coercion have in common is that they attempt to influence without undermining the target's decision-making powers. In cases of persuasion and coercion, the agent is steering the ship. When coerced, a person is forced to abandon their self-chosen ends (the destination, say), but it is still the coerced person who does the abandoning. They understand what is happening; they recognize it as the only acceptable option. They direct themselves to do as their coercer demands.",
+        "Manipulation, by contrast, means taking hold of the controls. To manipulate people is to displace them as the decider, to “subvert,” as Wood puts it, their capacity for self-government, to “undermine or disrupt the ways of choosing that they themselves would critically endorse if they considered the matter in a way that is lucid and free of error.”",
+        "As soon as we become conscious of outside influence, of someone else's plans and how we are implicated in them, we incorporate that influence into our own decision-making. Once you know someone else is trying to get you to do something, that fact becomes a regular part of how you make up your mind.",
+        "Since we are never totally free of outside influence, what gives us (part) authorship over our own actions is that we regard our own reasons for acting as authoritative. Manipulation thwarts that.",
+        "In our view, nudges are manipulative if they are hidden and exploit vulnerabilities. Many nudges—indeed, most of the nudges that Thaler and Sunstein recommend—are transparent and work to correct cognitive vulnerabilities rather than exploit them.",
+        "manipulative influences thwart people's capacity to form decisions they can recognize and endorse as their own",
+        "But let us steer clear of two possible misunderstandings: first, autonomy is sometimes still understood entirely in terms of solipsistic “rational choosers,” without taking social contexts (and social others) into account. We agree with criticisms of this conception of autonomy and develop our own conception from theories of relational autonomy. Such accounts understand autonomy as a capacity of socially-situated persons, whose decisions issue from deliberative processes rich with emotion, feeling, imagination, and reason, and which are conditioned in part by their contexts.",
+        "The salient issue, to our minds, is not whether the influence appeals to the target's rational faculties, but, rather, whether it appeals to their conscious decision-making process. Which is to say, the issue for us is not rationality but awareness."
+      ],
+      "quote_source": "Verified against the published article text (Georgetown Law Technology Review PDF via UvA repository), 2026-07-14/17; the 'rationality but awareness' passage is from the paper's footnote 61, verified 2026-07-18."
+    },
+    {
+      "citekey": "susser2019technology",
+      "authors": "Susser, D., Roessler, B. & Nissenbaum, H.",
+      "year": 2019,
+      "title": "Technology, Autonomy, and Manipulation",
+      "venue": "Internet Policy Review 8(2)",
+      "url": "https://nissenbaum.tech.cornell.edu/papers/Technology,%20Autonomy,%20and%20Manipulation.pdf",
+      "area": "Manipulation & the philosophy of influence",
+      "finding": "Grounds the harm of manipulation in relational, socially-situated accounts of autonomy rather than an influence-free ideal of the self."
+    },
+    {
+      "citekey": "schmidt2020ethics",
+      "authors": "Schmidt, A. T. & Engelen, B.",
+      "year": 2020,
+      "title": "The Ethics of Nudging: An Overview",
+      "venue": "Philosophy Compass 15(4)",
+      "url": "https://compass.onlinelibrary.wiley.com/doi/10.1111/phc3.12658",
+      "area": "Manipulation & the philosophy of influence",
+      "finding": "Survey of the decade-long debate; organizes the objections (autonomy, manipulation, transparency) and the replies, including the argument that there is no neutral, influence-free choice architecture to retreat to. (Paywalled to automated verification; the quoted phrase was supplied from the publisher's version.)",
+      "quote": "nudging vitiates personal autonomy",
+      "quote_source": "Phrase supplied by the site owner from the publisher's version (Wiley; paywalled to automated verification), 2026-07-17."
+    },
+    {
+      "citekey": "thaler2008nudge",
+      "authors": "Thaler, R. H. & Sunstein, C. R.",
+      "year": 2008,
+      "title": "Nudge: Improving Decisions About Health, Wealth, and Happiness",
+      "venue": "Yale University Press (book)",
+      "url": "https://en.wikipedia.org/wiki/Nudge_(book)",
+      "area": "Nudging, boosting & transparency",
+      "finding": "The founding statement of the no-neutrality point: some choice architecture is unavoidable, so the design of choices always influences them.",
+      "quote": "there is no such thing as a 'neutral' design",
+      "more_quotes": [
+        "[T]he first misconception [about nudging] is that it is possible to avoid influencing people's choices."
+      ],
+      "quote_source": "As quoted in Kevin Vallier, 'On the Inevitability of Nudging', Georgetown Journal of Law & Public Policy 14:817 (2016), open PDF at kevinvallier.com; verified there 2026-07-18. Bracketed alterations are Vallier's."
+    },
+    {
+      "citekey": "vallier2016inevitability",
+      "authors": "Vallier, K.",
+      "year": 2016,
+      "title": "On the Inevitability of Nudging",
+      "venue": "Georgetown Journal of Law & Public Policy 14:817",
+      "url": "https://www.kevinvallier.com/wp-content/uploads/2024/09/On-the-Inevitability-of-Nudging.pdf",
+      "area": "Nudging, boosting & transparency",
+      "finding": "Examines the Thaler–Sunstein claim that choice architecture is unavoidable and concludes that some shaping of choices is, in a robust sense, inevitable — the field's peace treaty with non-neutrality, argued out in full.",
+      "quote_source": "Open PDF at kevinvallier.com, read directly 2026-07-18; it is also the open source through which the Thaler & Sunstein quotation was verified."
+    },
+    {
+      "citekey": "johnson2003defaults",
+      "authors": "Johnson, E. J. & Goldstein, D.",
+      "year": 2003,
+      "title": "Do Defaults Save Lives?",
+      "venue": "Science 302(5649), 1338–1339",
+      "url": "https://www.dangoldstein.com/papers/DefaultsScience.pdf",
+      "area": "Nudging, boosting & transparency",
+      "finding": "The organ-donation default study: countries where donor consent is the form's default (opt-out) show far higher effective consent rates than opt-in countries — the two distributions do not even overlap — so the printed default quietly steers national outcomes.",
+      "quote_source": "Open PDF at dangoldstein.com, consulted 2026-07-19; cited on the page by paraphrase only, no verbatim quote."
+    },
+    {
+      "citekey": "wp-nudge-theory",
+      "authors": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Nudge theory",
+      "venue": "Wikipedia, The Free Encyclopedia",
+      "url": "https://en.wikipedia.org/wiki/Nudge_theory",
+      "area": "Nudging, boosting & transparency",
+      "finding": "A plain-language primer on nudging — what it is, where it came from, and the debates around it."
+    },
+    {
+      "citekey": "wp-choice-architecture",
+      "authors": "Wikipedia contributors",
+      "year": 2026,
+      "title": "Choice architecture",
+      "venue": "Wikipedia, The Free Encyclopedia",
+      "url": "https://en.wikipedia.org/wiki/Choice_architecture",
+      "area": "Nudging, boosting & transparency",
+      "finding": "A plain-language primer on choice architecture — how the presentation of options shapes what gets chosen."
+    }
+  ]
+}
